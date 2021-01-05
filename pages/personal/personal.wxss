@@ -1,0 +1,133 @@
+.personal_box{
+  height:450rpx;
+  width:750rpx;
+  position: relative;
+  font-size:24rpx;
+}
+.personal_box image{
+  height:100%;
+  width:100%;
+  position: absolute;
+
+}
+.avater_box{
+  width: 168rpx;
+  height: 168rpx;
+  border-radius: 50%;
+  background: #E8ECF1;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%)
+
+}
+.avater_box image{
+  position: absolute; 
+  height:90rpx;
+  width:90rpx;
+  transform: translate(-50%,-50%);
+  left:50%;
+  top:50%;
+}
+.noLogin{
+  width: 335rpx;
+  height:300rpx;
+  position: absolute; 
+  transform: translate(-50%,-50%);
+  left:50%;
+  top:50%;
+  text-align: center;
+}
+.login_button{
+  width: 100rpx !important;
+  text-align: center;
+  color: #ffffff;
+  font-size: 36rpx;
+  background: transparent;
+  padding: 0rpx;
+  margin: 20rpx 0rpx;
+}
+.tips{
+  color:#ffffff;
+  opacity: 0.3;
+}
+.apply_item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:0rpx 20rpx;
+  margin:40rpx;
+  position: relative;
+}
+.apply_title{
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: bold;
+}
+
+.apply_content{
+  height:75rpx;
+  /* border: 1px solid #cccc; */
+  border-radius: 14rpx;
+  width:70%;
+}
+.normal-border{
+  border:1px solid #cccc;
+}
+.border-error{
+  border:1px solid #FF3333;
+}
+.apply_content input{
+  height: 100%;
+  width: 100%;
+  text-align: right;
+  padding: 0rpx 20rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+
+}
+.apply_box{
+  margin-top:40rpx;
+}
+.save_button{
+  height:80rpx;
+  width:690rpx;
+  background: linear-gradient(315deg, #2F64FF 0%, #52BBFF 100%, #52BBFF 100%);
+  margin:0 auto;
+  color:#ffffff;
+  font-size:32rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 60rpx;
+  position: fixed;
+  bottom:10rpx;
+  left:30rpx;
+}
+.school_box{
+  position: absolute;
+  min-height: 100rpx;
+  max-height: 300rpx;
+  width: 70%;
+  border-radius: 16rpx;
+  box-shadow: 0px 0px 16px 0px rgba(186, 201, 222, 0.6);
+  background: #FFFFFF;
+  top: 84rpx;
+  right: 0rpx;
+  z-index: 100;
+  overflow: auto;
+  text-align: right;
+  font-size: 28rpx;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  color: #666666;
+  line-height: 50rpx;
+}
+.activeFont{
+  color:#2F64FF;
+  font-size:30rpx;
+}
+.no_result{
+  font-size:26rpx;
+  color:#BAC9DE;
+  line-height: 80rpx;
+  padding: 0rpx 20rpx
+}

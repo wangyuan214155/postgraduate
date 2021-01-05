@@ -1,0 +1,51 @@
+<view class="personal_box" >
+  <image class="" src="/asset/images/back.png" ></image>
+  <view class="noLogin" >
+    <view class="avater_box" >
+       <image class="" src="/asset/images/normal_avater.png" />
+    </view>
+    <!-- <button class="login_button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录</button> -->
+    <button class="login_button"  bindtap="getPhoneNumber">登录</button>
+    <view class="tips" >登录后，体验更多的查询功能</view>
+  </view>
+</view>
+<view class="apply_box">
+  <view class="apply_item" >
+    <view class="apply_title" >报考学校：</view>
+    <view class="apply_content {{isSave ? (schoolError ? 'border-error' :'normal-border') :''}}" >
+      <input type="text" placeholder="请输入学校名称" value="{{schoolName}}" bindinput="schoolInput" bindfocus="schoolFous"/>
+    </view>
+    <view class="school_box" wx:if="{{schoolStatus}}">
+      <view class="no_result"  wx:if="{{schoolList.length == 0}}">未搜索到相关学校</view>
+      <block class="" wx:else>
+         <view class="result_item {{schoolName == item.name ? 'activeFont':''}}" wx:for="{{schoolList}}" bindtap="selectSchool" data-item="{{item}}">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+   <view class="apply_item" >
+    <view class="apply_title" >报考院系：</view>
+     <view class="apply_content {{isSave ? (departmentError ? 'border-error' :'normal-border'):''}}" >
+      <input type="text" placeholder="请输入报考院系" value="{{departmentName}}" bindinput="departmentInput" bindfocus="departmentFous"/>
+    </view>
+     <view class="school_box" wx:if="{{departmentStatus}}">
+      <view class="no_result" wx:if="{{departmentList.length == 0}}">未搜索到相关院系</view>
+      <block class="" wx:else>
+         <view class="result_item {{departmentName == item.name ? 'activeFont':''}}" wx:for="{{departmentList}}" bindtap="selectDepartment" data-item="{{item}}">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+   <view class="apply_item" >
+    <view class="apply_title" >报考专业：</view>
+     <view class="apply_content {{isSave ? (specialError ? 'border-error' :'normal-border'):''}}" >
+      <input type="text" placeholder="请输入报考专业" value="{{specialName}}" bindinput="specialInput" bindfocus="specialFous"/>
+    </view>
+     <view class="school_box" wx:if="{{specialStatus}}">
+      <view class="no_result"  wx:if="{{specialList.length == 0}}">未搜索到相关专业</view>
+      <block class="" wx:else>
+         <view class="result_item {{specialName == item.name ? 'activeFont':''}}" wx:for="{{specialList}}" bindtap="selectSpecial" data-item="{{item}}">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+
+  <view class="save_button" bindtap="saveMess" wx:if="{{isSave}}">保存</view>
+</view>

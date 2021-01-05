@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/teacher/teacher",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/rank/rank",
+    "pages/personal/personal"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#4871E2",
+    "color": "#96B4DC",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/rank/rank",
+        "text": "查排名",
+        "iconPath": "asset/icon/rank_normal.png",
+        "selectedIconPath": "asset/icon/rank_active.png"
+      },
+      {
+        "pagePath": "pages/teacher/teacher",
+        "text": "查导师",
+        "iconPath": "asset/icon/teacher_normal.png",
+        "selectedIconPath": "asset/icon/teacher_active.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "我的",
+        "iconPath": "asset/icon/personal_normal.png",
+        "selectedIconPath": "asset/icon/personal_active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
