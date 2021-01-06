@@ -1,1 +1,76 @@
-/* pages/rank/rank.wxss */
+page{
+  background:#F4F6F8 ;
+}
+.mess_box{
+  height: 80rpx;
+  width: 690rpx;
+  border-radius: 0rpx 64rpx 64rpx 0rpx;
+  background: linear-gradient(315deg, #2F64FF 0%, #52BBFF 100%, #52BBFF 100%);
+  color: #ffffff;
+  font-size: 32rpx;
+  margin-top: 50rpx;
+  line-height: 80rpx;
+  padding-left: 30rpx;
+  margin: 0 auto;
+  text-align: center;
+
+}
+.input_mess{
+  width:690rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin:20rpx auto;
+  padding: 40rpx 0rpx
+}
+.apply_item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:0rpx 20rpx;
+  margin:40rpx;
+  position: relative;
+}
+.apply_title{
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: bold;
+}
+
+.apply_content{
+  height:75rpx;
+  /* border: 1px solid #cccc; */
+  border-radius: 14rpx;
+  width:70%;
+}
+.normal-border{
+  border:1px solid #cccc;
+}
+.border-error{
+  border:1px solid #FF3333;
+}
+.apply_content input{
+  height: 100%;
+  width: 100%;
+  text-align: right;
+  padding: 0rpx 20rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+
+}
+.apply_box{
+  margin-top:40rpx;
+}
+.save_button{
+  height:80rpx;
+  width:690rpx;
+  background: linear-gradient(315deg, #2F64FF 0%, #52BBFF 100%, #52BBFF 100%);
+  margin:0 auto;
+  color:#ffffff;
+  font-size:32rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 60rpx;
+  position: fixed;
+  bottom:10rpx;
+  left:30rpx;
+}

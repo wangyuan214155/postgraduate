@@ -53,6 +53,13 @@
 					"id": -1,
 					"name": "我的",
 					"pathName": "pages/personal/personal",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "查排名",
+					"pathName": "pages/rank/rank",
 					"scene": null
 				}
 			]
