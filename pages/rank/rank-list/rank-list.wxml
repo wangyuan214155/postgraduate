@@ -1,0 +1,25 @@
+<view class="rank" >
+    <view class="">当前排名</view>
+    <view class="">第<text class="font-color" >{{rankNum}}</text>名</view>
+</view>
+<view class="rank_box">
+   <view class="rank_title" >
+     <view class="rank-rank" >名次</view>
+     <view class="rank-name" >姓名</view>
+     <view class="rank-special" >专业</view>
+     <view class="rank-score" >成绩</view>
+   </view>
+   <view class="rank_content {{rankNum == item.rank ? 'isSelf' :''}}" wx:for="{{rankList}}">
+     <view class="rank-rank" >
+     <image class="" src="/asset/images/first.png" wx:if="{{item.rank == 1}}"/>
+     <image class="" src="/asset/images/second.png" wx:if="{{item.rank == 2}}"/>
+     <image class="" src="/asset/images/third.png" wx:if="{{item.rank == 3}}"/>
+     <image class="" src="/asset/images/normal.png" wx:if="{{item.rank > 3}}"/>
+     <view class="rank-font">{{item.rank}}</view>
+     </view>
+     <view class="rank-name" >{{item.name}}</view>
+     <view class="rank-special" >{{item.special}}</view>
+     <view class="rank-score">{{item.score}}</view>
+   </view>
+  
+</view>

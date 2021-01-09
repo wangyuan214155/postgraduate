@@ -60,6 +60,13 @@
 					"id": -1,
 					"name": "查排名",
 					"pathName": "pages/rank/rank",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "排名列表",
+					"pathName": "pages/rank/rank-list/rank-list",
 					"scene": null
 				}
 			]
