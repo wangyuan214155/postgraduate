@@ -5,7 +5,9 @@
     "pages/logs/logs",
     "pages/rank/rank",
     "pages/personal/personal",
-    "pages/rank/rank-list/rank-list"
+    "pages/rank/rank-list/rank-list",
+    "pages/teacher/teacher-list/teacher-list",
+    "pages/teacher/teacher-hot/teacher-hot"
   ],
   "window": {
     "backgroundTextStyle": "light",

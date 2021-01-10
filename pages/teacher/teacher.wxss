@@ -1,1 +1,57 @@
-/* pages/teacher/teacher.wxss */
+@import "/pages/rank/rank.wxss";
+page{
+  background: #EFF2F5;
+}
+.tab_box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height:80rpx;
+  padding:0rpx 30rpx;
+  box-sizing: border-box;
+  font-size:32rpx;
+  background: #ffffff;
+  margin-top:20rpx;
+}
+.tab_box view{
+  width: 50%;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.activeTab{
+  color:#2F64FF;
+  border-bottom:2px solid #2F64FF;
+}
+.teacher_box{
+  width: 690rpx;
+  border-radius: 15rpx;
+  background: #ffffff;
+  padding: 40rpx 0rpx;
+  box-sizing: border-box;
+  margin: 20rpx auto;
+  box-shadow: 0px 0px 16px 0px rgba(186, 201, 222, 0.6);
+
+}
+.teacher_button{
+  height: 80rpx;
+  width: 400rpx;
+  background: linear-gradient(315deg, #2F64FF 0%, #52BBFF 100%, #52BBFF 100%);
+  margin: 80rpx auto 40rpx auto;
+  color: #ffffff;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 60rpx;
+}
+.hot_button{
+  height: 80rpx;
+  width: 400rpx;
+  background: linear-gradient(315deg, #F5A623  0%, #f7b142 100%, #f5d49f 100%);
+  margin: 80rpx auto 40rpx auto;
+  color: #ffffff;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 60rpx;
+}

@@ -1,2 +1,82 @@
-<!--pages/teacher/teacher.wxml-->
-<text>pages/teacher/teacher.wxml</text>
+<view class="tab_box" >
+   <view class="{{activeTab == 1 ? 'activeTab':''}}" bindtap="switchTab" data-type="1">导师名额</view>
+   <view class="{{activeTab == 2 ? 'activeTab':''}}" bindtap="switchTab" data-type="2">导师热度</view>
+</view>
+<view class="teacher_box" wx:if="{{activeTab == 1}}">
+ <view class="apply_item" >
+    <view class="apply_title" >报考学校：</view>
+    <view class="apply_content {{schoolError ? 'border-error' :'normal-border'}}" >
+      <input type="text" placeholder="请输入学校名称" value="{{schoolName}}" bindinput="schoolInput" bindfocus="schoolFous"/>
+    </view>
+    <view class="school_box" wx:if="{{schoolStatus}}">
+      <view class="no_result"  wx:if="{{schoolList.length == 0}}">未搜索到相关学校</view>
+      <block class="" wx:else>
+         <view class="result_item {{schoolName == item.name ? 'activeFont':''}}" wx:for="{{schoolList}}" bindtap="selectSchool" data-item="{{item}}">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+   <view class="apply_item" >
+    <view class="apply_title" >报考院系：</view>
+     <view class="apply_content {{departmentError ? 'border-error' :'normal-border'}}" >
+      <input type="text" placeholder="请输入报考院系" value="{{departmentName}}" bindinput="departmentInput" bindfocus="departmentFous"/>
+    </view>
+     <view class="school_box" wx:if="{{departmentStatus}}">
+      <view class="no_result" wx:if="{{departmentList.length == 0}}">未搜索到相关院系</view>
+      <block class="" wx:else>
+         <view class="result_item {{departmentName == item.name ? 'activeFont':''}}" wx:for="{{departmentList}}" bindtap="selectDepartment" data-item="{{item}}">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+    <view class="apply_item" >
+    <view class="apply_title" >报考导师：</view>
+     <view class="apply_content {{teacherError ? 'border-error' :'normal-border'}}" >
+      <input type="text" placeholder="请输入报考导师" value="{{teacherName}}" bindinput="teacherInput" bindfocus="teacherFous"/>
+    </view>
+     <view class="school_box" wx:if="{{teacherStatus}}">
+      <view class="no_result"  wx:if="{{teacherList.length == 0}}">未搜索到相关导师</view>
+      <block class="" wx:else>
+         <view class="result_item {{teacherName == item.name ? 'activeFont':''}}" wx:for="{{teacherList}}" bindtap="selectTeacher" data-item="{{item}}">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+   <view class="apply_item" >
+    <view class="apply_title" >输入成绩</view>
+     <view class="apply_content {{scoreError ? 'border-error' :'normal-border'}}" >
+      <input type="number" placeholder="请输入成绩" value="{{score}}"  bindblur="scoreBlur"/>
+    </view>
+  </view>
+  <view class="teacher_button" bindtap="teacherList">
+    查看导师名额
+  </view>
+  
+</view>
+<view class="teacher_box" wx:if="{{activeTab == 2}}">
+ <view class="apply_item" >
+    <view class="apply_title" >报考学校：</view>
+    <view class="apply_content {{schoolError ? 'border-error' :'normal-border'}}" >
+      <input type="text" placeholder="请输入学校名称" value="{{schoolName}}" bindinput="schoolInput" bindfocus="schoolFous"/>
+    </view>
+    <view class="school_box" wx:if="{{schoolStatus}}">
+      <view class="no_result"  wx:if="{{schoolList.length == 0}}">未搜索到相关学校</view>
+      <block class="" wx:else>
+         <view class="result_item {{schoolName == item.name ? 'activeFont':''}}" wx:for="{{schoolList}}" bindtap="selectSchool" data-item="{{item}}">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+   <view class="apply_item" >
+    <view class="apply_title" >报考院系：</view>
+     <view class="apply_content {{departmentError ? 'border-error' :'normal-border'}}" >
+      <input type="text" placeholder="请输入报考院系" value="{{departmentName}}" bindinput="departmentInput" bindfocus="departmentFous"/>
+    </view>
+     <view class="school_box" wx:if="{{departmentStatus}}">
+      <view class="no_result" wx:if="{{departmentList.length == 0}}">未搜索到相关院系</view>
+      <block class="" wx:else>
+         <view class="result_item {{departmentName == item.name ? 'activeFont':''}}" wx:for="{{departmentList}}" bindtap="selectDepartment" data-item="{{item}}">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+  <view class="hot_button" bindtap="lookTeacherHot">
+    查看导师热度
+  </view>
+  
+</view>

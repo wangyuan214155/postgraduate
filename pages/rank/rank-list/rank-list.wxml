@@ -6,7 +6,7 @@
    <view class="rank_title" >
      <view class="rank-rank" >名次</view>
      <view class="rank-name" >姓名</view>
-     <view class="rank-special" >专业</view>
+     <view class="rank-special">专业</view>
      <view class="rank-score" >成绩</view>
    </view>
    <view class="rank_content {{rankNum == item.rank ? 'isSelf' :''}}" wx:for="{{rankList}}">
