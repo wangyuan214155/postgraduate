@@ -1,66 +1,55 @@
 // pages/teacher/teacher-hot/teacher-hot.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
+    schoolName:'西北工业大学',
+    department:'计算机学院',
+    teacherList:[],//该学院下导师的热度
 
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    let teacherList = [
+      {
+        'name':'王二狗',
+        'hotNum':'2345',
+      },
+      {
+        'name':'胃肠道',
+        'hotNum':'2345',
+      },
+      {
+        'name':'大课间',
+        'hotNum':'5673',
+      },
+      {
+        'name':'从呢电话',
+        'hotNum':'1233',
+      },
+      {
+        'name':'警察局',
+        'hotNum':'1234',
+      },
+      {
+        'name':'坚持你的',
+        'hotNum':'32223',
+      },
+      {
+        'name':'存的',
+        'hotNum':'4323',
+      },
+      {
+        'name':'吃得好',
+        'hotNum':'4343',
+      }
+    ]
+    this.setData({
+      teacherList
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

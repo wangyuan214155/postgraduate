@@ -1,1 +1,105 @@
-/* pages/teacher/teacher-list/teacher-list.wxss */
+page{
+  background: #EFF2F5;
+  padding-bottom:120rpx;
+}
+.teacher_box image{
+  height:48rpx;
+  width:48rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+.teacher_box{
+  width: 690rpx;
+  margin: 20rpx 30rpx;
+  font-size: 32rpx;
+  color: #666666;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 32px 0px rgba(186, 201, 222, 0.45);
+  border-radius: 16px;
+  padding: 20rpx 0rpx;
+  font-weight: bold;
+  
+}
+.teacher_item{
+  display: flex;
+  align-items: center;
+  height:80rpx;
+  padding:0rpx 30rpx;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+.warn_font{
+  color:#4871E2;
+  font-size:36rpx;
+  font-weight: bold;
+}
+.studentList{
+  width: 690rpx;
+  margin: 30rpx auto;
+}
+.rank_title{
+  font-size:36rpx;
+  color:#333333;
+  text-align: center;
+  height:80rpx;
+  width:690rpx;
+}
+.rank_content{
+  width:690rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 32px 0px rgba(186, 201, 222, 0.45);
+  border-radius: 16rpx 16rpx 0rpx 0rpx;
+
+}
+.rank_table{
+  height:80rpx;
+  width:690rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:32rpx;
+  color:#666666;
+}
+.rank_table view,.rank_item view{
+  width:33%;
+  text-align: center;
+}
+.rank_item{
+  height:80rpx;
+  width:690rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:32rpx;
+  color:#666666; 
+  background: #FFFFFF;
+  box-shadow: 0px 0px 32px 0px rgba(186, 201, 222, 0.45);
+  margin:10rpx 0rpx;
+}
+.activeLine{
+  border-bottom:2px solid #4871E2;
+  color: #4871E2 !important;
+
+}
+.button_box{
+  height:100rpx;
+  width:750rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 32px 0px rgba(186, 201, 222, 0.45);
+  position: fixed;
+  bottom:0rpx;
+}
+
+.check_apply{
+  height: 75rpx;
+  width: 200rpx;
+  margin: 14rpx auto;
+  color: #FFFFFF;
+  background: #4871E2;
+  border-radius: 14rpx;
+  line-height: 75rpx;
+  text-align: center;
+  font-size: 30rpx
+
+}
+

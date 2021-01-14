@@ -1,2 +1,32 @@
-<!--pages/teacher/teacher-hot/teacher-hot.wxml-->
-<text>pages/teacher/teacher-hot/teacher-hot.wxml</text>
+<view class="title_box" >
+  <view class="title_item">
+    <view class="">学校</view>
+    <view class="">{{schoolName}}</view>
+  </view>
+  <view class="title_item">
+    <view class="">学院</view>
+    <view class="">{{department}}</view>
+  </view>
+</view>
+<view class="studentList">
+  <view class="rank_title" >
+     教师列表
+    <view class="tip_box" >
+      <image class="" src="/asset/images/hot.png" />
+      <text>导师热度</text>
+    </view>
+  </view>
+
+  <view class="rank_content" >
+ 
+    <view class="rank_item" wx:for="{{teacherList}}">
+      <view class="" >{{item.name}}</view>
+      <view class="hotNum" >
+        {{item.hotNum}}
+        <image class="hot_img" src="/asset/images/f-hot.png"  wx:if="{{index == 0}}"/>
+        <image class="hot_img" src="/asset/images/s-hot.png"  wx:if="{{index == 1}}"/>
+        <image class="hot_img" src="/asset/images/hot.png"  wx:if="{{index == 2}}"/>
+      </view>
+    </view>
+  </view>
+</view>

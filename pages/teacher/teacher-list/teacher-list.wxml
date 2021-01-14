@@ -1,2 +1,42 @@
-<!--pages/teacher/teacher-list/teacher-list.wxml-->
-<text>pages/teacher/teacher-list/teacher-list.wxml</text>
+<view class="teacher_box" >
+  <view class="teacher_item" >
+    <view class="">
+      <image class="" src="/asset/images/teacher.png"  />
+      <text class="" >导师姓名：</text>
+    </view>
+    <view class="" >{{teacherName}}</view>
+  </view>
+  <view class="teacher_item" >
+    <view class="">
+      <image class="" src="/asset/images/more_person.png"  />
+      <text class="" >当前报考人数</text>
+    </view>
+    <view class="" >共有 <text class="warn_font" >{{reportNum}}</text> 名</view>
+  </view>
+  <view class="teacher_item" >
+    <view class="">
+      <image class="" src="/asset/images/rank_person.png"  />
+      <text class="" >导师组内排名：</text>
+    </view>
+    <view class="" >第 <text class="warn_font" >{{rank}}</text> 名</view>
+  </view>
+</view>
+<view class="studentList">
+  <view class="rank_title" >导师组内排名</view>
+  <view class="rank_content" >
+    <view class="rank_table" >
+      <view class="" >姓名</view>
+      <view class="" >成绩</view>
+      <view class="" >名次</view>
+    </view>
+    <view class="rank_item {{item.rank == rank ? 'activeLine':''}}" wx:for="{{applyStudentList}}">
+      <view class="" >{{item.name}}</view>
+      <view class="" >{{item.grad}}</view>
+      <view class="" >{{item.rank}}</view>
+    </view>
+  </view>
+</view>
+<view class="button_box" >
+  <view class="check_apply" >确认报考</view>
+  
+</view>

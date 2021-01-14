@@ -1,1 +1,84 @@
-/* pages/teacher/teacher-hot/teacher-hot.wxss */
+.studentList{
+  width: 690rpx;
+  margin: 30rpx auto;
+}
+.rank_title{
+  font-size:36rpx;
+  color:#333333;
+  text-align: center;
+  height:80rpx;
+  width:690rpx;
+  position: relative;
+}
+.rank_content{
+  width:690rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 32px 0px rgba(186, 201, 222, 0.45);
+  border-radius: 16rpx 16rpx 0rpx 0rpx;
+
+}
+.rank_table{
+  height:80rpx;
+  width:690rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:32rpx;
+  color:#666666;
+}
+.rank_table view,.rank_item view{
+  width:48%;
+  text-align: center;
+}
+.rank_item{
+  height:80rpx;
+  width:690rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:32rpx;
+  color:#666666; 
+  background: #FFFFFF;
+  box-shadow: 0px 0px 32px 0px rgba(186, 201, 222, 0.45);
+  margin:10rpx 0rpx;
+}
+.tip_box{
+  position: absolute;
+  font-size:24rpx;
+  color:#999999;
+  right: 115rpx;
+  top: 10rpx;
+
+}
+.tip_box image{
+  height:30rpx;
+  width:30rpx;
+}
+.title_box{
+  font-size:32rpx;
+  color:#666666; 
+  background: #FFFFFF;
+  box-shadow: 0px 0px 32px 0px rgba(186, 201, 222, 0.45);
+  margin:20rpx;
+  border-radius: 16rpx;
+}
+.title_item{
+  height: 80rpx;
+  width: 690rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* font-weight: bold; */
+  padding: 0rpx 30rpx;
+  box-sizing: border-box;
+
+}
+.rank_item .hot_img{
+  height:40rpx;
+  width:40rpx;
+  position: absolute;
+  right:40rpx;
+}
+.hotNum{
+  position: relative;
+}

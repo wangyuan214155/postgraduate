@@ -1,66 +1,149 @@
 // pages/teacher/teacher-list/teacher-list.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
+    teacherName: '王大胆',
+    reportNum: 30,//报考人数
+    rank: 10,
+    applyStudentList: []
 
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    let applyStudentList = [
+      {
+        name: '多久呢',
+        grad: 400,
+        rank: 1
+      },
+      {
+        name: '目测等你',
+        grad: 355,
+        rank: 2
+      },
+      {
+        name: '烦得很',
+        grad: 562,
+        rank: 3
+      },
+      {
+        name: '快吃饭没得呢',
+        grad: 123,
+        rank: 4
+      }, 
+      {
+        name: '查看',
+        grad: 400,
+        rank: 5
+      },
+      {
+        name: '每次看',
+        grad: 344,
+        rank: 6
+      },
+       {
+        name: '名称',
+        grad: 123,
+        rank: 7
+      },
+      {
+        name: '聪明的你',
+        grad: 456,
+        rank: 8
+      },
+       {
+        name: '聪明的',
+        grad: 345,
+        rank: 9
+      },
+      {
+        name: '附近的',
+        grad: 123,
+        rank: 10
+      }, 
+      {
+        name: '的怀抱',
+        grad: 553,
+        rank: 11
+      },
+      {
+        name: '分泌出',
+        grad: 234,
+        rank: 12
+      },
+       {
+        name: '多久呢',
+        grad: 123,
+        rank: 13
+      },
+      {
+        name: '客服没人接',
+        grad: 345,
+        rank: 14
+      },
+      {
+        name: '没吃饭',
+        grad: 122,
+        rank: 15
+      },
+      {
+        name: '奶茶店',
+        grad: 455,
+        rank: 16
+      }, 
+      {
+        name: '看美剧',
+        grad: 543,
+        rank: 17
+      },
+      {
+        name: '没参加',
+        grad: 345,
+        rank: 18
+      }, 
+      {
+        name: '吃饭的',
+        grad: 434,
+        rank: 19
+      },
+      {
+        name: '非常的暖和',
+        grad: 400,
+        rank: 20
+      }, 
+      {
+        name: '吃的呢',
+        grad: 400,
+        rank: 21
+      },
+      {
+        name: '吃得好',
+        grad: 400,
+        rank: 22
+      }, 
+      {
+        name: '很单纯',
+        grad: 400,
+        rank: 23
+      },
+      {
+        name: '的话',
+        grad: 400,
+        rank: 24
+      },
+    ]
+    this.setData({
+      applyStudentList,
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
-  }
 })
