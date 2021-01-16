@@ -88,3 +88,9 @@ page{
   transform: translate(-50%,-50%);
 
 }
+.bottom_box{
+  height:50rpx;
+  text-align: center;
+  color:#666666;
+  font-size:28rpx;
+}

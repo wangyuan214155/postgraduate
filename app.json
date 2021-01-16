@@ -7,7 +7,8 @@
     "pages/personal/personal",
     "pages/rank/rank-list/rank-list",
     "pages/teacher/teacher-list/teacher-list",
-    "pages/teacher/teacher-hot/teacher-hot"
+    "pages/teacher/teacher-hot/teacher-hot",
+    "pages/teacher/teacher-detail/teacher-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

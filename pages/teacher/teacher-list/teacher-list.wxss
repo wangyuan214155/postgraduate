@@ -89,7 +89,6 @@ page{
   position: fixed;
   bottom:0rpx;
 }
-
 .check_apply{
   height: 75rpx;
   width: 200rpx;
@@ -100,6 +99,11 @@ page{
   line-height: 75rpx;
   text-align: center;
   font-size: 30rpx
-
+}
+.bottom_box{
+  height:50rpx;
+  text-align: center;
+  color:#666666;
+  font-size:28rpx;
 }
 

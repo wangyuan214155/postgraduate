@@ -21,5 +21,7 @@
      <view class="rank-special" >{{item.special}}</view>
      <view class="rank-score">{{item.score}}</view>
    </view>
-  
+    <view class="bottom_box" wx:if="{{no_more}}">
+      你看到人家的底线啦～
+    </view>
 </view>

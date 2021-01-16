@@ -1,0 +1,100 @@
+page{
+  background: #EFF2F5;
+}
+.teacher_box{
+  width: 690rpx;
+  padding: 0rpx 30rpx 20rpx 30rpx;
+  background: #ffffff;
+  margin: 20rpx auto;
+  border-radius: 16rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+.teacher_mess{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+.teacher_mess .avater{
+  height:120rpx;
+  width:120rpx;
+}
+.mess_item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #666666;
+  height: 60rpx;
+}
+.mess_left{
+  width: 100rpx;
+  text-align: right;
+  font-weight: bold;
+  color:#333333;
+}
+.hot_box{
+  width: 250rpx;
+  height: 120rpx;
+  margin-left: 40rpx;
+}
+.hot_img{
+  height: 60rpx;
+  width: 60rpx;
+  position: absolute;
+  right: 0rpx;
+}
+.hot_tip{
+  width: 250rpx;
+  height: 60rpx;
+  background: #ffffff;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 60rpx;
+  box-sizing: border-box
+}
+.hot_num{
+  font-size: 36rpx;
+  color: #d81e06;
+  font-weight: bold;
+  text-align: center;
+}
+.button_box{
+  margin-top: 100rpx;
+  border-top: 1px dotted #cccc;
+  padding-top: 144rpx;
+  padding: 100rpx 0rpx;
+}
+.button_flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height:120rpx;
+  font-size:32rpx;
+  color:#ffffff;
+}
+.button_left{
+  height:80rpx;
+  width:180rpx;
+  border-radius: 16rpx;
+  background: #4871E2;
+  line-height: 80rpx;
+  text-align: center;
+}
+.button_right{
+  height:80rpx;
+  width:180rpx;
+  border-radius: 16rpx;
+  background: #F5A623;
+  line-height: 80rpx;
+  text-align: center;
+}
+.small_tip{
+  font-size:24rpx;
+
+}
+
+
+
+

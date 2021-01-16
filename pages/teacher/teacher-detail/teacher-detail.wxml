@@ -1,0 +1,36 @@
+<view class="teacher_box">
+  <view class="teacher_mess">
+    <view class="">
+      <view class="">
+        <image class="avater" src="/asset/images/teacher_avater1.png" />
+      </view>
+      <view class="">{{name}}</view>
+    </view>
+    <view class="">
+     <view class="hot_box">
+        <image class="hot_img" src="/asset/images/teacher_hot.png" />
+        <view class="hot_num">{{hotNum}}</view>
+        <view class="hot_tip">人气值（30天内）</view>
+      </view>
+      <view class="mess_item">
+        <view class="mess_left">ID：</view>
+        <view class="">{{id}}</view>
+      </view>
+      <view class="mess_item">
+        <view class="mess_left">学校：</view>
+        <view class="">{{school}}</view>
+      </view>
+      <view class="mess_item">
+        <view class="mess_left">学院：</view>
+        <view class="">{{department}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="button_box" >
+    <view class="button_flex">
+      <view class="button_left" >我要报考</view>
+      <view class="button_right" >为他打call</view>
+    </view>
+    <view class="small_tip" >注：每人每天最多打call3次，每人每年只能选择一位报考老师</view>
+  </view>
+</view>

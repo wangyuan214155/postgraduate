@@ -3,8 +3,10 @@ Page({
   data: {
     rankNum:10,//当前的排名
     rankList:[],//排名列表
-    currentPage:1,
-    totalPage:1,
+    no_more:false,
+    currentPage: 1,//当前页数
+    totalNum: 0,
+    totalPage: 1,
 
   },
 
@@ -104,15 +106,21 @@ Page({
 
   },
 
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {
-
-  },
+    console.log('是否到达底部', this.data.currentPage, this.data.totalPage)
+    let newPage = this.data.currentPage + 1;
+    if (newPage <= this.data.totalPage) {
+      this.setData({
+        currentPage: newPage
+      })
+      this.getResultList();
+    } else {
+      newPage = this.data.totalPage;
+      this.setData({
+        currentPage: newPage,
+        no_more: true
+      })
+    }
+  }
 
 })

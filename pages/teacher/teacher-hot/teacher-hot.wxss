@@ -69,7 +69,7 @@
   justify-content: space-between;
   align-items: center;
   /* font-weight: bold; */
-  padding: 0rpx 30rpx;
+  padding: 0rpx 30rpx 0rpx 0rpx;
   box-sizing: border-box;
 
 }
@@ -81,4 +81,19 @@
 }
 .hotNum{
   position: relative;
+}
+.left_line{
+  height: 50rpx;
+  width: 8rpx;
+  background: #4871E2;
+  margin-right:30rpx;
+}
+.left_box{
+  display: flex;
+}
+.bottom_box{
+  height:50rpx;
+  text-align: center;
+  color:#666666;
+  font-size:28rpx;
 }

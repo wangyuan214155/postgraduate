@@ -36,7 +36,9 @@
     </view>
   </view>
 </view>
+<view class="bottom_box" wx:if="{{no_more}}">
+  你看到人家的底线啦～
+</view>
 <view class="button_box" >
   <view class="check_apply" >确认报考</view>
-  
 </view>

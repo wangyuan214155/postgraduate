@@ -5,7 +5,11 @@ Page({
     teacherName: '王大胆',
     reportNum: 30,//报考人数
     rank: 10,
-    applyStudentList: []
+    applyStudentList: [],
+    no_more:false,
+    currentPage: 1,//当前页数
+    totalNum: 0,
+    totalPage: 1,
 
   },
 
@@ -142,8 +146,21 @@ Page({
   },
 
   onReachBottom: function () {
-
-  },
+    console.log('是否到达底部', this.data.currentPage, this.data.totalPage)
+    let newPage = this.data.currentPage + 1;
+    if (newPage <= this.data.totalPage) {
+      this.setData({
+        currentPage: newPage
+      })
+      this.getResultList();
+    } else {
+      newPage = this.data.totalPage;
+      this.setData({
+        currentPage: newPage,
+        no_more: true
+      })
+    }
+  }
 
 
 })

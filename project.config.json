@@ -67,6 +67,14 @@
 					"id": -1,
 					"name": "排名列表",
 					"pathName": "pages/rank/rank-list/rank-list",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "导师详情",
+					"pathName": "pages/teacher/teacher-detail/teacher-detail",
+					"query": "",
 					"scene": null
 				}
 			]
