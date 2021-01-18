@@ -1,4 +1,5 @@
 // pages/teacher/teacher_detail/teacher-detail.js
+import api from "../../../utils/url.js";
 Page({
 
   data: {
@@ -19,8 +20,14 @@ Page({
         nextId:options.nextId,
       })
     }
+    api.fetchCode()
+    .then(code =>{
+      console.log(code,22222)
+      
+    })
 
   },
+
 
   onReady: function () {
 
