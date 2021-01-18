@@ -33,15 +33,16 @@ function request(url, data = {}, method = "GET",options={}) {
         // "content-Type": "application/json;charset=UTF-8"
       },
       success: function (res) {
+        console.log(res)
         wx.hideLoading();
-        if (res.data.errorCode == 200 || res.data.errorCode == 0) {
+        if (res.data.errors.length == 0) {
           //请求正常200
           resolve(res.data);
         } else {
           //请求失败
           // console.log(res,3333)
           wx.showToast({
-            title: "请求失败：" + res.data.msg,
+            title: "请求失败：" + res.data.errors.msg,
             icon: "none",
             duration: 2000,
           });

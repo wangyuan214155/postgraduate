@@ -18,7 +18,7 @@
     <view class="school_box" wx:if="{{schoolStatus}}">
       <view class="no_result"  wx:if="{{schoolList.length == 0}}">未搜索到相关学校</view>
       <block class="" wx:else>
-         <view class="result_item {{schoolName == item.name ? 'activeFont':''}}" wx:for="{{schoolList}}" bindtap="selectSchool" data-item="{{item}}">{{item.name}}</view>
+         <view class="result_item {{schoolName == item.name ? 'activeFont':''}}" wx:for="{{schoolList}}" bindtap="selectSchool" data-item="{{item}}">{{item.school_name}}</view>
       </block>
     </view>
   </view>
@@ -30,7 +30,7 @@
      <view class="school_box" wx:if="{{departmentStatus}}">
       <view class="no_result" wx:if="{{departmentList.length == 0}}">未搜索到相关院系</view>
       <block class="" wx:else>
-         <view class="result_item {{departmentName == item.name ? 'activeFont':''}}" wx:for="{{departmentList}}" bindtap="selectDepartment" data-item="{{item}}">{{item.name}}</view>
+         <view class="result_item {{departmentName == item.name ? 'activeFont':''}}" wx:for="{{departmentList}}" bindtap="selectDepartment" data-item="{{item}}">{{item.collage_name}}</view>
       </block>
     </view>
   </view>
@@ -42,7 +42,7 @@
      <view class="school_box" wx:if="{{specialStatus}}">
       <view class="no_result"  wx:if="{{specialList.length == 0}}">未搜索到相关专业</view>
       <block class="" wx:else>
-         <view class="result_item {{specialName == item.name ? 'activeFont':''}}" wx:for="{{specialList}}" bindtap="selectSpecial" data-item="{{item}}">{{item.name}}</view>
+         <view class="result_item {{specialName == item.name ? 'activeFont':''}}" wx:for="{{specialList}}" bindtap="selectSpecial" data-item="{{item}}">{{item.speciality_name}}</view>
       </block>
     </view>
   </view>
