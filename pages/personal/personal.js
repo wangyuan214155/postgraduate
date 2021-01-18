@@ -9,8 +9,11 @@ Page({
     schoolStatus: false,
     departmentStatus: false,
     specialStatus: false,
+    outShool:[],
     schoolList: [],
+    outDepartment:[],
     departmentList: [],
+    outSpecial:[],
     specialList: [],
     schoolId: '',
     schoolName: '',
@@ -41,7 +44,8 @@ Page({
     console.log(res,'获得学校')
     if(res.result){
       this.setData({
-        schoolList:res.result
+        schoolList:res.result,
+        outShool:res.result
       })
     }
   },
@@ -53,6 +57,7 @@ Page({
     console.log(res,'获得学院')
     if(res.result){
       this.setData({
+        outDepartment:res.result,
         departmentList:res.result
       })
     }
@@ -66,6 +71,7 @@ Page({
     console.log(res,'获得专业')
     if(res.result){
       this.setData({
+        outSpecial:res.result,
         specialList:res.result
       })
     }
@@ -106,6 +112,7 @@ Page({
 
   },
   schoolInput(e) {
+    let tempList = [];
     let value = e.detail.value;
     console.log(value, '学校')
     //此处要发请求
@@ -117,32 +124,75 @@ Page({
         specialName: '',
       })
     }
-    if (value) {
+    if (value.trim()) {
+      let reg = new RegExp(value.trim());
+      this.data.schoolList.forEach((item,index)=>{
+        if(reg.test(item.school_name)){
+          tempList.push(item)
+        }
+      })
+     this.setData({
+      outShool:tempList
+     })
 
-
+    }
+    if(value.trim() == ''){
+      this.setData({
+        outShool:this.data.schoolList
+       })
     }
 
   },
   departmentInput(e) {
+    let tempList = [];
     let value = e.detail.value;
     console.log(value, '学院')
     //此处要发请求
-    if (value != this.data.schoolName) {
+    if (value != this.data.departmentName) {
       this.setData({
         specialId: '',
         specialName: '',
       })
     }
-    if (value) {
+    if (value.trim()) {
+      let reg = new RegExp(value.trim());
+      this.data.departmentList.forEach((item,index)=>{
+        if(reg.test(item.collage_name)){
+          tempList.push(item)
+        }
+      })
+     this.setData({
+      outDepartment:tempList
+     })
 
+    }
+    if(value.trim() == ''){
+      this.setData({
+        outDepartment:this.data.departmentList
+       })
     }
   },
   specialInput(e) {
+    let tempList = [];
     let value = e.detail.value;
     console.log(value, '专业')
     //此处要发请求
-    if (value) {
+    if (value.trim()) {
+      let reg = new RegExp(value.trim());
+      this.data.specialList.forEach((item,index)=>{
+        if(reg.test(item.speciality_name)){
+          tempList.push(item)
+        }
+      })
+     this.setData({
+      outSpecial:tempList
+     })
 
+    }
+    if(value.trim() == ''){
+      this.setData({
+        outSpecial:this.data.specialList
+       })
     }
   },
   schoolFous() {
@@ -168,7 +218,14 @@ Page({
     let item = e.currentTarget.dataset.item;
     console.log(item, 33)
     if (item) {
-      
+      if(item.school_name != this.data.school_name){
+        this.setData({
+          departmentId: '',
+          departmentName: '',
+          specialId: '',
+          specialName: '',
+        })
+      }
       this.setData({
         schoolName: item.school_name,
         schoolId: item.id,
@@ -182,6 +239,12 @@ Page({
     let item = e.currentTarget.dataset.item;
     console.log(item, 33)
     if (item) {
+      if(item.collage_name != this.data.departmentName){
+        this.setData({
+          specialId: '',
+          specialName: '',
+        })
+      }
       this.setData({
         departmentName: item.collage_name,
         departmentId: item.collage_id,
