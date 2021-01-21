@@ -34,9 +34,10 @@ page{
   color:#333333;
 }
 .hot_box{
-  width: 250rpx;
+  /* width: 250rpx; */
   height: 120rpx;
-  margin-left: 40rpx;
+  padding-left: 40rpx;
+  box-sizing: border-box;
 }
 .hot_img{
   height: 60rpx;
@@ -45,14 +46,17 @@ page{
   right: 0rpx;
 }
 .hot_tip{
-  width: 250rpx;
+  width: 280rpx;
   height: 60rpx;
   background: #ffffff;
   font-size: 26rpx;
   font-weight: bold;
   color: #333333;
   line-height: 60rpx;
-  box-sizing: border-box
+  box-sizing: border-box;
+  border: 1px dotted #ccc;
+  padding: 0rpx 20rpx;
+  border-radius: 14rpx
 }
 .hot_num{
   font-size: 36rpx;
@@ -93,6 +97,24 @@ page{
 .small_tip{
   font-size:24rpx;
 
+}
+.next_box{
+  height: 75rpx;
+  width: 220rpx;
+  background: #ffffff;
+  border-radius: 16rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: 30rpx;
+  margin-left: 495rpx;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+
+}
+.next_box image{
+  height:50rpx;
+  width:50rpx;
 }
 
 

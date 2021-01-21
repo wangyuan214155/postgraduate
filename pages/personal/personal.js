@@ -1,11 +1,14 @@
 // pages/personal/personal.js
 const request = require("../../utils/url");
 const { schoolApi } = require("../../utils/api");
+var  app =  getApp();
+
 Page({
 
   data: {
     isLogin: false,//是否已经登录
     avater: '',//微信头像地址
+    nickName:'',//昵称
     schoolStatus: false,
     departmentStatus: false,
     specialStatus: false,
@@ -32,12 +35,19 @@ Page({
   },
 
   onLoad: function (options) {
+   
     this.getSchoolList();
-
   },
 
   onShow: function () {
-
+    console.log(app.globalData.userInfo,'全局变量')
+    if(app.globalData.userInfo){
+      this.setData({
+        isLogin:false,
+        avater: app.globalData.userInfo.avatarUrl,//微信头像地址
+        nickName:app.globalData.userInfo.nickName,//昵称
+      })
+    }
   },
   async getSchoolList(){
     const res = await request._get(schoolApi.getSchoolListTest)
@@ -76,22 +86,22 @@ Page({
       })
     }
   },
-  //通过授权获得用户手机号
-  async getPhoneNumber(e) {
-    const { encryptedData, iv } = e.detail;
-    if (encryptedData && iv) {
-      let data = {
-        accessToken: wx.getStorageSync('accessToken') ? wx.getStorageSync('accessToken') : '',
-        iv: iv,
-        encryptedData: encryptedData
-      }
-      //此处要请求后台，获得用户手机号
-      const res = await request._get(registerApi.getWeiPhone, data)
-      if (res.msg == 'succcess') {
-        let result = res.result;
-
-        this.setData({
-          phone: result.phone,
+  gotoUserInfo(){
+    var self = this;
+    wx.getUserInfo({
+      success: function (res) {
+        console.log(res,44444)
+        console.log("encryptedData",res.encryptedData)
+        console.log("iv",res.iv)
+        console.log("signature",res.signature)
+        console.log("rawData",res.rawData)
+        const userInfo = JSON.parse(res.rawData);
+        console.log(userInfo,5555)
+        app.globalData.userInfo = userInfo;
+        self.setData({
+          isLogin:true,
+          avater: userInfo.avatarUrl,//微信头像地址
+          nickName:userInfo.nickName,//昵称
         })
         wx.showModal({
           title: '提示',
@@ -105,12 +115,17 @@ Page({
             }
           }
         })
+        // self.saveMess();
+      },
+      fail(){
       }
-      console.log(res, '手机号')
-    }
+    })
+  },
+  async saveMess(){
 
 
   },
+ 
   schoolInput(e) {
     let tempList = [];
     let value = e.detail.value;

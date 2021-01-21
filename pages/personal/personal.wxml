@@ -1,12 +1,17 @@
 <view class="personal_box" >
   <image class="" src="/asset/images/back.png" ></image>
-  <view class="noLogin" >
+  <view class="noLogin" wx:if="{{!isLogin}}">
     <view class="avater_box" >
        <image class="" src="/asset/images/normal_avater.png" />
     </view>
-    <!-- <button class="login_button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录</button> -->
-    <button class="login_button"  bindtap="getPhoneNumber">登录</button>
+    <button class="login_button"  bindgetuserinfo="gotoUserInfo" open-type="getUserInfo">登录</button>
     <view class="tips" >登录后，体验更多的查询功能</view>
+  </view>
+  <view class="noLogin" wx:if="{{isLogin}}">
+    <view class="avater_box_copy" >
+       <image class="" src="{{avater}}"/>
+    </view>
+    <view class="nick_name">{{nickName}}</view>
   </view>
 </view>
 <view class="apply_box">

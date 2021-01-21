@@ -1,3 +1,7 @@
+<view class="next_box" >
+  <text class="" >下一位</text> 
+  <image class="" src="/asset/images/next.png"  />
+</view>
 <view class="teacher_box">
   <view class="teacher_mess">
     <view class="">

@@ -3,7 +3,7 @@ import api from "../../../utils/url.js";
 Page({
 
   data: {
-    id:1,
+    id:14334,
     nextId:2,
     name:'王二狗',
     photo:'',

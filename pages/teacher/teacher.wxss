@@ -27,7 +27,7 @@ page{
   width: 690rpx;
   border-radius: 15rpx;
   background: #ffffff;
-  padding: 40rpx 0rpx;
+  padding: 20rpx 0rpx;
   box-sizing: border-box;
   margin: 20rpx auto;
   box-shadow: 0px 0px 16px 0px rgba(186, 201, 222, 0.6);
@@ -54,4 +54,24 @@ page{
   text-align: center;
   line-height: 80rpx;
   border-radius: 60rpx;
+}
+.other_box{
+  display: flex;
+  height:230rpx;
+  width:690rpx;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:20rpx;
+  margin:20rpx auto 0rpx auto;
+}
+.other_item_left{
+  width:335rpx;
+  height:230rpx;
+  background: #29bcd6;
+}
+.other_item_right{
+  width:335rpx;
+  height:230rpx;
+  background: #29bcd6;
+
 }
