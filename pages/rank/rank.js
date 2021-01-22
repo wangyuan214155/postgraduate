@@ -1,4 +1,5 @@
-// pages/rank/rank.js
+const request = require("../../utils/url");
+const { schoolApi,personApi } = require("../../utils/api");
 Page({
 
   /**
@@ -9,8 +10,11 @@ Page({
     schoolStatus:false,
     departmentStatus:false,
     specialStatus:false,
+    outShool:[],
     schoolList:[],
+    outDepartment:[],
     departmentList:[],
+    outSpecial:[],
     specialList:[],
     schoolId:'',
     schoolName:'',
@@ -24,6 +28,7 @@ Page({
     score:'',//成绩
     scoreError:false,
     isSave:true,//当前的状态是否是保存
+    userId:''
 
   },
 
@@ -31,183 +36,131 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let  schoolList = [
-      {
-        id:1,
-        name:'西北大学'
-      },
-      {
-        id:3,
-        name:'西北工业大学'
-      },
-      {
-        id:3,
-        name:'广西名族大学'
-      },
-      {
-        id:4,
-        name:'山西大学'
-      },
-      {
-        id:5,
-        name:'山西农业大学'
-      },
-      {
-        id:6,
-        name:'陕西师范大学'
-      },
-      {
-        id:7,
-        name:'陕西科技大学'
-      },
-      {
-        id:8,
-        name:'西安工程大学'
-      },
-      {
-        id:9,
-        name:'陕西师范大学'
-      },
-      {
-        id:10,
-        name:'陕西科技大学'
-      },
-      {
-        id:11,
-        name:'西安工程大学'
-      },
-
-
-    ];
-    let departmentList = [
-      {
-        id:1,
-        number:'010',
-        name:'政治于法学学院',
-      },
-      {
-        id:2,
-        number:'002',
-        name:'经济与管理学院',
-      },
-      {
-        id:3,
-        number:'003',
-        name:'马克思主义学院',
-      },
-      {
-        id:4,
-        number:'004',
-        name:'鲁迅艺术学院',
-      },
-      {
-        id:5,
-        number:'005',
-        name:'外国语学院',
-      },
-      {
-        id:6,
-        number:'006',
-        name:'数学与计算机学院',
-      },
-      {
-        id:7,
-        number:'007',
-        name:'生命科学学院',
-      },
-      {
-        id:8,
-        number:'009',
-        name:'医学院',
-      },
-
-    ];
-    let specialList = [
-      {
-        id:1,
-        name:'学科教学（数学）',
-
-      },
-      {
-        id:2,
-        name:'基础数学',
-        
-      },
-      {
-        id:3,
-        name:'计算数学',
-        
-      },
-      {
-        id:4,
-        name:'数学',
-        
-      },
-      {
-        id:5,
-        name:'计算机科学与技术',
-        
-      },
-      {
-        id:6,
-        name:'软件工程',
-        
-      },
-      {
-        id:7,
-        name:'物联网',
-        
-      }
-    ];
-    this.setData({
-      schoolList,
-      departmentList,
-      specialList,
-    })
-
+    this.getSchoolList()
 
   },
   onShow: function () {
 
   },
-  schoolInput(e){
-    let value = e.detail.value;
-    console.log(value,'学校')
-    //此处要发请求
-    if(value != this.data.schoolName){
+  async getSchoolList(){
+    const res = await request._get(schoolApi.getSchoolListTest)
+    console.log(res,'获得学校')
+    if(res.result){
       this.setData({
-        departmentId:'',
-        departmentName:'',
-        specialId:'',
-        specialName:'',
+        schoolList:res.result,
+        outShool:res.result
       })
     }
-    if(value){
+  },
+  async getDepartmentList(){
+    let data = {
+      "schoolId":this.data.schoolId
+    }
+    const res = await request._get(schoolApi.getDepartmentList,data)
+    console.log(res,'获得学院')
+    if(res.result){
+      this.setData({
+        outDepartment:res.result,
+        departmentList:res.result
+      })
+    }
+  },
+  async getSpecialList(){
+    let data = {
+      "schoolId":this.data.schoolId,
+      "collageId":this.data.departmentId
+    }
+    const res = await request._get(schoolApi.getSpecialList,data)
+    console.log(res,'获得专业')
+    if(res.result){
+      this.setData({
+        outSpecial:res.result,
+        specialList:res.result
+      })
+    }
+  },
+  schoolInput(e) {
+    let tempList = [];
+    let value = e.detail.value;
+    console.log(value, '学校')
+    //此处要发请求
+    if (value != this.data.schoolName) {
+      this.setData({
+        departmentId: '',
+        departmentName: '',
+        specialId: '',
+        specialName: '',
+      })
+    }
+    if (value.trim()) {
+      let reg = new RegExp(value.trim());
+      this.data.schoolList.forEach((item,index)=>{
+        if(reg.test(item.school_name)){
+          tempList.push(item)
+        }
+      })
+     this.setData({
+      outShool:tempList
+     })
 
-
+    }
+    if(value.trim() == ''){
+      this.setData({
+        outShool:this.data.schoolList
+       })
     }
 
   },
-  departmentInput(e){
+  departmentInput(e) {
+    let tempList = [];
     let value = e.detail.value;
-    console.log(value,'学院')
+    console.log(value, '学院')
     //此处要发请求
-    if(value != this.data.departmentName){
+    if (value != this.data.departmentName) {
       this.setData({
-        specialId:'',
-        specialName:'',
+        specialId: '',
+        specialName: '',
       })
     }
-    if(value){
+    if (value.trim()) {
+      let reg = new RegExp(value.trim());
+      this.data.departmentList.forEach((item,index)=>{
+        if(reg.test(item.collage_name)){
+          tempList.push(item)
+        }
+      })
+     this.setData({
+      outDepartment:tempList
+     })
 
     }
+    if(value.trim() == ''){
+      this.setData({
+        outDepartment:this.data.departmentList
+       })
+    }
   },
-  specialInput(e){
+  specialInput(e) {
+    let tempList = [];
     let value = e.detail.value;
-    console.log(value,'专业')
+    console.log(value, '专业')
     //此处要发请求
-    if(value){
+    if (value.trim()) {
+      let reg = new RegExp(value.trim());
+      this.data.specialList.forEach((item,index)=>{
+        if(reg.test(item.speciality_name)){
+          tempList.push(item)
+        }
+      })
+     this.setData({
+      outSpecial:tempList
+     })
 
+    }
+    if(value.trim() == ''){
+      this.setData({
+        outSpecial:this.data.specialList
+       })
     }
   },
   schoolFous(){
@@ -241,53 +194,54 @@ Page({
     })
 
   },
-  selectSchool(e){
-    let item  = e.currentTarget.dataset.item;
-    console.log(item,33)
-    if(item.name != this.data.schoolName){
+  selectSchool(e) {
+    let item = e.currentTarget.dataset.item;
+    console.log(item, 33)
+    if (item) {
+      if(item.school_name != this.data.school_name){
+        this.setData({
+          departmentId: '',
+          departmentName: '',
+          specialId: '',
+          specialName: '',
+        })
+      }
       this.setData({
-        departmentId:'',
-        departmentName:'',
-        specialId:'',
-        specialName:'',
+        schoolName: item.school_name,
+        schoolId: item.id,
+        schoolStatus: false,
       })
-    }
-    if(item){
-      this.setData({
-        schoolName:item.name,
-        schoolId:item.id,
-        schoolStatus:false,
-      })
-    }
-
-  },
-  selectDepartment(e){
-    let item  = e.currentTarget.dataset.item;
-    console.log(item,33)
-    if(item.name != this.data.departmentName){
-      this.setData({
-        specialId:'',
-        specialName:'',
-      })
-    }
-    if(item){
-      this.setData({
-        departmentName:item.name,
-        departmentId:item.id,
-        departmentStatus:false,
-      })
+      this.getDepartmentList();
     }
 
   },
-  selectSpecial(e){
-    let item  = e.currentTarget.dataset.item;
-    console.log(item,33)
-   
-    if(item){
+  selectDepartment(e) {
+    let item = e.currentTarget.dataset.item;
+    console.log(item, 33)
+    if (item) {
+      if(item.collage_name != this.data.departmentName){
+        this.setData({
+          specialId: '',
+          specialName: '',
+        })
+      }
       this.setData({
-        specialName:item.name,
-        specialId:item.id,
-        specialStatus:false,
+        departmentName: item.collage_name,
+        departmentId: item.collage_id,
+        departmentStatus: false,
+      })
+      this.getSpecialList();
+    }
+
+  },
+  selectSpecial(e) {
+    let item = e.currentTarget.dataset.item;
+    console.log(item, 33)
+    if (item) {
+      this.setData({
+        specialName: item.speciality_name,
+        specialId: item.speciality_id,
+        specialStatus: false,
       })
     }
   },
@@ -336,6 +290,7 @@ Page({
   validataInput(){
     let flag = true;
     let data = this.data;
+    console.log(data.schoolId,data.departmentId,data.specialId,data.score,33333)
     
     if(data.schoolId == ''){
        this.setData({
@@ -387,9 +342,14 @@ Page({
   lookRank(){
     console.log(this.validataInput())
     if(this.validataInput()){
+      let data = JSON.stringify({
+        'schoolId':this.data.schoolId,
+        'collageId':this.data.departmentId,
+        'specialId':this.data.specialId,
+        'userId':this.data.userId,
+      })
       wx.navigateTo({
-        url: '/pages/rank/rank-list/rank-list',
-        
+        url: `/pages/rank/rank-list/rank-list?postData=${data}`,
       });
 
     }

@@ -1,4 +1,5 @@
-// pages/rank/rank-list/rank-list.js
+const request = require("../../../utils/url");
+const { rankApi,personApi } = require("../../../utils/api");
 Page({
   data: {
     rankNum:10,//当前的排名
@@ -7,10 +8,18 @@ Page({
     currentPage: 1,//当前页数
     totalNum: 0,
     totalPage: 1,
-
+    postData:null,
   },
 
   onLoad: function (options) {
+    if(options.postData){
+      let postData = JSON.parse(options.postData)
+        this.setData({
+          postData
+        })
+      
+    }
+    this.getRankList();
     let rankList = [
       {
         name:'王二狗',
@@ -104,6 +113,18 @@ Page({
   },
   onShow: function () {
 
+  },
+  async getRankList(){
+    let postData = this.data.postData;
+    let data = {
+      'schoolId':postData.schoolId,
+      'collageId':postData.collageId,
+      'specialId':postData.specialId,
+      'userId':postData.userId,
+      'page':this.data.currentPage,
+    }
+    const res = await request._post(rankApi.getStudentRank,data);
+    console.log(res,'列表')
   },
 
   onReachBottom: function () {

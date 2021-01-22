@@ -42,7 +42,7 @@ function request(url, data = {}, method = "GET",options={}) {
           //请求失败
           // console.log(res,3333)
           wx.showToast({
-            title: "请求失败：" + res.data.errors.msg,
+            title: "请求失败：" + res.data.errors[0].error_msg,
             icon: "none",
             duration: 2000,
           });

@@ -1,6 +1,6 @@
 // pages/personal/personal.js
 const request = require("../../utils/url");
-const { schoolApi } = require("../../utils/api");
+const { schoolApi,personApi } = require("../../utils/api");
 var  app =  getApp();
 
 Page({
@@ -27,16 +27,14 @@ Page({
     specialId: '',
     specialName: '',
     specialError: false,
-    isSave: true,//当前的状态是否是保存
-
-
-
-
+    isSave: false,//当前的状态是否是保存
+    userId:'',
   },
 
   onLoad: function (options) {
    
     this.getSchoolList();
+    this.getPersonMess();
   },
 
   onShow: function () {
@@ -48,6 +46,31 @@ Page({
         nickName:app.globalData.userInfo.nickName,//昵称
       })
     }
+  },
+  async getPersonMess(){
+    let data = {
+      id:'1ihvue9mchjjen'
+    }
+    const res = await request._get(personApi.getUserInfo,data);
+    console.log(res,1111)
+    let  result = res.result;
+    if(result.openid){
+
+      this.setData({
+        isLogin:true,
+        nickName:result.nickname,
+        avater:result.avatar_url,
+        schoolId: result.school_id ? result.school_id : '',
+        schoolName: result.school_name ? result.school_name :'',
+        departmentId: result.collage_id ? result.collage_id : '',
+        departmentName: result.collage_name ?result.collage_name :'',
+        specialId: result.special_id ? result.special_id : '',
+        specialName:result.special_name ? result.special_name : '',
+      })
+
+    }
+
+
   },
   async getSchoolList(){
     const res = await request._get(schoolApi.getSchoolListTest)
@@ -121,10 +144,10 @@ Page({
       }
     })
   },
-  async saveMess(){
+  // async saveMess(){
 
 
-  },
+  // },
  
   schoolInput(e) {
     let tempList = [];
@@ -213,18 +236,23 @@ Page({
   schoolFous() {
     this.setData({
       schoolStatus: true,
+      departmentStatus:false,
+      specialStatus:false,
       isSave: true
     })
 
   },
   departmentFous() {
     this.setData({
-      departmentStatus: true,
-      isSave: true
+      departmentStatus:true,
+      schoolStatus:false,
+      specialStatus:false,
     })
   },
   specialFous() {
     this.setData({
+      departmentStatus:false,
+      schoolStatus:false,
       specialStatus: true,
       isSave: true
     })
@@ -281,8 +309,17 @@ Page({
     }
   },
   saveMess() {
+    
     let self = this;
     let data = this.data;
+    if(!this.data.isLogin){
+      wx.showToast({
+        title: "请先登录哦",
+        icon: "none",
+        duration: 2000,
+      });
+      return;
+    }
     if (data.schoolName == '') {
       this.setData({
         schoolError: true
@@ -319,8 +356,22 @@ Page({
     this.setData({
       isSave: false,
     })
+  },
+  async updatePersonMess(){
+    let data = {
+      'id':this.data.userId,
+      'school_id':this.data.schoolId,
+      'school_name':this.data.schoolName,
+      'collage_id':this.data.departmentId,
+      'collage_name':this.data.departmentName,
+      'special_id':this.data.specialId,
+      'special_name':this.data.specialName,
+    } 
+    const res = await request._post(personApi.updateUserInfo,data);
+    let rsult = res.result;
+    if(rsult){
 
-
+    }
   }
 
 })

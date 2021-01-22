@@ -34,6 +34,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    openId:'',
+    userId:'',//用户id
   }
 })
