@@ -3,8 +3,8 @@ const rootUrl = "http://print.woyouti.com";
 
 //登录
 const loginApi = {
-  // getLoginCode: rootUrl + "worker/logincode.htm", //获得手机号验证码
-  login: rootUrl + "worker/login_activation.htm", //登录
+  isLogin:rootUrl+"/student/is-login",//判断是否登录
+  login:rootUrl+"/student/login", //登录
 };
 const schoolApi = {
   getSchoolListTest:rootUrl+'/school/get-school-list',//获得院校列表

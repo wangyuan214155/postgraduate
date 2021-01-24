@@ -5,7 +5,7 @@
 <view class="rank_box">
    <view class="rank_title" >
      <view class="rank-rank" >名次</view>
-     <view class="rank-name" >姓名</view>
+     <view class="rank-name" >查友ID</view>
      <view class="rank-special">专业</view>
      <view class="rank-score" >成绩</view>
    </view>
@@ -17,8 +17,8 @@
      <image class="" src="/asset/images/normal.png" wx:if="{{item.rank > 3}}"/>
      <view class="rank-font">{{item.rank}}</view>
      </view>
-     <view class="rank-name" >{{item.name}}</view>
-     <view class="rank-special" >{{item.special}}</view>
+     <view class="rank-name" >{{item.openid}}</view>
+     <view class="rank-special" >{{item.specialName}}</view>
      <view class="rank-score">{{item.score}}</view>
    </view>
     <view class="bottom_box" wx:if="{{no_more}}">

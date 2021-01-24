@@ -13,7 +13,7 @@
     </view>
     <view class="" >共有 <text class="warn_font" >{{reportNum}}</text> 名</view>
   </view>
-  <view class="teacher_item" >
+  <view class="teacher_item" wx:if="{{rank >0}}">
     <view class="">
       <image class="" src="/asset/images/rank_person.png"  />
       <text class="" >导师组内排名：</text>
@@ -30,8 +30,8 @@
       <view class="" >名次</view>
     </view>
     <view class="rank_item {{item.rank == rank ? 'activeLine':''}}" wx:for="{{applyStudentList}}">
-      <view class="" >{{item.name}}</view>
-      <view class="" >{{item.grad}}</view>
+      <view class="" >{{item.openid}}</view>
+      <view class="" >{{item.score}}</view>
       <view class="" >{{item.rank}}</view>
     </view>
   </view>
@@ -40,5 +40,5 @@
   你看到人家的底线啦～
 </view>
 <view class="button_box" >
-  <view class="check_apply" >确认报考</view>
+  <view class="check_apply" bindtap="queryApply" >确认报考</view>
 </view>

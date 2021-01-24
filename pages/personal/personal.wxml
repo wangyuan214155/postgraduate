@@ -51,6 +51,10 @@
       </block>
     </view>
   </view>
+  <view class="button_box" wx:if="{{isEdit && isSave}}">
+    <view class="cancal_button" bindtap="cancelEdit">取消</view>
+    <view class="save_button_copy" bindtap="saveMess">保存</view>
+  </view>
+  <view class="save_button" bindtap="saveMess" wx:if="{{!isEdit && isSave}}">保存</view>
 
-  <view class="save_button" bindtap="saveMess" wx:if="{{isSave}}">保存</view>
 </view>

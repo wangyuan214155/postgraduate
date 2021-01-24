@@ -155,3 +155,35 @@
   line-height: 80rpx;
   padding: 0rpx 20rpx
 }
+.button_box{
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width:690rpx;
+  bottom:40rpx;
+  left:30rpx;
+}
+.cancal_button{
+  height:80rpx;
+  width:300rpx;
+  background:#ffffff;
+  margin:0 auto;
+  color:#2F64FF;
+  font-size:32rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 60rpx;
+  border:1px solid #2F64FF;
+}
+.save_button_copy{
+  height:80rpx;
+  width:300rpx;
+  background: linear-gradient(315deg, #2F64FF 0%, #52BBFF 100%, #52BBFF 100%);
+  margin:0 auto;
+  color:#ffffff;
+  font-size:32rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 60rpx;
+}

@@ -1,6 +1,6 @@
 // pages/personal/personal.js
 const request = require("../../utils/url");
-const { schoolApi,personApi } = require("../../utils/api");
+const { schoolApi,personApi,loginApi } = require("../../utils/api");
 var  app =  getApp();
 
 Page({
@@ -19,29 +19,45 @@ Page({
     outSpecial:[],
     specialList: [],
     schoolId: '',
+    oldSchoolId:'',
     schoolName: '',
+    oldSchoolName:'',
     schoolError: false,
     departmentId: '',
+    oldDepartmentId:'',
     departmentName: '',
+    oldDepartmentName:'',
     departmentError: false,
     specialId: '',
+    oldSpecialId:'',
     specialName: '',
+    oldSpecialName:'',
     specialError: false,
-    isSave: false,//当前的状态是否是保存
+    isSave: true,//当前的状态是否是保存
     userId:'',
+    openId:'',
+    isEdit:false
   },
 
   onLoad: function (options) {
-   
-    this.getSchoolList();
-    this.getPersonMess();
+    this.setData({
+      isLogin:app.globalData.isLogin,
+      userId:app.globalData.userId,
+      openId:app.globalData.openId
+    })
+    console.log(app.globalData,'个人信息的')
+    if(this.data.isLogin){
+      this.getSchoolList();
+      this.getPersonMess();
+    }
+    
   },
 
   onShow: function () {
     console.log(app.globalData.userInfo,'全局变量')
     if(app.globalData.userInfo){
       this.setData({
-        isLogin:false,
+        isLogin: app.globalData.isLogin,
         avater: app.globalData.userInfo.avatarUrl,//微信头像地址
         nickName:app.globalData.userInfo.nickName,//昵称
       })
@@ -49,23 +65,45 @@ Page({
   },
   async getPersonMess(){
     let data = {
-      id:'1ihvue9mchjjen'
+      id:this.data.userId,
     }
     const res = await request._get(personApi.getUserInfo,data);
     console.log(res,1111)
     let  result = res.result;
     if(result.openid){
-
+      if(result.school_id != 0 && result.collage_id != 0 &&result.special_id){
+        this.setData({
+          isSave : false,
+          isEdit : true,
+        })
+      }else{
+        this.setData({
+          isSave : true,
+        })
+      }
+      
       this.setData({
         isLogin:true,
         nickName:result.nickname,
         avater:result.avatar_url,
         schoolId: result.school_id ? result.school_id : '',
+        oldSchoolId:result.school_id ? result.school_id : '',
+
         schoolName: result.school_name ? result.school_name :'',
+        oldSchoolName:result.school_name ? result.school_name :'',
+
         departmentId: result.collage_id ? result.collage_id : '',
+        oldDepartmentId: result.collage_id ? result.collage_id : '',
+
         departmentName: result.collage_name ?result.collage_name :'',
+        oldDepartmentName: result.collage_name ?result.collage_name :'',
+
         specialId: result.special_id ? result.special_id : '',
+        oldSpecialId: result.special_id ? result.special_id : '',
+
         specialName:result.special_name ? result.special_name : '',
+        oldSpecialName:result.special_name ? result.special_name : '',
+
       })
 
     }
@@ -113,41 +151,46 @@ Page({
     var self = this;
     wx.getUserInfo({
       success: function (res) {
-        console.log(res,44444)
-        console.log("encryptedData",res.encryptedData)
-        console.log("iv",res.iv)
-        console.log("signature",res.signature)
-        console.log("rawData",res.rawData)
+       
         const userInfo = JSON.parse(res.rawData);
-        console.log(userInfo,5555)
+        self.loginUser(res.rawData,userInfo);
         app.globalData.userInfo = userInfo;
-        self.setData({
-          isLogin:true,
-          avater: userInfo.avatarUrl,//微信头像地址
-          nickName:userInfo.nickName,//昵称
-        })
-        wx.showModal({
-          title: '提示',
-          content: '请填写报考信息',
-          showCancel: false,
-          success(res) {
-            if (res.confirm) {
-              console.log('用户点击确定')
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
-        })
-        // self.saveMess();
       },
       fail(){
       }
     })
   },
-  // async saveMess(){
+  async loginUser(rawData,userInfo){
+    let data = {
+      'openid':this.data.openId,
+      'rawData':rawData,
+    }
+    const result = await request._post(loginApi.login,data);
+    if(result.result){
+      self.setData({
+        isLogin:true,
+        avater: userInfo.avatarUrl,//微信头像地址
+        nickName:userInfo.nickName,//昵称
+        userId:result.result,
 
+      })
+      app.globalData.userId = result.result;
+      app.globalData.isLogin = true;
+    }
+    wx.showModal({
+      title: '提示',
+      content: '请填写报考信息',
+      showCancel: false,
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
 
-  // },
+  },
  
   schoolInput(e) {
     let tempList = [];
@@ -261,7 +304,7 @@ Page({
     let item = e.currentTarget.dataset.item;
     console.log(item, 33)
     if (item) {
-      if(item.school_name != this.data.school_name){
+      if(item.school_name != this.data.schoolName){
         this.setData({
           departmentId: '',
           departmentName: '',
@@ -353,24 +396,46 @@ Page({
     }
     // 此处要发起请求
     console.log(2222)
+    this.updatePersonMess();
+    // this.setData({
+    //   isSave: false,
+    // })
+  },
+  cancelEdit(){
     this.setData({
-      isSave: false,
+      schoolId: this.data.oldSchoolId,
+      schoolName: this.data.oldSchoolName,
+      departmentId: this.data.oldDepartmentId,
+      departmentName: this.data.oldDepartmentName,
+      specialId: this.data.oldSpecialId,
+      specialName:this.data.oldSpecialName,
+      schoolStatus:false,
+      departmentStatus:false,
+      specialStatus:false,
+      isSave:false,
     })
   },
   async updatePersonMess(){
     let data = {
-      'id':this.data.userId,
-      'school_id':this.data.schoolId,
-      'school_name':this.data.schoolName,
-      'collage_id':this.data.departmentId,
-      'collage_name':this.data.departmentName,
-      'special_id':this.data.specialId,
-      'special_name':this.data.specialName,
+      data : {
+        'id':this.data.userId,
+        'school_id':this.data.schoolId,
+        'school_name':this.data.schoolName,
+        'collage_id':this.data.departmentId,
+        'collage_name':this.data.departmentName,
+        'special_id':this.data.specialId,
+        'special_name':this.data.specialName,
+        'score':0
+      }
+      
     } 
-    const res = await request._post(personApi.updateUserInfo,data);
-    let rsult = res.result;
-    if(rsult){
 
+    const res = await request._post(personApi.updateUserInfo,data);
+    let result = res.result;
+    if(result){
+      this.setData({
+        isSave: false,
+      })
     }
   }
 

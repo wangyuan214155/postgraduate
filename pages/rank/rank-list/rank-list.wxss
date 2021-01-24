@@ -24,7 +24,7 @@ page{
 
 .rank_title,.rank_content{
   display: flex;
-  height:80rpx;
+  min-height:80rpx;
   color:#333333;
   font-size:32rpx;
   padding:0rpx 30rpx;
@@ -48,7 +48,7 @@ page{
   width:100%;
   margin-bottom: 20rpx;
   background: #96B4DC;
-  color: #4871E2;
+  color:#ffffff;
   box-sizing: border-box;
   font-weight: bold;
 }
@@ -63,6 +63,7 @@ page{
 .rank-name{
   width:25%;
   text-align: center;
+  word-break:break-all;
 
 }
 .rank-special{

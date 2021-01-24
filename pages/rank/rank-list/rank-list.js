@@ -123,8 +123,16 @@ Page({
       'userId':postData.userId,
       'page':this.data.currentPage,
     }
-    const res = await request._post(rankApi.getStudentRank,data);
+    const res = await request._get(rankApi.getStudentRank,data);
     console.log(res,'列表')
+    let result = res.result;
+    if(result){
+       this.setData({
+        totalPage:result.pagination.page_count,
+        rankNum:result.self ? result.self.rank :0,
+        rankList:result.rank,
+       })
+    }
   },
 
   onReachBottom: function () {
