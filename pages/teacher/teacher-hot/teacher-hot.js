@@ -1,116 +1,75 @@
 // pages/teacher/teacher-hot/teacher-hot.js
+const request = require("../../../utils/url");
+const {rankApi } = require("../../../utils/api");
 Page({
 
   data: {
-    schoolName:'西北工业大学',
-    department:'计算机学院',
+    schoolName:'',
+    department:'',
     teacherList:[],//该学院下导师的热度
     no_more:false,
     currentPage: 1,//当前页数
     totalNum: 0,
     totalPage: 1,
+    schoolId:'',
+    departmentId:'',
+    postData:null
 
   },
 
   onLoad: function (options) {
-    let teacherList = [
-      {
-        'id':1,
-        'name':'王二狗',
-        'hotNum':'2345',
-      },
-      {
-        'id':2,
-        'name':'胃肠道',
-        'hotNum':'2345',
-      },
-      {
-        'id':3,
-        'name':'大课间',
-        'hotNum':'5673',
-      },
-      {
-        'id':4,
-        'name':'从呢电话',
-        'hotNum':'1233',
-      },
-      {
-        'id':5,
-        'name':'警察局',
-        'hotNum':'1234',
-      },
-      {
-        'id':6,
-        'name':'坚持你的',
-        'hotNum':'32223',
-      },
-      {
-        'id':7,
-        'name':'存的',
-        'hotNum':'4323',
-      },
-      {
-        'id':8,
-        'name':'吃得好',
-        'hotNum':'4343',
-      },
-      {
-        'id':9,
-        'name':'王二狗',
-        'hotNum':'2345',
-      },
-      {
-        'id':10,
-        'name':'胃肠道',
-        'hotNum':'2345',
-      },
-      {
-        'id':11,
-        'name':'大课间',
-        'hotNum':'5673',
-      },
-      {
-        'id':12,
-        'name':'从呢电话',
-        'hotNum':'1233',
-      },
-      {
-        'id':13,
-        'name':'警察局',
-        'hotNum':'1234',
-      },
-      {
-        'id':14,
-        'name':'坚持你的',
-        'hotNum':'32223',
-      },
-      {
-        'id':15,
-        'name':'存的',
-        'hotNum':'4323',
-      },
-      {
-        'id':16,
-        'name':'吃得好',
-        'hotNum':'4343',
-      }
-    ]
-    this.setData({
-      teacherList
-    })
+    if(options.postData){
+      let postData = JSON.parse(options.postData);
+      this.setData({
+        postData, 
+        schoolId:postData.schoolId,
+        departmentId:postData.departmentId,
+        schoolName:postData.schoolName,
+        department:postData.departmentName,
+      })
+      this.getTeacherList();
+    }
   },
 
   onShow: function () {
 
   },
+  async getTeacherList(){
+    let data = {
+      "schoolId":this.data.schoolId,
+      "collageId":this.data.departmentId,
+      "page":this.data.currentPage
+    }
+    const res = await request._get(rankApi.getTeacherList,data)
+    console.log(res,'获得导师')
+    let result  = res.result;
+    if(result){
+      this.setData({
+        teacherList:result.teacherList
+      })
+    }
+  },
   checkDetail(e){
     let id = e.currentTarget.dataset.id;
     let index = e.currentTarget.dataset.index;
     let nextId =  this.data.teacherList[index+1].id;
+    let item = e.currentTarget.dataset.item;
+    let preItem = null;
+    if(index > 0){
+       preItem = this.data.teacherList[index-1];
+    }
+    let nextItem = this.data.teacherList[index+1];
     console.log(id,nextId)
+    let postData = JSON.stringify({
+      preItem,
+      item,
+      nextItem,
+      schoolName:this.data.schoolName,
+      department:this.data.department,
+    })
     if(id){
       wx.navigateTo({
-        url: `/pages/teacher/teacher-detail/teacher-detail?id=${id}&nextId=${nextId}`,
+        url: `/pages/teacher/teacher-detail/teacher-detail?postData=${postData}`,
       })
         
     }

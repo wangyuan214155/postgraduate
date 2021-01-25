@@ -25,7 +25,7 @@
   <view class="rank_title" >导师组内排名</view>
   <view class="rank_content" >
     <view class="rank_table" >
-      <view class="" >姓名</view>
+      <view class="" >查友Id</view>
       <view class="" >成绩</view>
       <view class="" >名次</view>
     </view>
@@ -40,5 +40,5 @@
   你看到人家的底线啦～
 </view>
 <view class="button_box" >
-  <view class="check_apply" bindtap="queryApply" >确认报考</view>
+  <view class="check_apply" bindtap="checkTeacher" >确认报考</view>
 </view>

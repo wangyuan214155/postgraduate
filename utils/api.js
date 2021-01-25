@@ -22,8 +22,10 @@ const rankApi = {
   getBindTeacher:rootUrl+'/teacher/teacher-relation',//获取自己绑定的导师
   addBindTeacher:rootUrl+'/teacher/create-relation',//创建学生和导师的绑定关系
   getTeaStudent:rootUrl+'/teacher/teacher-student-relation-list',//获取导师组下的学生列表
+  searchTeacher:rootUrl+'/teacher/search-teacher',//模糊搜索导师
 
 }
+
 
 
 

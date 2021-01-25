@@ -1,24 +1,31 @@
-<view class="next_box" >
+<view class="button_box_copy" >
+  <view class="next_box" bindtap="prePerson" wx:if="{{preItem}}">
+  <image class="" src="/asset/images/pre.png"  />
+  <text class="" >上一位</text> 
+</view>
+<view class="next_box" bindtap="nextPerson" wx:if="{{nextItem}}">
   <text class="" >下一位</text> 
   <image class="" src="/asset/images/next.png"  />
 </view>
+</view>
+
 <view class="teacher_box">
   <view class="teacher_mess">
     <view class="">
       <view class="">
         <image class="avater" src="/asset/images/teacher_avater1.png" />
       </view>
-      <view class="">{{name}}</view>
+      <view class="">{{currentItem.name}}</view>
     </view>
     <view class="">
      <view class="hot_box">
         <image class="hot_img" src="/asset/images/teacher_hot.png" />
-        <view class="hot_num">{{hotNum}}</view>
-        <view class="hot_tip">人气值（30天内）</view>
+        <!-- <view class="hot_num">{{currentItem.praise}}</view> -->
+        <view class="hot_tip">人气值 <text class="hot_num">{{currentItem.praise}}</text></view>
       </view>
       <view class="mess_item">
         <view class="mess_left">ID：</view>
-        <view class="">{{id}}</view>
+        <view class="">{{currentItem.id}}</view>
       </view>
       <view class="mess_item">
         <view class="mess_left">学校：</view>
@@ -32,8 +39,8 @@
   </view>
   <view class="button_box" >
     <view class="button_flex">
-      <view class="button_left" >我要报考</view>
-      <view class="button_right" >为他打call</view>
+      <view class="button_left" bindtap="checkTeacher">我要报考</view>
+      <view class="button_right" bindtap="addCall">为他打call</view>
     </view>
     <view class="small_tip" >注：每人每天最多打call3次，每人每年只能选择一位报考老师</view>
   </view>

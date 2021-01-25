@@ -85,6 +85,12 @@
 					"pathName": "pages/teacher/teacher-detail/teacher-detail",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/teacher/teacher-detail/teacher-detail",
+					"pathName": "pages/teacher/teacher-detail/teacher-detail",
+					"scene": null
 				}
 			]
 		}

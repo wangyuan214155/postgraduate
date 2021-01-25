@@ -25,10 +25,10 @@
 
   <view class="rank_content" >
  
-    <view class="rank_item" wx:for="{{teacherList}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="checkDetail">
+    <view class="rank_item" wx:for="{{teacherList}}" data-item="{{item}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="checkDetail">
       <view class="" >{{item.name}}</view>
       <view class="hotNum" >
-        {{item.hotNum}}
+        {{item.praise}}
         <image class="hot_img" src="/asset/images/f-hot.png"  wx:if="{{index == 0}}"/>
         <image class="hot_img" src="/asset/images/s-hot.png"  wx:if="{{index == 1}}"/>
         <image class="hot_img" src="/asset/images/hot.png"  wx:if="{{index == 2}}"/>

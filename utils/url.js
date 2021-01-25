@@ -55,6 +55,19 @@ function request(url, data = {}, method = "GET",options={}) {
     });
   });
 }
+/*函数防抖*/
+function debounce(fn, interval) {
+  var timer;
+  var gapTime = interval || 1000; //间隔时间 不传值默认为1000ms
+  return function() {
+    clearTimeout(timer);
+    var that = this;
+    var args = arguments; //保存arguments setTimeout是全局的 arguments不是防抖函数需要的
+    timer = setTimeout(function() {
+	  fn.call(that, args);
+    }, gapTime);
+  };
+}
 function fetchCode() {
     return new Promise((resolve, reject) => {
       wx.login({
@@ -85,5 +98,6 @@ function fetchCode() {
 module.exports = {
   _get,
   _post,
-  fetchCode
+  fetchCode,
+  debounce
 }
