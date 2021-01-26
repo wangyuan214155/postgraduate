@@ -52,18 +52,24 @@ Page({
   checkDetail(e){
     let id = e.currentTarget.dataset.id;
     let index = e.currentTarget.dataset.index;
-    let nextId =  this.data.teacherList[index+1].id;
     let item = e.currentTarget.dataset.item;
+    let tempList = [];
     let preItem = null;
+    let nextItem = null;
     if(index > 0){
        preItem = this.data.teacherList[index-1];
     }
-    let nextItem = this.data.teacherList[index+1];
-    console.log(id,nextId)
-    let postData = JSON.stringify({
+    if(index != this.data.teacherList.length -1){
+      nextItem = this.data.teacherList[index+1];
+    }
+    
+    tempList = [
       preItem,
       item,
-      nextItem,
+      nextItem
+    ]
+    let postData = JSON.stringify({
+      tempList,
       schoolName:this.data.schoolName,
       department:this.data.department,
     })
@@ -81,7 +87,7 @@ Page({
       this.setData({
         currentPage: newPage
       })
-      this.getResultList();
+      this.getTeacherList();
     } else {
       newPage = this.data.totalPage;
       this.setData({

@@ -82,6 +82,7 @@
   margin:40rpx;
   position: relative;
 }
+
 .apply_title{
   font-size: 30rpx;
   color: #333333;

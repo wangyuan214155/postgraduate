@@ -17,8 +17,15 @@ page{
   
 }
 .teacher_mess .avater{
-  height:120rpx;
-  width:120rpx;
+  height:140rpx;
+  width:140rpx;
+}
+.teacher_box_copy{
+  width: 140rpx;
+  height: 200rpx;
+  text-align: center;
+
+
 }
 .mess_item{
   display: flex;
@@ -67,10 +74,10 @@ page{
   text-align: center;
 }
 .button_box{
-  margin-top: 100rpx;
+  margin-top: 20rpx;
   border-top: 1px dotted #cccc;
-  padding-top: 144rpx;
-  padding: 100rpx 0rpx;
+  padding-top: 60rpx;
+  padding: 60rpx 0rpx;
 }
 .button_flex{
   display: flex;
@@ -126,6 +133,22 @@ page{
   margin: 0rpx auto;
   align-items: center;
   
+}
+.person_box{
+  border-top: 1px dotted #cccc;
+  margin-top: 40rpx;
+  padding: 40rpx 0rpx;
+}
+.person_item{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height:80rpx;
+}
+.person_item image{
+  height:40rpx;
+  width:40rpx;
+  margin-right:20rpx;
 }
 
 

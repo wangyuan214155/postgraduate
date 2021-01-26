@@ -46,6 +46,13 @@ Page({
     console.log(res,33333,'获得导师下的学生')
     let result = res.result; 
     if(result){
+      if(result.studentList.length >0){
+        result.studentList.forEach((item,index) => {
+          item.openid = item.openid.substring(0, 4);
+          item.openid += "***"
+        });
+
+      }
       this.setData({
         applyStudentList:result.studentList,
         reportNum:result.pagination.total_count,
@@ -67,6 +74,11 @@ Page({
     }
     const res = await request._post(rankApi.addBindTeacher,data);
     if(res.success){
+      wx.showToast({
+        title: "报考成功！！",
+        icon: "none",
+        duration: 2000,
+      });
       this.getStudentList();
     }
 
@@ -88,6 +100,11 @@ Page({
         'selected.id':result.teacher_id,
       })
       if(result.teacher_id == self.data.teacherId){
+        wx.showToast({
+          title: "你已报考该导师！！",
+          icon: "none",
+          duration: 2000,
+        });
         return;
       }else{
         wx.showModal({
@@ -104,6 +121,8 @@ Page({
           }
         })
       }
+    }else{
+      self.queryApply();
     }
   },
   onReachBottom: function () {
@@ -113,7 +132,7 @@ Page({
       this.setData({
         currentPage: newPage
       })
-      this.getResultList();
+      this.getStudentList();
     } else {
       newPage = this.data.totalPage;
       this.setData({

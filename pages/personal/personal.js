@@ -412,6 +412,9 @@ Page({
       schoolStatus:false,
       departmentStatus:false,
       specialStatus:false,
+      specialError:false,
+      schoolError:false,
+      departmentError:false,
       isSave:false,
     })
   },

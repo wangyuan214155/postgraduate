@@ -39,6 +39,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // this.setData({
+    //   isLogin: app.globalData.isLogin,
+    //   userId:app.globalData.userId,
+
+    // })
+    // if (this.data.isLogin) {
+    //   this.getSchoolList()
+    //   this.getPersonMess();
+    // } else {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '您还未登录，请先登录哦',
+    //     showCancel: false,
+    //     success(res) {
+    //       if (res.confirm) {
+    //         console.log('用户点击确定')
+    //         wx.switchTab({
+    //           url: '/pages/personal/personal',
+    //         });
+    //       }
+    //     }
+    //   })
+    // }
+
+  },
+  onShow: function () {
     this.setData({
       isLogin: app.globalData.isLogin,
       userId:app.globalData.userId,
@@ -62,10 +88,15 @@ Page({
         }
       })
     }
-
-  },
-  onShow: function () {
-
+    this.setData({
+      schoolStatus: false,
+      departmentStatus: false,
+      teacherStatus: false,
+      schoolError: false,
+      departmentError: false,
+      specialError: false,
+      scoreError: false,
+    })
   },
   async getPersonMess() {
     let data = {
@@ -83,7 +114,7 @@ Page({
         departmentName: result.collage_name ? result.collage_name : '',
         specialId: result.special_id ? result.special_id : '',
         specialName: result.special_name ? result.special_name : '',
-        score:result.score ? result.score :'',
+        score:result.score ? result.score  :'',
       })
     }
   },
@@ -329,7 +360,7 @@ Page({
         specialError: false,
       })
     }
-    if (data.score == '') {
+    if (data.score == '' || data.score == 0) {
       this.setData({
         scoreError: true,
       })

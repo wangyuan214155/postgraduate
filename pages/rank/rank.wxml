@@ -39,7 +39,7 @@
   <view class="apply_item" >
     <view class="apply_title" >输入成绩：</view>
      <view class="apply_content {{scoreError ? 'border-error' :'normal-border'}}" >
-      <input type="number" placeholder="请输入成绩" value="{{score}}"  bindblur="scoreBlur"/>
+      <input type="number" placeholder="请输入成绩" value="{{score >0 ? score :''}}"  bindblur="scoreBlur"/>
     </view>
   </view>
   <view class="save_button" bindtap="lookRank">查看排名</view>

@@ -52,7 +52,7 @@
         <input type="number" placeholder="请输入成绩" value="{{score}}" bindblur="scoreBlur" />
       </view>
     </view>
-    <view class="teacher_button" bindtap="teacherList">查看导师名额</view>
+    <view class="teacher_button" bindtap="lookTeacherList">查看导师名额</view>
   </view>
   <view class="other_box">
     <view class="other_item_left"></view>
