@@ -46,12 +46,24 @@
         </block>
       </view>
     </view>
-    <view class="apply_item">
+    <view class="tips_box" wx:if="{{showScoreTip}}">
+      <text class="">是否要填写自己真实的成绩</text>
+      <switch bindchange="switchChange" style='zoom:0.6;' />
+    </view>
+    <!-- <view class="apply_item">
       <view class="apply_title">输入成绩</view>
       <view class="apply_content {{scoreError ? 'border-error' :'normal-border'}}">
         <input type="number" placeholder="请输入成绩" value="{{score}}" bindblur="scoreBlur" />
       </view>
+    </view> -->
+    <view class="apply_item copy" wx:if="{{isShowScore}}">
+      <view class="apply_title">输入成绩：</view>
+      <view class="apply_content {{scoreError ? 'border-error' :'normal-border'}}" wx:if="{{!hasCore}}">
+        <input type="number" placeholder="请输入成绩" value="{{score >0 ? score :''}}" bindblur="scoreBlur" />
+      </view>
+      <view class="apply_content" wx:if="{{hasCore}}">{{score}}</view>
     </view>
+    <view class="error_tip" wx:if="{{isShowScore}}">注：成绩一旦填写，后期不能更改哦</view>
     <view class="teacher_button" bindtap="lookTeacherList">查看导师名额</view>
   </view>
   <view class="other_box">

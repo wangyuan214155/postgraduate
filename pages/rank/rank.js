@@ -19,49 +19,34 @@ Page({
     outSpecial: [],
     specialList: [],
     schoolId: '',
+    oldSchoolId: '',
     schoolName: '',
+    oldSchoolName: '',
     schoolError: false,
     departmentId: '',
+    oldDepartmentId:'',
     departmentName: '',
+    oldDepartmentName: '',
     departmentError: false,
     specialId: '',
+    oldSpecialId: '',
     specialName: '',
+    oldSpecialName: '',
     specialError: false,
     score: '',//成绩
     scoreError: false,
     isSave: true,//当前的状态是否是保存
-    userId: ''
-
-
+    userId: '',
+    showScoreTip:true,
+    isShowScore:false,
+    hasCore:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.setData({
-    //   isLogin: app.globalData.isLogin,
-    //   userId:app.globalData.userId,
-
-    // })
-    // if (this.data.isLogin) {
-    //   this.getSchoolList()
-    //   this.getPersonMess();
-    // } else {
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '您还未登录，请先登录哦',
-    //     showCancel: false,
-    //     success(res) {
-    //       if (res.confirm) {
-    //         console.log('用户点击确定')
-    //         wx.switchTab({
-    //           url: '/pages/personal/personal',
-    //         });
-    //       }
-    //     }
-    //   })
-    // }
+  
 
   },
   onShow: function () {
@@ -96,6 +81,8 @@ Page({
       departmentError: false,
       specialError: false,
       scoreError: false,
+      showScoreTip:true,
+      isShowScore:false
     })
   },
   async getPersonMess() {
@@ -109,12 +96,19 @@ Page({
       this.setData({
         isLogin: true,
         schoolId: result.school_id ? result.school_id : '',
+        oldSchoolId:result.school_id ? result.school_id : '',
         schoolName: result.school_name ? result.school_name : '',
+        oldSchoolName: result.school_name ? result.school_name : '',
         departmentId: result.collage_id ? result.collage_id : '',
+        oldDepartmentId: result.collage_id ? result.collage_id : '',
         departmentName: result.collage_name ? result.collage_name : '',
+        oldDepartmentName: result.collage_name ? result.collage_name : '',
         specialId: result.special_id ? result.special_id : '',
+        oldSpecialId: result.special_id ? result.special_id : '',
         specialName: result.special_name ? result.special_name : '',
+        oldSpecialName: result.special_name ? result.special_name : '',
         score:result.score ? result.score  :'',
+        hasCore:result.score > 0 ? true :false
       })
     }
   },
@@ -287,6 +281,8 @@ Page({
         schoolId: item.id,
         schoolStatus: false,
       })
+      this.checkTip();
+
       this.getDepartmentList();
     }
 
@@ -299,6 +295,8 @@ Page({
         this.setData({
           specialId: '',
           specialName: '',
+          showScoreTip:false,
+
         })
       }
       this.setData({
@@ -306,6 +304,8 @@ Page({
         departmentId: item.collage_id,
         departmentStatus: false,
       })
+      this.checkTip();
+
       this.getSpecialList();
     }
 
@@ -319,9 +319,22 @@ Page({
         specialId: item.speciality_id,
         specialStatus: false,
       })
+      this.checkTip();
+
     }
   },
-  
+  checkTip(){
+    let data = this.data;
+    if(data.schoolName == data.oldSchoolName && data.departmentName == data.oldDepartmentName && data.specialName == data.oldSpecialName){
+      this.setData({
+        showScoreTip:true,
+      })
+    }else{
+      this.setData({
+        showScoreTip:false,
+      })
+    }
+  },
   validataInput() {
     let flag = true;
     let data = this.data;
@@ -360,18 +373,21 @@ Page({
         specialError: false,
       })
     }
-    if (data.score == '' || data.score == 0) {
-      this.setData({
-        scoreError: true,
-      })
-      flag = false
-
-    } else {
-      this.updatePersonMess();
-      this.setData({
-        scoreError: false,
-      })
+    if(this.data.isShowScore){
+      if (data.score == '' || data.score == 0) {
+        this.setData({
+          scoreError: true,
+        })
+        flag = false
+  
+      } else {
+        this.updatePersonMess();
+        this.setData({
+          scoreError: false,
+        })
+      }
     }
+  
     return flag;
 
   },
@@ -397,6 +413,14 @@ Page({
       //   isSave: false,
       // })
     }
+  },
+  switchChange(e){
+    console.log(e,34455)
+    let flag = e.detail.value;
+    this.setData({
+      isShowScore:flag
+    })
+
   },
   lookRank() {
     // console.log(this.validataInput())

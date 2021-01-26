@@ -73,5 +73,22 @@ page{
   width:335rpx;
   height:230rpx;
   background: #9be4f1;
-
+}
+.tips_box{
+  display: flex;
+  justify-content: space-between;
+  width: 690rpx;
+  padding: 0rpx 50rpx;
+  box-sizing:border-box;
+  font-size:30rpx;
+  color:#2F64FF;
+}
+.copy{
+  margin:40rpx 40rpx 10rpx 40rpx !important;
+}
+.error_tip{
+  padding: 0rpx 50rpx;
+  box-sizing:border-box;
+  font-size:26rpx;
+  color:#F5A623;
 }

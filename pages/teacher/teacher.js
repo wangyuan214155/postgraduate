@@ -24,8 +24,8 @@ Page({
     departmentName: '',
     oldDepartmentName: '',
     departmentError: false,
-    specialId:'',
-    specialName:'',
+    specialId: '',
+    specialName: '',
     teacherName: '',
     teacherId: '',
     teacherError: false,
@@ -33,13 +33,16 @@ Page({
     scoreError: false,
     isLogin: false,
     userId: '',
+    showScoreTip: true,
+    isShowScore: false,
+    hasCore: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+
 
   },
 
@@ -122,6 +125,8 @@ Page({
         specialId: result.special_id ? result.special_id : '',
         specialName: result.special_name ? result.special_name : '',
         score: result.score ? result.score : '',
+        hasCore: result.score > 0 ? true : false
+
       })
       self.getSchoolList();
       self.getDepartmentList();
@@ -246,7 +251,7 @@ Page({
       })
     }
   },
-  teacherInput: request.debounce(function (e){
+  teacherInput: request.debounce(function (e) {
     console.log(e, '专业')
 
     let value = e[0].detail.value;
@@ -255,28 +260,28 @@ Page({
     let data = {
       "schoolId": this.data.schoolId,
       "collageId": this.data.departmentId,
-      'search':value
+      'search': value
     }
-    request._get(rankApi.searchTeacher,data)
-    .then(res=>{
-      console.log(res,'导师')
-      let result = res.result;
-      this.setData({
-        teacherList:result
+    request._get(rankApi.searchTeacher, data)
+      .then(res => {
+        console.log(res, '导师')
+        let result = res.result;
+        this.setData({
+          teacherList: result
+        })
       })
-    })
-   
 
-    
-  },200),
-  
+
+
+  }, 200),
+
 
   schoolFous() {
     this.setData({
       schoolStatus: true,
       departmentStatus: false,
       specialStatus: false,
-      teacherStatus:false,
+      teacherStatus: false,
     })
 
   },
@@ -285,7 +290,7 @@ Page({
       departmentStatus: true,
       schoolStatus: false,
       specialStatus: false,
-      teacherStatus:false
+      teacherStatus: false
     })
   },
   teacherFous() {
@@ -295,16 +300,16 @@ Page({
     let data = {
       "schoolId": this.data.schoolId,
       "collageId": this.data.departmentId,
-      'search':'',
+      'search': '',
     }
-    request._get(rankApi.searchTeacher,data)
-    .then(res=>{
-      console.log(res,'导师')
-      let result = res.result;
-      this.setData({
-        teacherList:result
+    request._get(rankApi.searchTeacher, data)
+      .then(res => {
+        console.log(res, '导师')
+        let result = res.result;
+        this.setData({
+          teacherList: result
+        })
       })
-    })
   },
 
   scoreBlur(e) {
@@ -332,6 +337,8 @@ Page({
         schoolId: item.id,
         schoolStatus: false,
       })
+      this.checkTip();
+
       this.getDepartmentList();
     }
 
@@ -351,6 +358,7 @@ Page({
         departmentId: item.collage_id,
         departmentStatus: false,
       })
+      this.checkTip();
       // this.getTeacherList();
     }
 
@@ -404,40 +412,42 @@ Page({
         teacherError: false,
       })
     }
-    if (data.score == '' || data.score == 0) {
-      this.setData({
-        scoreError: true,
-      })
-      flag = false
+    if (this.data.isShowScore) {
+      if (data.score == '' || data.score == 0) {
+        this.setData({
+          scoreError: true,
+        })
+        flag = false
 
-    } else {
-      this.updatePersonMess();
-      this.setData({
-        scoreError: false,
-      })
+      } else {
+        this.updatePersonMess();
+        this.setData({
+          scoreError: false,
+        })
+      }
     }
     return flag;
 
   },
-  async updatePersonMess(){
+  async updatePersonMess() {
     let data = {
-      data : {
-        'id':this.data.userId,
-        'school_id':this.data.schoolId,
-        'school_name':this.data.schoolName,
-        'collage_id':this.data.departmentId,
-        'collage_name':this.data.departmentName,
-        'special_id':this.data.specialId,
-        'special_name':this.data.specialName,
-        'score':this.data.score
+      data: {
+        'id': this.data.userId,
+        'school_id': this.data.schoolId,
+        'school_name': this.data.schoolName,
+        'collage_id': this.data.departmentId,
+        'collage_name': this.data.departmentName,
+        'special_id': this.data.specialId,
+        'special_name': this.data.specialName,
+        'score': this.data.score
       }
-      
-    } 
 
-    const res = await request._post(personApi.updateUserInfo,data);
+    }
+
+    const res = await request._post(personApi.updateUserInfo, data);
     let result = res.result;
-    if(result){
-      
+    if (result) {
+
     }
   },
   validataInputCopy() {
@@ -469,7 +479,7 @@ Page({
   },
   //查看导师列表
   lookTeacherList() {
-    if(this.validataInput()){
+    if (this.validataInput()) {
       let postData = JSON.stringify({
         'teacherId': this.data.teacherId,
         'userId': this.data.userId,
@@ -485,7 +495,7 @@ Page({
   },
   //查看导师热度
   lookTeacherHot() {
-    if(this.validataInputCopy()){
+    if (this.validataInputCopy()) {
       let postData = JSON.stringify({
         'schoolId': this.data.schoolId,
         'schoolName': this.data.schoolName,
@@ -497,6 +507,26 @@ Page({
       wx.navigateTo({
         url: `/pages/teacher/teacher-hot/teacher-hot?postData=${postData}`,
       });
+    }
+  },
+  switchChange(e) {
+    console.log(e, 34455)
+    let flag = e.detail.value;
+    this.setData({
+      isShowScore: flag
+    })
+
+  },
+  checkTip() {
+    let data = this.data;
+    if (data.schoolName == data.oldSchoolName && data.departmentName == data.oldDepartmentName) {
+      this.setData({
+        showScoreTip: true,
+      })
+    } else {
+      this.setData({
+        showScoreTip: false,
+      })
     }
   },
 

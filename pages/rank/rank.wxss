@@ -90,9 +90,10 @@ page{
 
 .apply_content{
   height:75rpx;
-  /* border: 1px solid #cccc; */
   border-radius: 14rpx;
   width:70%;
+  line-height: 75rpx;
+
 }
 .normal-border{
   border:1px solid #cccc;
@@ -140,4 +141,23 @@ page{
   color:#BAC9DE;
   line-height: 80rpx;
   padding: 0rpx 20rpx
+}
+.tips_box{
+  display: flex;
+  justify-content: space-between;
+  width: 690rpx;
+  padding: 0rpx 50rpx;
+  box-sizing:border-box;
+  font-size:30rpx;
+  color:#2F64FF;
+
+}
+.copy{
+  margin:40rpx 40rpx 10rpx 40rpx !important;
+}
+.error_tip{
+  padding: 0rpx 50rpx;
+  box-sizing:border-box;
+  font-size:26rpx;
+  color:#F5A623;
 }
