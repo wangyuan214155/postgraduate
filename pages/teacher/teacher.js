@@ -35,7 +35,8 @@ Page({
     userId: '',
     showScoreTip: true,
     isShowScore: false,
-    hasCore: false
+    hasCore: false,
+    hideBoxStatus:false,
   },
 
   /**
@@ -57,18 +58,18 @@ Page({
       openId: app.globalData.openId
     })
     if (this.data.isLogin) {
-      this.getSchoolList();
+      // this.getSchoolList();
       this.getPersonMess();
     } else {
       wx.login({
         success: res => {
-          console.log(res, '登录信息')
+          // console.log(res, '登录信息')
           let data = {
             'code': res.code
           }
           return request._get(loginApi.isLogin, data)
             .then(res => {
-              console.log(res, 33333)
+              // console.log(res, 33333)
               if (res.success) {
                 let result = res.result;
                 if (result.student_id) {
@@ -110,7 +111,7 @@ Page({
       id: this.data.userId,
     }
     const res = await request._get(personApi.getUserInfo, data);
-    console.log(res, 1111)
+    // console.log(res, 1111)
     let result = res.result;
     if (result.openid) {
       this.setData({
@@ -129,17 +130,19 @@ Page({
         hasCore: result.score > 0 ? true : false
 
       })
-      self.getSchoolList();
-      self.getDepartmentList();
-      // self.getTeacherList()
-
+      if(result.school_id != 0 && result.collage_id != 0 && result.special_id != 0){
+        this.getSchoolList();
+        this.getDepartmentList();
+      }else{
+        this.getSchoolList();
+      }
     }
 
 
   },
   async getSchoolList() {
     const res = await request._get(schoolApi.getSchoolListTest)
-    console.log(res, '获得学校')
+    // console.log(res, '获得学校')
     if (res.result) {
       this.setData({
         schoolList: res.result,
@@ -152,7 +155,7 @@ Page({
       "schoolId": this.data.schoolId
     }
     const res = await request._get(schoolApi.getDepartmentList, data)
-    console.log(res, '获得学院')
+    // console.log(res, '获得学院')
     if (res.result) {
       this.setData({
         outDepartment: res.result,
@@ -167,7 +170,7 @@ Page({
       "page": 1
     }
     const res = await request._get(rankApi.getTeacherList, data)
-    console.log(res, '获得导师')
+    // console.log(res, '获得导师')
     let result = res.result;
     if (result) {
       this.setData({
@@ -253,10 +256,10 @@ Page({
     }
   },
   teacherInput: request.debounce(function (e) {
-    console.log(e, '专业')
+    // console.log(e, '专业')
 
     let value = e[0].detail.value;
-    console.log(value, '专业')
+    // console.log(value, '专业')
     //此处要发请求
     let data = {
       "schoolId": this.data.schoolId,
@@ -265,14 +268,12 @@ Page({
     }
     request._get(rankApi.searchTeacher, data)
       .then(res => {
-        console.log(res, '导师')
+        // console.log(res, '导师')
         let result = res.result;
         this.setData({
           teacherList: result
         })
       })
-
-
 
   }, 200),
 
@@ -283,6 +284,7 @@ Page({
       departmentStatus: false,
       specialStatus: false,
       teacherStatus: false,
+      hideBoxStatus:true,
     })
 
   },
@@ -291,12 +293,15 @@ Page({
       departmentStatus: true,
       schoolStatus: false,
       specialStatus: false,
-      teacherStatus: false
+      teacherStatus: false,
+      hideBoxStatus:true,
     })
   },
   teacherFous() {
     this.setData({
-      teacherStatus: true
+      teacherStatus: true,
+      hideBoxStatus:true,
+
     })
     let data = {
       "schoolId": this.data.schoolId,
@@ -305,7 +310,7 @@ Page({
     }
     request._get(rankApi.searchTeacher, data)
       .then(res => {
-        console.log(res, '导师')
+        // console.log(res, '导师')
         let result = res.result;
         this.setData({
           teacherList: result
@@ -315,7 +320,7 @@ Page({
 
   scoreBlur(e) {
     let value = e.detail.value;
-    console.log(value, 333333)
+    // console.log(value, 333333)
     this.setData({
       score: value
     })
@@ -323,7 +328,7 @@ Page({
   },
   selectSchool(e) {
     let item = e.currentTarget.dataset.item;
-    console.log(item, 33)
+    // console.log(item, 33)
     if (item) {
       if (item.school_name != this.data.schoolName) {
         this.setData({
@@ -337,6 +342,8 @@ Page({
         schoolName: item.school_name,
         schoolId: item.id,
         schoolStatus: false,
+        hideBoxStatus:false,
+
       })
       this.checkTip();
 
@@ -346,7 +353,7 @@ Page({
   },
   selectDepartment(e) {
     let item = e.currentTarget.dataset.item;
-    console.log(item, 33)
+    // console.log(item, 33)
     if (item) {
       if (item.collage_name != this.data.departmentName) {
         this.setData({
@@ -358,6 +365,8 @@ Page({
         departmentName: item.collage_name,
         departmentId: item.collage_id,
         departmentStatus: false,
+        hideBoxStatus:false,
+
       })
       this.checkTip();
       // this.getTeacherList();
@@ -366,19 +375,20 @@ Page({
   },
   selectTeacher(e) {
     let item = e.currentTarget.dataset.item;
-    console.log(item, 33)
+    // console.log(item, 33)
     if (item) {
       this.setData({
         teacherName: item.name,
         teacherId: item.id,
         teacherStatus: false,
+        hideBoxStatus:false,
       })
     }
   },
   validataInput() {
     let flag = true;
     let data = this.data;
-    console.log(data.schoolId, data.departmentId, data.teacherId, data.score, 33333)
+    // console.log(data.schoolId, data.departmentId, data.teacherId, data.score, 33333)
 
     if (data.schoolId == '') {
       this.setData({
@@ -454,7 +464,7 @@ Page({
   validataInputCopy() {
     let flag = true;
     let data = this.data;
-    console.log(data.schoolId, data.departmentId, data.teacherId, data.score, 33333)
+    // console.log(data.schoolId, data.departmentId, data.teacherId, data.score, 33333)
 
     if (data.schoolId == '') {
       this.setData({
@@ -513,7 +523,7 @@ Page({
     }
   },
   switchChange(e) {
-    console.log(e, 34455)
+    // console.log(e, 34455)
     let flag = e.detail.value;
     this.setData({
       isShowScore: flag
@@ -532,6 +542,15 @@ Page({
       })
     }
   },
+  hideStatus(){
+    // console.log('点击其他地方')
+    this.setData({
+      hideBoxStatus:false,
+      schoolStatus: false,
+      departmentStatus: false,
+      teacherStatus: false,
+    })
+  }
 
 
 })

@@ -52,6 +52,6 @@
   <view class="error_tip" wx:if="{{isShowScore}}">注：成绩一旦填写，后期不能更改哦</view>
 
   <view class="save_button" bindtap="lookRank">查看排名</view>
-
-  
 </view>
+<view class="hide_box" wx:if="{{hideBoxStatus}}" catchtap="hideStatus"></view>
+

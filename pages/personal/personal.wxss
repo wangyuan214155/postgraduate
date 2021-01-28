@@ -94,6 +94,7 @@
   /* border: 1px solid #cccc; */
   border-radius: 14rpx;
   width:70%;
+  z-index: 20;
 }
 .normal-border{
   border:1px solid #cccc;
@@ -187,4 +188,12 @@
   text-align: center;
   line-height: 80rpx;
   border-radius: 60rpx;
+}
+.hide_box{
+  height:100vh;
+  width:750rpx;
+  position:absolute;
+  z-index:10;
+  top: 0rpx;
+  left: 0rpx;
 }

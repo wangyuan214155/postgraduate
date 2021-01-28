@@ -45,7 +45,7 @@ Page({
       'page':this.data.currentPage
     }
     const res = await request._get(rankApi.getTeaStudent,data)
-    console.log(res,33333,'获得导师下的学生')
+    // console.log(res,33333,'获得导师下的学生')
     let result = res.result; 
     if(result){
       if(result.studentList.length >0){
@@ -84,7 +84,7 @@ Page({
       this.getStudentList();
     }
 
-    console.log(res,111111)
+    // console.log(res,111111)
     
 
   },
@@ -112,7 +112,7 @@ Page({
       'userId':this.data.postData.userId
     }
     const res = await request._get(rankApi.getBindTeacher,data);
-    console.log(res,'获得已经绑定的导师')
+    // console.log(res,'获得已经绑定的导师')
     let result = res.result;
     if(result){
       this.setData({
@@ -146,7 +146,7 @@ Page({
     }
   },
   onReachBottom: function () {
-    console.log('是否到达底部', this.data.currentPage, this.data.totalPage)
+    // console.log('是否到达底部', this.data.currentPage, this.data.totalPage)
     let newPage = this.data.currentPage + 1;
     if (newPage <= this.data.totalPage) {
       this.setData({

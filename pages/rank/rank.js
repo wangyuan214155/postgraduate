@@ -39,7 +39,8 @@ Page({
     userId: '',
     showScoreTip:true,
     isShowScore:false,
-    hasCore:false
+    hasCore:false,
+    hideBoxStatus:false,
   },
 
   /**
@@ -56,7 +57,6 @@ Page({
 
     })
     if (this.data.isLogin) {
-      this.getSchoolList()
       this.getPersonMess();
     } else {
       wx.showModal({
@@ -65,7 +65,7 @@ Page({
         showCancel: false,
         success(res) {
           if (res.confirm) {
-            console.log('用户点击确定')
+            // console.log('用户点击确定')
             wx.switchTab({
               url: '/pages/personal/personal',
             });
@@ -90,7 +90,7 @@ Page({
       id: this.data.userId,
     }
     const res = await request._get(personApi.getUserInfo, data);
-    console.log(res, 1111)
+    // console.log(res, 1111)
     let result = res.result;
     if (result.openid) {
       this.setData({
@@ -111,10 +111,18 @@ Page({
         hasCore:result.score > 0 ? true :false
       })
     }
+    if(result.school_id != 0 && result.collage_id != 0 && result.special_id != 0){
+      this.getSchoolList();
+      this.getDepartmentList();
+      this.getSpecialList();
+    }else{
+      this.getSchoolList();
+    }
+    
   },
   async getSchoolList() {
     const res = await request._get(schoolApi.getSchoolListTest)
-    console.log(res, '获得学校')
+    // console.log(res, '获得学校')
     if (res.result) {
       this.setData({
         schoolList: res.result,
@@ -127,7 +135,7 @@ Page({
       "schoolId": this.data.schoolId
     }
     const res = await request._get(schoolApi.getDepartmentList, data)
-    console.log(res, '获得学院')
+    // console.log(res, '获得学院')
     if (res.result) {
       this.setData({
         outDepartment: res.result,
@@ -141,7 +149,7 @@ Page({
       "collageId": this.data.departmentId
     }
     const res = await request._get(schoolApi.getSpecialList, data)
-    console.log(res, '获得专业')
+    // console.log(res, '获得专业')
     if (res.result) {
       this.setData({
         outSpecial: res.result,
@@ -152,7 +160,7 @@ Page({
   schoolInput(e) {
     let tempList = [];
     let value = e.detail.value;
-    console.log(value, '学校')
+    // console.log(value, '学校')
     //此处要发请求
     if (value != this.data.schoolName) {
       this.setData({
@@ -184,7 +192,7 @@ Page({
   departmentInput(e) {
     let tempList = [];
     let value = e.detail.value;
-    console.log(value, '学院')
+    // console.log(value, '学院')
     //此处要发请求
     if (value != this.data.departmentName) {
       this.setData({
@@ -213,7 +221,7 @@ Page({
   specialInput(e) {
     let tempList = [];
     let value = e.detail.value;
-    console.log(value, '专业')
+    // console.log(value, '专业')
     //此处要发请求
     if (value.trim()) {
       let reg = new RegExp(value.trim());
@@ -238,7 +246,9 @@ Page({
       schoolStatus: true,
       departmentStatus: false,
       specialStatus: false,
-      isSave: true
+      isSave: true,
+      hideBoxStatus:true,
+
     })
 
   },
@@ -247,18 +257,23 @@ Page({
       departmentStatus: true,
       schoolStatus: false,
       specialStatus: false,
-      isSave: true
+      isSave: true,
+      hideBoxStatus:true,
+
     })
+    
   },
   specialFous() {
     this.setData({
       specialStatus: true,
-      isSave: true
+      isSave: true,
+      hideBoxStatus:true,
+
     })
   },
   scoreBlur(e) {
     let value = e.detail.value;
-    console.log(value, 333333)
+    // console.log(value, 333333)
     this.setData({
       score: value
     })
@@ -266,7 +281,7 @@ Page({
   },
   selectSchool(e) {
     let item = e.currentTarget.dataset.item;
-    console.log(item, 33)
+    // console.log(item, 33)
     if (item) {
       if (item.school_name != this.data.schoolName) {
         this.setData({
@@ -280,6 +295,8 @@ Page({
         schoolName: item.school_name,
         schoolId: item.id,
         schoolStatus: false,
+        hideBoxStatus:false,
+
       })
       this.checkTip();
 
@@ -289,7 +306,7 @@ Page({
   },
   selectDepartment(e) {
     let item = e.currentTarget.dataset.item;
-    console.log(item, 33)
+    // console.log(item, 33)
     if (item) {
       if (item.collage_name != this.data.departmentName) {
         this.setData({
@@ -303,6 +320,8 @@ Page({
         departmentName: item.collage_name,
         departmentId: item.collage_id,
         departmentStatus: false,
+        hideBoxStatus:false,
+
       })
       this.checkTip();
 
@@ -312,12 +331,14 @@ Page({
   },
   selectSpecial(e) {
     let item = e.currentTarget.dataset.item;
-    console.log(item, 33)
+    // console.log(item, 33)
     if (item) {
       this.setData({
         specialName: item.speciality_name,
         specialId: item.speciality_id,
         specialStatus: false,
+        hideBoxStatus:false,
+
       })
       this.checkTip();
 
@@ -338,7 +359,7 @@ Page({
   validataInput() {
     let flag = true;
     let data = this.data;
-    console.log(data.schoolId, data.departmentId, data.specialId, data.score, 33333)
+    // console.log(data.schoolId, data.departmentId, data.specialId, data.score, 33333)
 
     if (data.schoolId == '') {
       this.setData({
@@ -415,7 +436,7 @@ Page({
     }
   },
   switchChange(e){
-    console.log(e,34455)
+    // console.log(e,34455)
     let flag = e.detail.value;
     this.setData({
       isShowScore:flag
@@ -434,9 +455,16 @@ Page({
       wx.navigateTo({
         url: `/pages/rank/rank-list/rank-list?postData=${data}`,
       });
-
     }
-
+  },
+  hideStatus(){
+    // console.log('点击其他地方')
+    this.setData({
+      hideBoxStatus:false,
+      schoolStatus: false,
+      departmentStatus: false,
+      specialStatus: false,
+    })
   }
 
 })

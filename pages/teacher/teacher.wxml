@@ -112,3 +112,4 @@
     <view class="other_item_right"></view>
   </view>
 </block>
+<view class="hide_box" wx:if="{{hideBoxStatus}}" catchtap="hideStatus"></view>

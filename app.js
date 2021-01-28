@@ -6,13 +6,13 @@ App({
     // 登录
     wx.login({
       success: res => {
-        console.log(res,'登录信息')
+        // console.log(res,'登录信息')
         let data = {
           'code':res.code
         }
        return  request._get(loginApi.isLogin,data)
        .then(res=>{
-         console.log(res,33333)
+        //  console.log(res,33333)
          if(res.success){
            let result = res.result;
            if(result.student_id){
@@ -30,7 +30,7 @@ App({
               showCancel: false,
               success(res) {
                 if (res.confirm) {
-                  console.log('用户点击确定')
+                  // console.log('用户点击确定')
                   wx.switchTab({
                     url: '/pages/personal/personal',
                   });
