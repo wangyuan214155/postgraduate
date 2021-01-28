@@ -101,6 +101,7 @@ Page({
       schoolStatus: false,
       departmentStatus: false,
       teacherStatus: false,
+      // isShowScore:false
     })
   },
   async getPersonMess() {
@@ -476,6 +477,7 @@ Page({
         departmentError: false,
       })
     }
+    return flag;
   },
   //查看导师列表
   lookTeacherList() {
@@ -486,6 +488,7 @@ Page({
         'teacherName': this.data.teacherName,
         'score': this.data.score,
         'openId': this.data.openId,
+        'isSelfMess':this.data.showScoreTip
       })
       wx.navigateTo({
         url: `/pages/teacher/teacher-list/teacher-list?postData=${postData}`,

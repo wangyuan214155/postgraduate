@@ -16,7 +16,8 @@ Page({
     selected:{
       teacher:'',
       id:''
-    }
+    },
+    isSelfMess:false,//查询的学校和学院是否和报考的一致
 
   },
 
@@ -27,6 +28,7 @@ Page({
         postData, 
         teacherName:postData.teacherName,
         teacherId:postData.teacherId,
+        isSelfMess:postData.isSelfMess
 
       })
     }
@@ -86,8 +88,26 @@ Page({
     
 
   },
+ 
   async checkTeacher(){
     let self = this;
+    if(!self.data.isSelfMess){
+      wx.showToast({
+        title: "检测到该院系与您本人报考的信息不一致，请到个人中心修改哦！",
+        icon: "none",
+        duration: 2000,
+      });
+      return;
+    }else{
+      if(this.data.postData.score == '' || this.data.postData.score == 0){
+        wx.showToast({
+          title: "请返回填写自己真实的成绩哦！",
+          icon: "none",
+          duration: 2000,
+        });
+        return;
+      }
+    }
     let data = {
       'userId':this.data.postData.userId
     }

@@ -20,7 +20,8 @@ Page({
     },
     addNum:0,
     currentIndex:1,
-    currentList:[]
+    currentList:[],
+    isSelfMess:false
 
 
 
@@ -31,7 +32,7 @@ Page({
     this.setData({
       userId: app.globalData.userId,
     })
-    // options.postData = '{"tempList":[{"id":"14","name":"郭燕青","sex":"男","praise":"1500","school_id":"86","school_name":"辽宁大学","collage_id":"5","collage_name":"商学院","level":"教授","type":"博导","majors":"管理科学与工程","field":"技术转移与区域经济、创新生态系统、汽车产业技术战略、知识管理与项目管理等。先后提出“后发优势悖论”、“创新三要素理论”及“创新生态链竞争说”等观点。","work_tel":null,"email":null,"address":null,"status":"1","created_at":"1611455597","updated_at":"1611455597"},{"id":"9","name":"刘艳春","sex":"未知","praise":"1125","school_id":"86","school_name":"辽宁大学","collage_id":"5","collage_name":"商学院","level":"教授","type":"博导","majors":"技术经济与管理","field":"风险管理、管理决策与复杂系统建模、评价理论方法与技术经济分析、金融计量与金融工程等。","work_tel":"024-62202136","email":"Liuyanchun6258@163.com","address":null,"status":"1","created_at":"1611455597","updated_at":"1611455597"},{"id":"12","name":"唐晓华","sex":"未知","praise":"1022","school_id":"86","school_name":"辽宁大学","collage_id":"5","collage_name":"商学院","level":"教授","type":"博导","majors":"产业经济学","field":"产业组织理论及应用、企业管理理论。具体研究方向为","work_tel":"024-62202136","email":"Xhtang818@yahoo.com.cn","address":null,"status":"1","created_at":"1611455597","updated_at":"1611455597"}],"schoolName":"辽宁大学","department":"商学院"}'
+    options.postData = '{"tempList":[{"id":"14","name":"郭燕青","sex":"男","praise":"1500","school_id":"86","school_name":"辽宁大学","collage_id":"5","collage_name":"商学院","level":"教授","type":"博导","majors":"管理科学与工程","field":"技术转移与区域经济、创新生态系统、汽车产业技术战略、知识管理与项目管理等。先后提出“后发优势悖论”、“创新三要素理论”及“创新生态链竞争说”等观点。","work_tel":null,"email":null,"address":null,"status":"1","created_at":"1611455597","updated_at":"1611455597"},{"id":"9","name":"刘艳春","sex":"未知","praise":"1125","school_id":"86","school_name":"辽宁大学","collage_id":"5","collage_name":"商学院","level":"教授","type":"博导","majors":"技术经济与管理","field":"风险管理、管理决策与复杂系统建模、评价理论方法与技术经济分析、金融计量与金融工程等。","work_tel":"024-62202136","email":"Liuyanchun6258@163.com","address":null,"status":"1","created_at":"1611455597","updated_at":"1611455597"},{"id":"12","name":"唐晓华","sex":"未知","praise":"1022","school_id":"86","school_name":"辽宁大学","collage_id":"5","collage_name":"商学院","level":"教授","type":"博导","majors":"产业经济学","field":"产业组织理论及应用、企业管理理论。具体研究方向为","work_tel":"024-62202136","email":"Xhtang818@yahoo.com.cn","address":null,"status":"1","created_at":"1611455597","updated_at":"1611455597"}],"schoolName":"辽宁大学","department":"商学院"}'
     if (options.postData) {
       let postData = JSON.parse(options.postData);
       this.setData({
@@ -65,7 +66,16 @@ Page({
     console.log(res, 1111)
     let result = res.result;
     if (result.openid) {
+      if(result.school_name == self.data.school && result.collage_name == self.data.department){
+        self.setData({
+          isSelfMess:true
+        })
+      }
       this.setData({
+        // schoolId: result.school_id ? result.school_id : '',
+        // schoolName: result.school_name ? result.school_name : '',
+        // departmentId: result.collage_id ? result.collage_id : '',
+        // departmentName: result.collage_name ? result.collage_name : '',
         score: result.score ? result.score : '',
       })
 
@@ -96,6 +106,23 @@ Page({
   },
   async checkTeacher() {
     let self = this;
+    if(!self.data.isSelfMess){
+      wx.showToast({
+        title: "检测到该院系与您本人报考的信息不一致，请到个人中心修改哦！",
+        icon: "none",
+        duration: 2000,
+      });
+      return;
+    }else{
+      if(this.data.score == '' || this.data.score == 0){
+        wx.showToast({
+          title: "请返回填写自己真实的成绩哦！",
+          icon: "none",
+          duration: 2000,
+        });
+        return;
+      }
+    }
     let currentList = self.data.currentList;
     let currentIndex = self.data.currentIndex;
     let data = {
