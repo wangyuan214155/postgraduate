@@ -112,9 +112,9 @@ Page({
       'userId':this.data.postData.userId
     }
     const res = await request._get(rankApi.getBindTeacher,data);
-    // console.log(res,'获得已经绑定的导师')
+    console.log(res,'获得已经绑定的导师')
     let result = res.result;
-    if(result){
+    if(result.length >0){
       this.setData({
         'selected.teacher':result.teacher_name,
         'selected.id':result.teacher_id,

@@ -118,6 +118,29 @@ Page({
     }else{
       this.getSchoolList();
     }
+    if(result.school_id == 0 && result.collage_id == 0 && result.special_id == 0){
+      this.setData({
+        showScoreTip: false,
+      })
+      wx.showModal({
+        title: '提示',
+        content: '请填写报考信息',
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            wx.switchTab({
+              url: '/pages/personal/personal',
+            });
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }else{
+      this.setData({
+        showScoreTip: true,
+      })
+    }
     
   },
   async getSchoolList() {

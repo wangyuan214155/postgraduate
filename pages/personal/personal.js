@@ -166,6 +166,7 @@ Page({
     })
   },
   async loginUser(rawData, userInfo) {
+    var self = this;
     let data = {
       'openid': this.data.openId,
       'rawData': rawData,

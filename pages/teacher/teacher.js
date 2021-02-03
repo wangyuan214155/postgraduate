@@ -87,6 +87,19 @@ Page({
                   app.globalData.userId = '';
                   app.globalData.openId = result;
                   app.globalData.isLogin = false;
+                  wx.showModal({
+                    title: '提示',
+                    content: '您还未登录，请先登录哦',
+                    showCancel: false,
+                    success(res) {
+                      if (res.confirm) {
+                        // console.log('用户点击确定')
+                        wx.switchTab({
+                          url: '/pages/personal/personal',
+                        });
+                      }
+                    }
+                  })
                 }
               }
             })
@@ -102,7 +115,7 @@ Page({
       schoolStatus: false,
       departmentStatus: false,
       teacherStatus: false,
-      // isShowScore:false
+      isShowScore:false
     })
   },
   async getPersonMess() {
@@ -135,6 +148,25 @@ Page({
         this.getDepartmentList();
       }else{
         this.getSchoolList();
+      }
+      if(result.school_id == 0 && result.collage_id == 0 && result.special_id == 0){
+        this.setData({
+          showScoreTip: false,
+        })
+        wx.showModal({
+          title: '提示',
+          content: '请填写报考信息',
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '/pages/personal/personal',
+              });
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
       }
     }
 
