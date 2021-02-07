@@ -582,6 +582,11 @@ Page({
       departmentStatus: false,
       teacherStatus: false,
     })
+  },
+  gotoPage(){
+    wx.navigateTo({
+      url:'/pages/web-outline/web-inline'
+    })
   }
 
 

@@ -1,5 +1,8 @@
 //测试地址
-const rootUrl = "http://print.woyouti.com";
+// const rootUrl = "http://print.woyouti.com";
+const rootUrl = "https://api.woyouti.com";
+
+
 
 //登录
 const loginApi = {

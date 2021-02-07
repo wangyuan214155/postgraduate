@@ -1,4 +1,4 @@
-<view class="button_box_copy">
+<!-- <view class="button_box_copy">
   <view class="next_box" bindtap="prePerson" wx:if="{{currentList[currentIndex-1]}}">
     <image class="" src="/asset/images/pre.png" />
     <text class="">上一位</text>
@@ -7,7 +7,7 @@
     <text class="">下一位</text>
     <image class="" src="/asset/images/next.png" />
   </view>
-</view>
+</view> -->
 <view class="teacher_box">
   <view class="teacher_mess">
     <view class="teacher_box_copy">

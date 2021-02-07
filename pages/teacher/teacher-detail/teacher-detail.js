@@ -21,7 +21,8 @@ Page({
     addNum:0,
     currentIndex:1,
     currentList:[],
-    isSelfMess:false
+    isSelfMess:false,
+    repeatCall:true,
 
 
 
@@ -174,6 +175,9 @@ Page({
       });
       return;
     }
+    this.setData({
+      repeatCall:false
+    })
     let data = {
       'userId':self.data.userId,
       // 'userId':1,
@@ -182,10 +186,17 @@ Page({
     const res = await request._get(rankApi.addCall,data);
     currentList[currentIndex].praise = Number(currentList[currentIndex].praise) +1
     // console.log(res)
+    wx.showToast({
+      title: "打call成功啦",
+      icon: "none",
+      duration: 3000,
+    });
     
     this.setData({
       addNum:Number(self.data.addNum) +1,
       currentList,
+      repeatCall:true
+
     })
 
   },

@@ -8,7 +8,8 @@
     "pages/rank/rank-list/rank-list",
     "pages/teacher/teacher-list/teacher-list",
     "pages/teacher/teacher-hot/teacher-hot",
-    "pages/teacher/teacher-detail/teacher-detail"
+    "pages/teacher/teacher-detail/teacher-detail",
+    "pages/web-outline/web-inline"
   ],
   "window": {
     "backgroundTextStyle": "light",

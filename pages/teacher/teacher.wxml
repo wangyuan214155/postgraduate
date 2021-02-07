@@ -67,8 +67,12 @@
     <view class="teacher_button" bindtap="lookTeacherList">查看导师名额</view>
   </view>
   <view class="other_box">
-    <view class="other_item_left"></view>
-    <view class="other_item_right"></view>
+    <view class="other_item_left"  bindtap="gotoPage">
+      <image class="" src="/asset/images/normal_img.png" />
+    </view>
+    <view class="other_item_right"  bindtap="gotoPage">
+      <image class="" src="/asset/images/normal_img.png" />
+    </view>
   </view>
 </block>
 <block wx:if="{{activeTab == 2}}">
@@ -104,12 +108,20 @@
     <view class="hot_button" bindtap="lookTeacherHot">查看导师热度</view>
   </view>
   <view class="other_box">
-    <view class="other_item_left"></view>
-    <view class="other_item_right"></view>
+    <view class="other_item_left" bindtap="gotoPage">
+      <image class="" src="/asset/images/normal_img.png" />
+    </view>
+    <view class="other_item_right" bindtap="gotoPage">
+      <image class="" src="/asset/images/normal_img.png" />
+    </view>
   </view>
   <view class="other_box">
-    <view class="other_item_left"></view>
-    <view class="other_item_right"></view>
+    <view class="other_item_left" bindtap="gotoPage">
+      <image class="" src="/asset/images/normal_img.png" />
+    </view>
+    <view class="other_item_right" bindtap="gotoPage">
+      <image class="" src="/asset/images/normal_img.png" />
+    </view>
   </view>
 </block>
 <view class="hide_box" wx:if="{{hideBoxStatus}}" catchtap="hideStatus"></view>

@@ -67,12 +67,20 @@ page{
 .other_item_left{
   width:335rpx;
   height:230rpx;
-  background: #9be4f1;
+  /* background: #9be4f1; */
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+.other_item_left image,.other_item_right image{
+  height:100%;
+  width:100%;
 }
 .other_item_right{
   width:335rpx;
   height:230rpx;
-  background: #9be4f1;
+  border-radius: 24rpx;
+  overflow: hidden;
+  /* background: #9be4f1; */
 }
 .tips_box{
   display: flex;
