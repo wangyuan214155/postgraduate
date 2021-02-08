@@ -41,6 +41,12 @@ Page({
   },
 
   onLoad: function (options) {
+    
+
+  },
+
+  onShow: function () {
+    // console.log(app.globalData.userInfo,'全局变量')
     this.setData({
       isLogin: app.globalData.isLogin,
       userId: app.globalData.userId,
@@ -50,11 +56,6 @@ Page({
     if (this.data.isLogin) {
       this.getPersonMess();
     }
-
-  },
-
-  onShow: function () {
-    // console.log(app.globalData.userInfo,'全局变量')
     if (app.globalData.userInfo) {
       this.setData({
         isLogin: app.globalData.isLogin,
@@ -203,14 +204,14 @@ Page({
     let value = e.detail.value;
     // console.log(value, '学校')
     //此处要发请求
-    if (value != this.data.schoolName) {
-      this.setData({
-        departmentId: '',
-        departmentName: '',
-        specialId: '',
-        specialName: '',
-      })
-    }
+    // if (value != this.data.schoolName) {
+    //   this.setData({
+    //     departmentId: '',
+    //     departmentName: '',
+    //     specialId: '',
+    //     specialName: '',
+    //   })
+    // }
     if (value.trim()) {
       let reg = new RegExp(value.trim());
       this.data.schoolList.forEach((item, index) => {
@@ -235,12 +236,12 @@ Page({
     let value = e.detail.value;
     // console.log(value, '学院')
     //此处要发请求
-    if (value != this.data.departmentName) {
-      this.setData({
-        specialId: '',
-        specialName: '',
-      })
-    }
+    // if (value != this.data.departmentName) {
+    //   this.setData({
+    //     specialId: '',
+    //     specialName: '',
+    //   })
+    // }
     if (value.trim()) {
       let reg = new RegExp(value.trim());
       this.data.departmentList.forEach((item, index) => {
@@ -465,7 +466,14 @@ Page({
       schoolStatus: false,
       departmentStatus: false,
       specialStatus: false,
+      schoolId: this.data.schoolId,
+      schoolName: this.data.schoolName,
+      departmentId: this.data.departmentId,
+      departmentName: this.data.departmentName,
+      specialId: this.data.specialId,
+      specialName: this.data.specialName,
     })
-  }
+  },
+  onShareAppMessage: function () {},
 
 })

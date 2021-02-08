@@ -146,6 +146,9 @@ Page({
       if(result.school_id != 0 && result.collage_id != 0 && result.special_id != 0){
         this.getSchoolList();
         this.getDepartmentList();
+        this.setData({
+          showScoreTip: true,
+        })
       }else{
         this.getSchoolList();
       }
@@ -231,14 +234,14 @@ Page({
     let value = e.detail.value;
     // console.log(value, '学校')
     //此处要发请求
-    if (value != this.data.schoolName) {
-      this.setData({
-        departmentId: '',
-        departmentName: '',
-        specialId: '',
-        specialName: '',
-      })
-    }
+    // if (value != this.data.schoolName) {
+    //   this.setData({
+    //     departmentId: '',
+    //     departmentName: '',
+    //     specialId: '',
+    //     specialName: '',
+    //   })
+    // }
     if (value.trim()) {
       let reg = new RegExp(value.trim());
       this.data.schoolList.forEach((item, index) => {
@@ -263,12 +266,12 @@ Page({
     let value = e.detail.value;
     // console.log(value, '学院')
     //此处要发请求
-    if (value != this.data.departmentName) {
-      this.setData({
-        specialId: '',
-        specialName: '',
-      })
-    }
+    // if (value != this.data.departmentName) {
+    //   this.setData({
+    //     specialId: '',
+    //     specialName: '',
+    //   })
+    // }
     if (value.trim()) {
       let reg = new RegExp(value.trim());
       this.data.departmentList.forEach((item, index) => {
@@ -581,13 +584,20 @@ Page({
       schoolStatus: false,
       departmentStatus: false,
       teacherStatus: false,
+      schoolId: this.data.schoolId,
+      schoolName: this.data.schoolName,
+      departmentId: this.data.departmentId,
+      departmentName: this.data.departmentName,
+      specialId: this.data.specialId,
+      specialName: this.data.specialName,
     })
   },
   gotoPage(){
     wx.navigateTo({
       url:'/pages/web-outline/web-inline'
     })
-  }
+  },
+  onShareAppMessage: function () {},
 
 
 })

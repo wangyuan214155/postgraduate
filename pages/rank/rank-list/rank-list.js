@@ -48,7 +48,7 @@ Page({
        this.setData({
         totalPage:result.pagination.page_count,
         rankNum:result.self ? result.self.rank :0,
-        rankList:result.rank,
+        rankList:this.data.rankList.concat(result.rank),
        })
     }
   },
@@ -68,6 +68,7 @@ Page({
         no_more: true
       })
     }
-  }
+  },
+  onShareAppMessage: function () {},
 
 })

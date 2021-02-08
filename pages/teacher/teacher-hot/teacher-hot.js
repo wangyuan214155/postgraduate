@@ -45,7 +45,8 @@ Page({
     let result  = res.result;
     if(result){
       this.setData({
-        teacherList:result.teacherList
+        teacherList:this.data.teacherList.concat(result.teacherList),
+        totalPage:result.pagination.page_count
       })
     }
   },
@@ -95,6 +96,7 @@ Page({
         no_more: true
       })
     }
-  }
+  },
+  onShareAppMessage: function () {},
 
 })

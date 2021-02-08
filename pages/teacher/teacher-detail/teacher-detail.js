@@ -220,6 +220,7 @@ Page({
     }
     
   },
+  onShareAppMessage: function () {},
   
 
 

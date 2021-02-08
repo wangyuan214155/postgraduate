@@ -56,7 +56,7 @@ Page({
 
       }
       this.setData({
-        applyStudentList:result.studentList,
+        applyStudentList:this.data.applyStudentList.concat(result.studentList),
         reportNum:result.pagination.total_count,
         rank:result.self.rank,
         totalPage:result.pagination.page_count,
@@ -160,7 +160,8 @@ Page({
         no_more: true
       })
     }
-  }
+  },
+  onShareAppMessage: function () {},
 
 
 })
