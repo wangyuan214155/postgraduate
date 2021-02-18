@@ -299,11 +299,21 @@ Page({
   },
   scoreBlur(e) {
     let value = e.detail.value;
-    // console.log(value, 333333)
-    this.setData({
-      score: value
-    })
-
+    let numberReg = /^\d$/;
+    if(numberReg.test(value) && value <= 499){
+      this.setData({
+        score: value
+      })
+    }else{
+      this.setData({
+        score: '',
+      })
+      wx.showToast({
+        title: "请填写正确的成绩",
+        icon: "none",
+        duration: 2000,
+      });
+    }
   },
   selectSchool(e) {
     let item = e.currentTarget.dataset.item;

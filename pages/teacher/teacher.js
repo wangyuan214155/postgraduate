@@ -355,10 +355,27 @@ Page({
 
   scoreBlur(e) {
     let value = e.detail.value;
+    let numberReg = /^\d$/;
+
     // console.log(value, 333333)
-    this.setData({
-      score: value
-    })
+    
+    if(numberReg.test(value) && value <= 499){
+      this.setData({
+        score: value
+      })
+    }else{
+      this.setData({
+        score: '',
+      })
+      wx.showToast({
+        title: "请填写正确的成绩",
+        icon: "none",
+        duration: 2000,
+      });
+    }
+    // this.setData({
+    //   score: value
+    // })
 
   },
   selectSchool(e) {
