@@ -47,6 +47,7 @@ Page({
 
   onShow: function () {
     // console.log(app.globalData.userInfo,'全局变量')
+    this.getSchoolList();
     this.setData({
       isLogin: app.globalData.isLogin,
       userId: app.globalData.userId,
@@ -107,6 +108,7 @@ Page({
 
       } else {
         this.setData({
+          isEdit: false,
           isSave: true,
         })
         this.getSchoolList();

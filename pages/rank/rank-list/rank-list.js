@@ -41,8 +41,8 @@ Page({
     if(result){
       if(result.rank.length > 0){
         result.rank.forEach((item,index) => {
-          item.openid = item.openid.substring(0, 4);
-          item.openid += "***"
+         
+          item.openid =  "***"+ item.openid.substring(item.openid.length - 4);
         });
       }
        this.setData({

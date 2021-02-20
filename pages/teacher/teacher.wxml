@@ -48,7 +48,7 @@
     </view>
     <view class="tips_box" wx:if="{{showScoreTip}}">
       <text class="">是否要填写自己真实的成绩</text>
-      <switch bindchange="switchChange" style='zoom:0.6;' />
+      <switch type="switch" bindchange="switchChange" style='zoom:0.6;' checked="{{isShowScore}}" />
     </view>
     <!-- <view class="apply_item">
       <view class="apply_title">输入成绩</view>

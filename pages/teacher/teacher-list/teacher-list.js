@@ -50,8 +50,8 @@ Page({
     if(result){
       if(result.studentList.length >0){
         result.studentList.forEach((item,index) => {
-          item.openid = item.openid.substring(0, 4);
-          item.openid += "***"
+          // item.openid = "***";
+          item.openid = "***"+ item.openid.substring(item.openid.length - 4);
         });
 
       }
@@ -81,6 +81,10 @@ Page({
         icon: "none",
         duration: 2000,
       });
+      this.setData({
+        applyStudentList:[],
+        currentPage:1,
+      })
       this.getStudentList();
     }
 
@@ -114,7 +118,7 @@ Page({
     const res = await request._get(rankApi.getBindTeacher,data);
     console.log(res,'获得已经绑定的导师')
     let result = res.result;
-    if(result.length >0){
+    if(result){
       this.setData({
         'selected.teacher':result.teacher_name,
         'selected.id':result.teacher_id,

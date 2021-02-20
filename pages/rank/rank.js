@@ -299,11 +299,12 @@ Page({
   },
   scoreBlur(e) {
     let value = e.detail.value;
-    let numberReg = /^\d$/;
+    let numberReg = /\d/;
     if(numberReg.test(value) && value <= 499){
       this.setData({
         score: value
       })
+
     }else{
       this.setData({
         score: '',
@@ -438,7 +439,9 @@ Page({
         flag = false
   
       } else {
-        this.updatePersonMess();
+        if(!this.data.hasCore){
+          this.updatePersonMess();
+        }
         this.setData({
           scoreError: false,
         })
@@ -452,12 +455,12 @@ Page({
     let data = {
       data : {
         'id':this.data.userId,
-        'school_id':this.data.schoolId,
-        'school_name':this.data.schoolName,
-        'collage_id':this.data.departmentId,
-        'collage_name':this.data.departmentName,
-        'special_id':this.data.specialId,
-        'special_name':this.data.specialName,
+        'school_id':this.data.oldSchoolId,
+        'school_name':this.data.oldSchoolName,
+        'collage_id':this.data.oldDepartmentId,
+        'collage_name':this.data.oldDepartmentName,
+        'special_id':this.data.oldSpecialId,
+        'special_name':this.data.oldSpecialName,
         'score':this.data.score
       }
       

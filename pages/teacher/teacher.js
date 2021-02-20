@@ -55,7 +55,7 @@ Page({
     this.setData({
       isLogin: app.globalData.isLogin,
       userId: app.globalData.userId,
-      openId: app.globalData.openId
+      openId: app.globalData.openId,
     })
     if (this.data.isLogin) {
       // this.getSchoolList();
@@ -355,11 +355,12 @@ Page({
 
   scoreBlur(e) {
     let value = e.detail.value;
-    let numberReg = /^\d$/;
-
+    let numberReg = /\d/;
     // console.log(value, 333333)
+    // console.log(numberReg.test(value), 44444)
     
     if(numberReg.test(value) && value <= 499){
+
       this.setData({
         score: value
       })
@@ -388,6 +389,8 @@ Page({
           departmentName: '',
           specialId: '',
           specialName: '',
+          teacherName:'',
+          teacherId: '',
         })
       }
       this.setData({
@@ -483,7 +486,9 @@ Page({
         flag = false
 
       } else {
-        this.updatePersonMess();
+        if(!this.data.hasCore){
+          this.updatePersonMess();
+        }
         this.setData({
           scoreError: false,
         })
@@ -495,15 +500,24 @@ Page({
   async updatePersonMess() {
     let data = {
       data: {
-        'id': this.data.userId,
-        'school_id': this.data.schoolId,
-        'school_name': this.data.schoolName,
-        'collage_id': this.data.departmentId,
-        'collage_name': this.data.departmentName,
-        'special_id': this.data.specialId,
-        'special_name': this.data.specialName,
-        'score': this.data.score
+        // 'id': this.data.userId,
+        // 'school_id': this.data.schoolId,
+        // 'school_name': this.data.schoolName,
+        // 'collage_id': this.data.departmentId,
+        // 'collage_name': this.data.departmentName,
+        // 'special_id': this.data.specialId,
+        // 'special_name': this.data.specialName,
+        // 'score': this.data.score
+        'id':this.data.userId,
+        'school_id':this.data.oldSchoolId,
+        'school_name':this.data.oldSchoolName,
+        'collage_id':this.data.oldDepartmentId,
+        'collage_name':this.data.oldDepartmentName,
+        'special_id':this.data.oldSpecialId,
+        'special_name':this.data.oldSpecialName,
+        'score':this.data.score
       }
+      
 
     }
 
