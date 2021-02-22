@@ -50,6 +50,7 @@ Page({
     this.getSchoolList();
     this.setData({
       isLogin: app.globalData.isLogin,
+      // isLogin: false,
       userId: app.globalData.userId,
       openId: app.globalData.openId
     })

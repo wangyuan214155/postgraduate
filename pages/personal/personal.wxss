@@ -197,3 +197,7 @@
   top: 0rpx;
   left: 0rpx;
 }
+button:not([size='mini']){
+  width: 168rpx !important;
+  height: 168rpx;
+}

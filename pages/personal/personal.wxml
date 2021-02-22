@@ -2,7 +2,9 @@
   <image class="" src="/asset/images/back.png" ></image>
   <view class="noLogin" wx:if="{{!isLogin}}">
     <view class="avater_box" >
+       <button class="avater_box"  bindgetuserinfo="gotoUserInfo" open-type="getUserInfo">
        <image class="" src="/asset/images/normal_avater.png" />
+       </button>
     </view>
     <button class="login_button"  bindgetuserinfo="gotoUserInfo" open-type="getUserInfo">登录</button>
     <view class="tips" >登录后，体验更多的查询功能</view>
