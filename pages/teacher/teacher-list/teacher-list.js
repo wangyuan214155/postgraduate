@@ -114,11 +114,15 @@ Page({
     }
     let data = {
       'userId':this.data.postData.userId
+      // 'userId':35,
+
+      
     }
     const res = await request._get(rankApi.getBindTeacher,data);
     console.log(res,'获得已经绑定的导师')
     let result = res.result;
     if(result){
+      console.log(111)
       this.setData({
         'selected.teacher':result.teacher_name,
         'selected.id':result.teacher_id,
@@ -146,6 +150,8 @@ Page({
         })
       }
     }else{
+      console.log(222)
+
       self.queryApply();
     }
   },

@@ -5,7 +5,7 @@
 <view class="rank_box">
    <view class="rank_title" >
      <view class="rank-rank" >名次</view>
-     <view class="rank-name" >考生Id</view>
+     <view class="rank-name" >考生ID</view>
      <view class="rank-special">专业</view>
      <view class="rank-score" >成绩</view>
    </view>

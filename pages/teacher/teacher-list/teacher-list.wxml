@@ -25,7 +25,7 @@
   <view class="rank_title" >导师组内排名</view>
   <view class="rank_content" >
     <view class="rank_table" >
-      <view class="" >考生Id</view>
+      <view class="" >考生ID</view>
       <view class="" >成绩</view>
       <view class="" >名次</view>
     </view>
