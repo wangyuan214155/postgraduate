@@ -36,7 +36,7 @@ Page({
     showScoreTip: true,
     isShowScore: false,
     hasCore: false,
-    hideBoxStatus:false,
+    hideBoxStatus: false,
   },
 
   /**
@@ -115,7 +115,7 @@ Page({
       schoolStatus: false,
       departmentStatus: false,
       teacherStatus: false,
-      isShowScore:false
+      isShowScore: false
     })
   },
   async getPersonMess() {
@@ -143,16 +143,16 @@ Page({
         hasCore: result.score > 0 ? true : false
 
       })
-      if(result.school_id != 0 && result.collage_id != 0 && result.special_id != 0){
+      if (result.school_id != 0 && result.collage_id != 0 && result.special_id != 0) {
         this.getSchoolList();
         this.getDepartmentList();
         this.setData({
           showScoreTip: true,
         })
-      }else{
+      } else {
         this.getSchoolList();
       }
-      if(result.school_id == 0 && result.collage_id == 0 && result.special_id == 0){
+      if (result.school_id == 0 && result.collage_id == 0 && result.special_id == 0) {
         this.setData({
           showScoreTip: false,
         })
@@ -319,7 +319,7 @@ Page({
       departmentStatus: false,
       specialStatus: false,
       teacherStatus: false,
-      hideBoxStatus:true,
+      hideBoxStatus: true,
     })
 
   },
@@ -329,13 +329,13 @@ Page({
       schoolStatus: false,
       specialStatus: false,
       teacherStatus: false,
-      hideBoxStatus:true,
+      hideBoxStatus: true,
     })
   },
   teacherFous() {
     this.setData({
       teacherStatus: true,
-      hideBoxStatus:true,
+      hideBoxStatus: true,
 
     })
     let data = {
@@ -358,13 +358,13 @@ Page({
     let numberReg = /\d/;
     // console.log(value, 333333)
     // console.log(numberReg.test(value), 44444)
-    
-    if(numberReg.test(value) && value <= 499){
+
+    if (numberReg.test(value) && value <= 499) {
 
       this.setData({
         score: value
       })
-    }else{
+    } else {
       this.setData({
         score: '',
       })
@@ -389,7 +389,7 @@ Page({
           departmentName: '',
           specialId: '',
           specialName: '',
-          teacherName:'',
+          teacherName: '',
           teacherId: '',
         })
       }
@@ -397,7 +397,7 @@ Page({
         schoolName: item.school_name,
         schoolId: item.id,
         schoolStatus: false,
-        hideBoxStatus:false,
+        hideBoxStatus: false,
 
       })
       this.checkTip();
@@ -420,7 +420,7 @@ Page({
         departmentName: item.collage_name,
         departmentId: item.collage_id,
         departmentStatus: false,
-        hideBoxStatus:false,
+        hideBoxStatus: false,
 
       })
       this.checkTip();
@@ -436,7 +436,7 @@ Page({
         teacherName: item.name,
         teacherId: item.id,
         teacherStatus: false,
-        hideBoxStatus:false,
+        hideBoxStatus: false,
       })
     }
   },
@@ -486,7 +486,7 @@ Page({
         flag = false
 
       } else {
-        if(!this.data.hasCore){
+        if (!this.data.hasCore) {
           this.updatePersonMess();
         }
         this.setData({
@@ -508,16 +508,16 @@ Page({
         // 'special_id': this.data.specialId,
         // 'special_name': this.data.specialName,
         // 'score': this.data.score
-        'id':this.data.userId,
-        'school_id':this.data.oldSchoolId,
-        'school_name':this.data.oldSchoolName,
-        'collage_id':this.data.oldDepartmentId,
-        'collage_name':this.data.oldDepartmentName,
-        'special_id':this.data.oldSpecialId,
-        'special_name':this.data.oldSpecialName,
-        'score':this.data.score
+        'id': this.data.userId,
+        'school_id': this.data.oldSchoolId,
+        'school_name': this.data.oldSchoolName,
+        'collage_id': this.data.oldDepartmentId,
+        'collage_name': this.data.oldDepartmentName,
+        'special_id': this.data.oldSpecialId,
+        'special_name': this.data.oldSpecialName,
+        'score': this.data.score
       }
-      
+
 
     }
 
@@ -564,7 +564,7 @@ Page({
         'teacherName': this.data.teacherName,
         'score': this.data.score,
         'openId': this.data.openId,
-        'isSelfMess':this.data.showScoreTip
+        'isSelfMess': this.data.showScoreTip
       })
       wx.navigateTo({
         url: `/pages/teacher/teacher-list/teacher-list?postData=${postData}`,
@@ -608,10 +608,10 @@ Page({
       })
     }
   },
-  hideStatus(){
+  hideStatus() {
     // console.log('点击其他地方')
     this.setData({
-      hideBoxStatus:false,
+      hideBoxStatus: false,
       schoolStatus: false,
       departmentStatus: false,
       teacherStatus: false,
@@ -623,12 +623,47 @@ Page({
       specialName: this.data.specialName,
     })
   },
-  gotoPage(){
-    wx.navigateTo({
-      url:'/pages/web-outline/web-inline'
-    })
+  gotoPage(e) {
+    let type = e.currentTarget.dataset.type;
+    console.log(type)
+    switch (Number(type)) {
+      case 1:
+        wx.navigateTo({
+          url: '/pages/web-view1/web-view1'
+        })
+        break;
+      case 2:
+        wx.navigateTo({
+          url: '/pages/web-view2/web-view2'
+        })
+        break;
+      case 3:
+        wx.navigateTo({
+          url: '/pages/web-view3/web-view3'
+        })
+        break;
+
+      case 4:
+        wx.navigateTo({
+          url: '/pages/web-view4/web-view4'
+        })
+        break;
+      case 5:
+        wx.navigateTo({
+          url: '/pages/web-view5/web-view5'
+        })
+        break;
+      case 6:
+        wx.navigateTo({
+          url: '/pages/web-view6/web-view6'
+        })
+        break
+      // default:
+      //   break;
+    }
+
   },
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () { },
 
 
 })

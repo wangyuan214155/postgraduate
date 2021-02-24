@@ -9,7 +9,12 @@
     "pages/teacher/teacher-list/teacher-list",
     "pages/teacher/teacher-hot/teacher-hot",
     "pages/teacher/teacher-detail/teacher-detail",
-    "pages/web-outline/web-inline"
+    "pages/web-view1/web-view1",
+    "pages/web-view2/web-view2",
+    "pages/web-view3/web-view3",
+    "pages/web-view4/web-view4",
+    "pages/web-view5/web-view5",
+    "pages/web-view6/web-view6"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -66,12 +66,25 @@
     <view class="error_tip" wx:if="{{isShowScore}}">注：成绩一旦填写，后期不能更改哦</view>
     <view class="teacher_button" bindtap="lookTeacherList">查看导师名额</view>
   </view>
+  <view class="other_title">—— 考研新闻 ——</view>
   <view class="other_box">
-    <view class="other_item_left"  bindtap="gotoPage">
-      <image class="" src="/asset/images/normal_img.png" />
+    <view class="other_item_left" bindtap="gotoPage" data-type="1">
+      <image class="" src="/asset/images/news1.png" />
+      <view class="aeticle_title">寒假备考修炼手册</view>
     </view>
-    <view class="other_item_right"  bindtap="gotoPage">
-      <image class="" src="/asset/images/normal_img.png" />
+    <view class="other_item_right" bindtap="gotoPage" data-type="2">
+      <image class="" src="/asset/images/news2.png" />
+      <view class="aeticle_title">考研复试面试：自我介绍模版</view>
+    </view>
+  </view>
+  <view class="other_box">
+    <view class="other_item_left" bindtap="gotoPage" data-type="3">
+      <image class="" src="/asset/images/news3.png" />
+      <view class="aeticle_title">高分考上研究生之后,我总结下这15条经验</view>
+    </view>
+    <view class="other_item_right" bindtap="gotoPage" data-type="4">
+      <image class="" src="/asset/images/news4.png" />
+      <view class="aeticle_title">到底要不要考研，先想明白这9个问题再说</view>
     </view>
   </view>
 </block>
@@ -107,20 +120,35 @@
     </view>
     <view class="hot_button" bindtap="lookTeacherHot">查看导师热度</view>
   </view>
+  <view class="other_title">—— 考研新闻 ——</view>
   <view class="other_box">
-    <view class="other_item_left" bindtap="gotoPage">
-      <image class="" src="/asset/images/normal_img.png" />
+    <view class="other_item_left" bindtap="gotoPage" data-type="1">
+      <image class="" src="/asset/images/news1.png" />
+      <view class="aeticle_title">寒假备考修炼手册</view>
     </view>
-    <view class="other_item_right" bindtap="gotoPage">
-      <image class="" src="/asset/images/normal_img.png" />
+    <view class="other_item_right" bindtap="gotoPage" data-type="5">
+      <image class="" src="/asset/images/news5.png" />
+      <view class="aeticle_title">全给你总结了，复试中的得分点和失分点</view>
     </view>
   </view>
   <view class="other_box">
-    <view class="other_item_left" bindtap="gotoPage">
-      <image class="" src="/asset/images/normal_img.png" />
+    <view class="other_item_left" bindtap="gotoPage" data-type="3">
+      <image class="" src="/asset/images/news3.png" />
+      <view class="aeticle_title">高分考上研究生之后,我总结下这15条经验</view>
     </view>
-    <view class="other_item_right" bindtap="gotoPage">
-      <image class="" src="/asset/images/normal_img.png" />
+    <view class="other_item_right" bindtap="gotoPage" data-type="4">
+      <image class="" src="/asset/images/news4.png" />
+      <view class="aeticle_title">到底要不要考研，先想明白这9个问题再说</view>
+    </view>
+  </view>
+  <view class="other_box">
+    <view class="other_item_left" bindtap="gotoPage" data-type="6">
+      <image class="" src="/asset/images/news6.png" />
+      <view class="aeticle_title">一遍文章，搞懂复试口语套路</view>
+    </view>
+    <view class="other_item_right" bindtap="gotoPage" data-type="2">
+      <image class="" src="/asset/images/news2.png" />
+      <view class="aeticle_title">考研复试面试：自我介绍模版</view>
     </view>
   </view>
 </block>

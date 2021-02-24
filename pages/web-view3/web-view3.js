@@ -1,11 +1,11 @@
-// pages/web-outline/web-inline.js
+// pages/web-view3/web-view3.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    src:'https://mp.weixin.qq.com/s/YOW1JAfs0UrFUQCLPcLqfg',
+    url:'https://mp.weixin.qq.com/s/tQ5pLhiSv4rfi8W9rnRNlw'
   },
 
   /**
