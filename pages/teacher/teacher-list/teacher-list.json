@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "导师列表",
-  "usingComponents": {}
+  "usingComponents": {
+    "component-painter": "/pages/component/painter/painter"
+  }
 }

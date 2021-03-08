@@ -1,5 +1,7 @@
 const request = require("../../../utils/url");
 const { schoolApi,personApi,loginApi,rankApi } = require("../../../utils/api");
+import Poster from '../../../utils/palette/poster.js';
+
 var  app =  getApp();
 Page({
 
@@ -18,10 +20,15 @@ Page({
       id:''
     },
     isSelfMess:false,//查询的学校和学院是否和报考的一致
+    shareStatus:false,
+    teacherTemplete:{},//生成图片所需要的参数
+    saveImgScope: true,// 用户是否授权保存图片至相册的权限
+    showPosterWrap: false, // 海报弹窗
 
   },
 
   onLoad: function (options) {
+    console.log(options)
     if(options.postData){
       let postData = JSON.parse(options.postData);
       this.setData({
@@ -37,6 +44,130 @@ Page({
 
   onShow: function () {
 
+  },
+  openSelectBox(){
+    this.setData({
+      shareStatus:true
+    })
+
+  },
+  cancel(){
+    this.setData({
+      shareStatus:false
+    })
+  },
+  getPosterParams() {
+    return new Promise((resolve, reject) => {
+      let posterParams = { // 生成海报所需要的参数
+        teacherName: this.data.teacherName,
+        reportNum: this.data.reportNum,//报考人数
+        rank: this.data.rank,
+        applyStudentList: this.data.applyStudentList,
+       
+      }
+
+      let ctx = wx.createCanvasContext('teacherList');
+      // 获取 title 的长度，实现 title 和 price 上下适当的间隙
+      let titleLength = ctx.measureText(this.data.goodsInfo.item.title).width * 750 / app.globalData.systemInfo.screenWidth * 1.2;
+      // 获取 price 的长度，实现 price 和 mktPrice 左右适当的间隙
+      let priceLength = ctx.measureText('¥' + posterParams.price);
+      let cardPriceLength = ctx.measureText(posterParams.cardPrice);
+
+      if (titleLength < app.implementPx('374')) {
+        posterParams.lines = 1;
+      } else {
+        posterParams.lines = 2;
+      }
+      posterParams.priceLength = priceLength.width * 750 / app.globalData.systemInfo.screenWidth * 4;
+      posterParams.oriPriceLength = cardPriceLength.width;
+
+      let couponTitleList = []
+      this.data.getUseCoupon.forEach((item, index) => {
+        if (item.channel_type != 1){
+          let couponTitleLength = ctx.measureText(item.title);
+          let obj = {
+            length: couponTitleLength.width,
+            title: item.title
+          }
+          couponTitleList.push(obj);
+        }
+      })
+      posterParams.couponTitleList = couponTitleList.length > 0 ? couponTitleList[0] : {};
+      this.setData({ 
+        couponTitleList: JSON.stringify(posterParams.couponTitleList) == '{}' ? [] : [posterParams.couponTitleList],
+      })
+      // console.log(posterParams);
+      resolve(posterParams);
+    })
+  },
+  saveImg(){
+      this.setData({ showPosterWrap: !this.data.showPosterWrap });
+      if (this.data.showPosterWrap && !this.data.posterImgPath){
+        this.getPosterParams().then((posterParams) => {
+          return services.request('/qrcode/unlimit', {
+            method: 'GET',
+            data: { 
+              scene: `goodsId:${this.data.goodsId}`,
+              path: `pages/ale-mall/detail/detail`,
+              name: HepcSKD.getMD5Str(`pages/ale-mall/detail/detail?goodsId=${this.data.goodsId}`),
+           }
+          }).then(res => {
+            if (res.success) {
+              posterParams.qrcode = res.result;
+              this.setData({
+                qrcodeUrl: res.result,
+                posterTemplate: new Poster().palette(posterParams)
+              })
+            } else {
+              util.errorToast(res.errors[0].error_msg);
+            }
+          }).catch(err => {
+            util.errorToast(err.message);
+          })
+        })
+      }
+  },
+  onImgOK(e) {// 海报生成成功
+    util.hideToast();
+    this.setData({
+      posterImgPath: e.detail.path
+    })
+  },
+  openSettingFn() {
+    wx.getSetting({
+      success: (res) => {
+        if (typeof res.authSetting['scope.writePhotosAlbum'] == 'boolean' && !res.authSetting['scope.writePhotosAlbum']) { // 用户未授权拍照
+          this.setData({ saveImgScope: false })
+        } else if (typeof res.authSetting['scope.writePhotosAlbum'] == 'boolean' && res.authSetting['scope.writePhotosAlbum']) {
+          this.setData({ saveImgScope: true })
+        }
+      },
+      fail: (err) => {
+        console.log('openSettingFn',err);
+      }
+    })
+  },
+  savePoster() {
+    this.openSettingFn();
+    wx.saveImageToPhotosAlbum({
+      filePath: this.data.posterImgPath,
+      success: (res) => {
+        // console.log(1111, res);
+        if (app.globalData.system != 'android'){
+          wx.showToast({
+            title: '保存成功',
+            icon: 'success',
+            duration: 3000,
+            mask: true
+          })
+        }
+        this.setData({ showPosterWrap: false });
+      }, 
+      fail: (err) => {
+        // 用户拒绝授权保存到相册 将按钮改为 button
+        this.setData({ saveImgScope: false })
+      }
+    });
   },
   async getStudentList(){
     let data = {

@@ -90,6 +90,14 @@
 					"id": -1,
 					"name": "pages/teacher/teacher-detail/teacher-detail",
 					"pathName": "pages/teacher/teacher-detail/teacher-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "导师列表",
+					"pathName": "pages/teacher/teacher-list/teacher-list",
+					"query": "postData={\"teacherId\":\"29889\",\"userId\":\"3\",\"teacherName\":\"李学龙\",\"score\":\"375\",\"openId\":\"ocDLb5TEC8aQI4hinePN2ASjD-R8\",\"isSelfMess\":true}",
 					"scene": null
 				}
 			]

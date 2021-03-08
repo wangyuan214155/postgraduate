@@ -71,11 +71,25 @@ App({
         }
       }
     })
+    wx.getSystemInfo({
+      success: res => {
+        const { system} = res;
+        if (system.indexOf('Android') >= 0) {
+          this.globalData.system = 'android'
+
+        }else{
+          this.globalData.system = 'ios'
+
+        }
+      }
+
+    })
   },
   globalData: {
     userInfo: null,
     openId:'',
     userId:'',//用户id
-    isLogin:false
+    isLogin:false,
+    system:'ios'
   }
 })
