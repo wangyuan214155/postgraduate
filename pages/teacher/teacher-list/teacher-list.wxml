@@ -9,7 +9,7 @@
   <view class="teacher_item">
     <view class="">
       <image class="" src="/asset/images/more_person.png" />
-      <text class="">当前报考人数</text>
+      <text class="">当前报考人数：</text>
     </view>
     <view class="">
       共有
@@ -53,44 +53,77 @@
   </view>
 </view>
 <!-- <view class="bottom_box"> -->
-  <view class="bottom_box" wx:if="{{shareStatus}}">
+<view class="bottom_box" wx:if="{{shareStatus}}">
   <button class='bottom_item' open-type="share">分享给好友</button>
   <view class="bottom_item" bindtap="saveImg">保存到相册</view>
-  <view class="bottom_item" bindtap = "cancel">取消</view>
+  <view class="bottom_item" bindtap="cancel">取消</view>
 </view>
-<view style="position: fixed;left: 1000rpx;">
-  <component-painter 
-    canvas-id="teacherList"
-    palette="{{teacherTemplete}}" 
-    bind:imgOK="onImgOK"
-  ></component-painter>
+<view style="position: fixed;left: 0rpx;">
+  <component-painter canvas-id="teacherList" palette="{{teacherTemplete}}" bind:imgOK="onImgOK"></component-painter>
 </view>
- <view class="poster-wrap-bg" wx:if="{{ showPosterWrap }}">
-    <view class="poster-wrap">
-      <image class="poster-wrap-close" src="https://assets.aleqipei.com/wxapp/images/ale-mall/detail/selection__close.png" lazy-load="true" bindtap='showSaveImg'></image>
-      <view class="poster-wrap-title">
-        <view>保存到相册</view>
-        <view>保存到手机相册后，可将图片分享到您的圈子</view>
-      </view>
-      <view class="color-bg" style="opacity: {{ posterImgPath ? '1' : '0' }}">
-        <view class="white-bg">
-          <view class="title">{{ goodsInfo.item.title }}</view>
-          <view class="price">
-            <text>¥{{ selection.selectedGood ? selection.selectedGood.price : goodsInfo.item.price }}</text>
-            <text class="mkt_price">¥{{ selection.selectedGood ? selection.selectedGood.mkt_price : goodsInfo.item.mkt_price }}</text>
+<view class="poster-wrap-bg" wx:if="{{ showPosterWrap }}">
+  <view class="poster-wrap">
+    <image class="poster-wrap-close" src="https://assets.aleqipei.com/wxapp/images/ale-mall/detail/selection__close.png" lazy-load="true" bindtap='saveImg'></image>
+    <view class="poster-wrap-title">
+      <view>保存到相册</view>
+      <view>保存到手机相册后，可将图片分享到您的圈子</view>
+    </view>
+    <view class="small_box">
+      <view class="teacher_box_copy">
+        <view class="teacher_item_copy">
+          <view class="">
+            <image class="" src="/asset/images/teacher.png" />
+            <text class="">导师姓名：</text>
           </view>
-          <text class="coupon" wx:for="{{couponTitleList}}" wx:for-index="index">{{item.title}}</text>
-          <view class="quantity">
-            <text>销量 {{ goodsInfo.item.sold_quantity }} 件</text>
+          <view class="">{{teacherName}}</view>
+        </view>
+        <view class="teacher_item_copy">
+          <view class="">
+            <image class="" src="/asset/images/more_person.png" />
+            <text class="">当前报考人数</text>
           </view>
-          <image class="good-image" src='{{ goodsInfo.item.list_image ? goodsInfo.item.list_image[0] : goodsInfo.item.image_default_id }}'></image>
-          <view class="qrcode-bg">
-            <image src="{{ qrcodeUrl }}" class="share-qrcode"></image>
-            <image src='https://assets.aleqipei.com/wxapp/images/ale-mall/detail/poster_bg.png'></image>
+          <view class="">
+            共有
+            <text class="warn_font_copy">{{reportNum}}</text>
+            名
+          </view>
+        </view>
+        <view class="teacher_item_copy" wx:if="{{rank >0}}">
+          <view class="">
+            <image class="" src="/asset/images/rank_person.png" />
+            <text class="">导师组内排名：</text>
+          </view>
+          <view class="">
+            第
+            <text class="warn_font_copy">{{rank}}</text>
+            名
           </view>
         </view>
       </view>
-      <view class="poster-footer" bindtap='savePoster' wx:if="{{ saveImgScope }}">保存图片</view>
-      <view class="poster-footer" bindtap='openSettingModel' wx:if="{{ !saveImgScope }}">保存图片</view>
+      <view class="studentList_copy">
+        <view class="rank_title_copy">导师组内排名</view>
+        <view class="rank_content_copy">
+          <view class="rank_table_copy">
+            <view class="">考生ID</view>
+            <view class="">成绩</view>
+            <view class="">名次</view>
+          </view>
+          <view class="rank_item_copy {{item.rank == rank ? 'activeLine':''}}" wx:for="{{applyStudentList}}">
+            <view class="">{{item.openid}}</view>
+            <view class="">{{item.score}}</view>
+            <view class="">{{item.rank}}</view>
+          </view>
+        </view>
+        <view class="qrcode_box" >
+          <image class="" src="/asset/images/minipagram.jpg" />
+          <view class="">
+            <view class="big_font">导师名额小程序</view>
+            <view class="small_font">长按识别.去看看</view>
+          </view>
+        </view>
+      </view>
     </view>
+    <view class="poster-footer" bindtap='savePoster' wx:if="{{ saveImgScope }}">保存图片</view>
+    <view class="poster-footer" bindtap='openSettingModel' wx:if="{{ !saveImgScope }}">保存图片</view>
   </view>
+</view>

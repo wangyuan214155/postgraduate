@@ -1,277 +1,313 @@
+function mutiFont(arr) {
+  let temp = []
+  arr.forEach((item, index) => {
+    let outline = {
+      type: 'rect',
+      css: {
+        width: '690rpx',
+        right: '30rpx',
+        top: '540rpx',
+        height: '80rpx',
+        color: '#ffffff',
+        shadow:' 0px 16rpx 3px #888888' 
+      }
+    }
+    let des1 = {
+      type: 'text',
+      text: `${item.openid}`,
+      css: {
+        color: '#666666',
+        fontSize: '32rpx',
+        top: '310rpx',
+        left: '70rpx',
+        top: `540rpx`,
+        lineHeight: '80rpx'
+      },
+    }
+    let des2 = {
+      type: 'text',
+      text:`${item.score}`,
+      css: {
+        color: '#666666',
+        fontSize: '32rpx',
+        top: '540rpx',
+        left: '320rpx',
+        lineHeight: '80rpx'
+
+      },
+    }
+    let des3 = {
+      type: 'text',
+      text: `${item.rank}`,
+      css: {
+        color: '#666666',
+        fontSize: '32rpx',
+        top: '540rpx',
+        left: '550rpx',
+        lineHeight: '80rpx'
+      },
+    }
+    temp.push(outline,des1, des2, des3)
+
+  });
+  console.log(temp, 22222)
+  return temp
+}
 export default class LastMayday {
   palette(posterParams) {
-    let priceTop, mktPriceTop, couponTop, soldQuantityTop, imageTop, couponWidth, mktPriceLeft;
-    // posterParams.couponTitleList = {
-    //   length: 78,
-    //   title: '满100.00减20.00'
-    // }
-    if(posterParams.system == 'android'){
-      mktPriceLeft = `${startLeft * 2 + posterParams.priceLength}rpx`;
-    }else{
-      mktPriceLeft = `${startLeft * 2 + posterParams.priceLength + 30}rpx`;
-    }
-    if (posterParams.lines == 1) {
-      priceTop = `${startTop * 2+ 3 * gapSize * 2}rpx`;
-      mktPriceTop = `${startTop * 2 + 3 * gapSize * 2 + 13 * 2}rpx`;
-      if (JSON.stringify(posterParams.couponTitleList) == '{}'){ // 不存在优惠券
-        couponTop = 0;
-        soldQuantityTop = `${startTop * 2 + 8 * gapSize * 2}rpx`;
-        imageTop = `${startTop * 2 + 12 * gapSize * 2}`;
-      }else{
-        soldQuantityTop = `${startTop * 2 + 11 * gapSize * 2}rpx`;
-        imageTop = `${startTop * 2 + 15 * gapSize * 2}`;
-        if(posterParams.system == 'android'){
-          couponWidth = `${posterParams.couponTitleList.length + 6}px`;
-          couponTop = `${startTop * 2 + 8 * gapSize * 2 + 6}`;
-        }else{
-          couponWidth = `${posterParams.couponTitleList.length * 1.2 + 4}px`;
-          couponTop = `${startTop * 2 + 8 * gapSize * 2 + 6}`;
-        }
-      }
-    } else {
-      priceTop = `${startTop * 2 + posterParams.lines * 3 * gapSize * 2}rpx`;
-      mktPriceTop = `${startTop * 2 + 3 * posterParams.lines * gapSize * 2 + 13 * 2}rpx`;
-      if (JSON.stringify(posterParams.couponTitleList) == '{}') { // 不存在优惠券
-        couponTop = 0;
-        soldQuantityTop = `${startTop * 2 + 5.5 * posterParams.lines * gapSize * 2}rpx`;
-        imageTop = `${startTop * 2 + 8 * posterParams.lines * gapSize * 2}`;
-      } else {
-        soldQuantityTop = `${startTop * 2 + 6.8 * posterParams.lines * gapSize * 2}rpx`;
-        imageTop = `${startTop * 2 + 8.8 * posterParams.lines * gapSize * 2}`;
-        if (posterParams.system == 'android') {
-          couponWidth = `${posterParams.couponTitleList.length + 6}px`;
-          couponTop = `${startTop * 2 + 5.5 * posterParams.lines * gapSize * 2 + 6}`;
-        } else {
-          couponWidth = `${posterParams.couponTitleList.length * 1.2 + 4}px`;
-          couponTop = `${startTop * 2 + 5.5 * posterParams.lines * gapSize * 2 + 6}`;
-        }
-      }
-    }
+    // console.log(posterParams, '绘图开始')
+    posterParams.applyStudentList = [
+      { userId: "3", openid: "***D-R8", score: "375", rank: 1 }
+    ]
+    console.log(posterParams, '绘图开始')
+    let temp = mutiFont(posterParams.applyStudentList)
 
-    console.log('couponTop', couponTop)
+    let views = [
+      {
+        type: 'rect',
+        css: {
+          width: '690rpx',
+          right: '30rpx',
+          top: '30rpx',
+          height: '280rpx',
+          color: '#ffffff',
+          borderRadius: '32rpx',
+        }
+      },
+      {
+        type: 'image',
+        url: `/asset/images/teacher.png`,
+        css: {
+          top: 70 + 'rpx',
+          left: 60 + 'rpx',
+          width: '45rpx',
+          height: '45rpx',
+        },
+      },
+      {
+        type: 'text',
+        text: '导师姓名：',
+        css: {
+          top: `70rpx`,
+          color: '#666666',
+          textDecoration: 1,
+          left: `125rpx`,
+          fontSize: '32rpx',
+          fontWeight: 'bold',
+          lineHeight: '80rpx'
+        },
+      },
+      {
+        type: 'text',
+        text: `${posterParams.teacherName}`,
+        css: {
+          top: `70rpx`,
+          color: '#666666',
+          right: `60rpx`,
+          fontSize: '32rpx',
+          fontWeight: 'bold',
+          lineHeight: '80rpx'
+        },
+      },
+      {
+        type: 'image',
+        url: `/asset/images/more_person.png`,
+        css: {
+          top: 150 + 'rpx',
+          left: 60 + 'rpx',
+          width: '45rpx',
+          height: '45rpx',
+        },
+      },
+      {
+        type: 'text',
+        text: '当前报考人数：',
+        css: {
+          top: `150rpx`,
+          color: '#666666',
+          textDecoration: 1,
+          left: `125rpx`,
+          fontSize: '32rpx',
+          fontWeight: 'bold',
+          lineHeight: '80rpx'
+        },
+      },
+      {
+        type: 'text',
+        text: `共有`,
+        css: {
+          top: `150rpx`,
+          color: '#666666',
+          right: `130rpx`,
+          fontSize: '32rpx',
+          fontWeight: 'bold',
+          lineHeight: '80rpx'
+        },
+      },
+      {
+        type: 'text',
+        text: ` ${posterParams.reportNum} `,
+        css: {
+          top: `150rpx`,
+          color: '#4871E2',
+          right: `90rpx`,
+          fontSize: '36rpx',
+          fontWeight: 'bold',
+          lineHeight: '80rpx'
+        },
+      },
+      {
+        type: 'text',
+        text: `名`,
+        css: {
+          top: `150rpx`,
+          color: '#666666',
+          right: `60rpx`,
+          fontSize: '32rpx',
+          fontWeight: 'bold',
+          lineHeight: '80rpx'
+        },
+      },
+      {
+        type: 'image',
+        url: `/asset/images/rank_person.png`,
+        css: {
+          top: 230 + 'rpx',
+          left: 60 + 'rpx',
+          width: '45rpx',
+          height: '45rpx',
+        },
+      },
+      {
+        type: 'text',
+        text: '导师组内排名：',
+        css: {
+          top: `230rpx`,
+          color: '#666666',
+          textDecoration: 1,
+          left: `125rpx`,
+          fontSize: '32rpx',
+          fontWeight: 'bold',
+          lineHeight: '80rpx'
+        },
+      },
+      {
+        type: 'text',
+        text: `第`,
+        css: {
+          top: `230rpx`,
+          color: '#666666',
+          right: `130rpx`,
+          fontSize: '32rpx',
+          fontWeight: 'bold',
+          lineHeight: '80rpx'
+        },
+      },
+      {
+        type: 'text',
+        text: ` ${posterParams.rank} `,
+        css: {
+          top: `230rpx`,
+          color: '#4871E2',
+          right: `90rpx`,
+          fontSize: '36rpx',
+          fontWeight: 'bold',
+          lineHeight: '80rpx'
+        },
+      },
+      {
+        type: 'text',
+        text: `名`,
+        css: {
+          top: `230rpx`,
+          color: '#666666',
+          right: `60rpx`,
+          fontSize: '32rpx',
+          fontWeight: 'bold',
+          lineHeight: '80rpx'
+        },
+      },
+      {
+        type: 'text',
+        text: `导师组内排名`,
+        css: {
+          top: `340rpx`,
+          color: '#333333',
+          left: '280rpx',
+          fontSize: '36rpx',
+          lineHeight: '80rpx',
+        },
+      },
+      {
+        type: 'rect',
+        css: {
+          width: '690rpx',
+          height: 80 + 80 * posterParams.applyStudentList.length + 'rpx',
+          right: '30rpx',
+          top: '420rpx',
+          background: '#ffffff',
+          borderRadius: '16rpx',
+        }
+      },
+      {
+        type: 'text',
+        text: `考生ID `,
+        css: {
+          top: `450rpx`,
+          width:'230rpx',
+          height:'80rpx',
+          color: '#666666',
+          left:'110rpx',
+          // right: `90rpx`,
+          fontSize: '32rpx',
+          lineHeight: '80rpx',
+          textAlign:'center'
+        },
+      },
+      {
+        type: 'text',
+        text: `成绩`,
+        css: {
+          top: `450rpx`,
+          width:'230rpx',
+          height:'80rpx',
+          color: '#666666',
+          left:'320rpx',
+          fontSize: '32rpx',
+          lineHeight: '80rpx',
+          textAlign:'center'
 
-    if (JSON.stringify(posterParams.couponTitleList) == '{}') {
-      return ({
-        width: '750rpx',
-        height: '1334rpx',
-        top: '0rpx',
-        left: '2000rpx',
-        background: 'linear-gradient(0deg, #ff3333 0%, #F9AE1C 100%)',
-        views: [{
-            type: 'rect',
-            css: {
-              width: '684rpx',
-              right: '32rpx',
-              top: '32rpx',
-              height: '1268rpx',
-              color: '#ffffff',
-            }
-          },
-          {
-            type: 'text',
-            text: `${posterParams.title}`,
-            css: {
-              width: '600rpx',
-              top: `96rpx`,
-              color: '#333333',
-              textDecoration: 1,
-              left: `${startLeft * 2}rpx`,
-              fontSize: '48rpx',
-              fontWeight: 'bold',
-              maxLines: 2,
-              lineHeight: '60rpx'
-            },
-          },
-          {
-            type: 'text',
-            text: `${posterParams.price}`,
-            css: {
-              top: priceTop,
-              color: '#ff3333',
-              textDecoration: 1,
-              left: `${startLeft * 2}rpx`,
-              fontSize: '80rpx',
-              fontWeight: 'bold',
-              fontFamily: 'DIN  Alternate',
-            },
-          },
-          {
-            type: 'text',
-            text: `${posterParams.mktPrice}`,
-            css: {
-              top: mktPriceTop,
-              color: '#999999',
-              textDecoration: 'line-through',
-              left: mktPriceLeft,
-              fontSize: '48rpx',
-              fontWeight: 'bold',
-              fontFamily: 'DIN  Alternate',
-            },
-          },
-          {
-            type: 'text',
-            text: `销量 ${posterParams.soldQuantity}件`,
-            css: {
-              top: soldQuantityTop,
-              color: '#999999',
-              left: `${startLeft * 2}rpx`,
-              fontSize: '28rpx',
-            },
-          },
-          {
-            type: 'image',
-            url: `${posterParams.imageUrl}`,
-            css: {
-              top: imageTop + 'rpx',
-              left: `${startLeft * 2}rpx`,
-              width: '600rpx',
-              height: '600rpx',
-            },
-          },
-          {
-            type: 'image',
-            url: '/utils/palette/qrcode_bg.png',
-            css: {
-              bottom: `20rpx`,
-              width: '748rpx',
-              height: '325rpx',
-            },
-          },
-          {
-            type: 'image',
-            url: `${posterParams.qrcode}`,
-            css: {
-              bottom: '76rpx',
-              left: '90rpx',
-              width: '230rpx',
-              height: '230rpx',
-            },
-          },
-        ],
-      });
-    } else {
-      return ({
-        width: '750rpx',
-        height: '1334rpx',
-        left: '200rpx',
-        background: 'linear-gradient(0deg, #ff3333 0%, #F9AE1C 100%)',
-        views: [{
-            type: 'rect',
-            css: {
-              width: '684rpx',
-              right: '32rpx',
-              top: '32rpx',
-              height: '1268rpx',
-              color: '#ffffff',
-            }
-          },
-          {
-            type: 'text',
-            text: `${posterParams.title}`,
-            css: {
-              width: '600rpx',
-              top: `96rpx`,
-              color: '#333333',
-              textDecoration: 1,
-              left: `${startLeft * 2}rpx`,
-              fontSize: '48rpx',
-              fontWeight: 'bold',
-              maxLines: 2,
-              lineHeight: '60rpx'
-            },
-          },
-          {
-            type: 'text',
-            text: `${posterParams.price}`,
-            css: {
-              top: priceTop,
-              color: '#ff3333',
-              textDecoration: 1,
-              left: `${startLeft * 2}rpx`,
-              fontSize: '80rpx',
-              fontWeight: 'bold',
-              fontFamily: 'DIN  Alternate',
-            },
-          },
-          {
-            type: 'text',
-            text: `${posterParams.mktPrice}`,
-            css: {
-              top: mktPriceTop,
-              color: '#999999',
-              textDecoration: 'line-through',
-              left: mktPriceLeft,
-              fontSize: '48rpx',
-              fontWeight: 'bold',
-              fontFamily: 'DIN  Alternate',
-            },
-          },
-          // {
-          //   type: 'rect',
-          //   css: {
-          //     width: couponWidth,
-          //     height: '40rpx',
-          //     top: `${couponTop - 6}rpx`,
-          //     left: `${startLeft * 2}rpx`,
-          //     color: '#ff3333',
-          //     borderRadius: '16rpx'
-          //   },
-          // },
-          {
-            type: 'text',
-            text: `${posterParams.couponTitleList.title}`,
-            css: {
-              top: `${couponTop}rpx`,
-              color: '#ffffff',
-              left: `${startLeft * 2}rpx`,
-              fontSize: '20rpx',
-              lineHeight: '24rpx',
-              background: '#ff3333',
-              padding: '0rpx 6rpx 10rpx 6rpx',
-            },
-          },
-          {
-            type: 'text',
-            text: `销量 ${posterParams.soldQuantity}件`,
-            css: {
-              top: soldQuantityTop,
-              color: '#999999',
-              left: `${startLeft * 2}rpx`,
-              fontSize: '28rpx',
-            },
-          },
-          {
-            type: 'image',
-            url: `${posterParams.imageUrl}`,
-            css: {
-              top: imageTop + 'rpx',
-              left: `${startLeft * 2}rpx`,
-              width: '600rpx',
-              height: '600rpx',
-            },
-          },
-          {
-            type: 'image',
-            url: '/utils/palette/qrcode_bg.png',
-            css: {
-              bottom: '20rpx',
-              width: '748rpx',
-              height: '325rpx',
-            },
-          },
-          {
-            type: 'image',
-            url: `${posterParams.qrcode}`,
-            css: {
-              bottom: '76rpx',
-              left: '90rpx',
-              width: '230rpx',
-              height: '230rpx',
-            },
-          },
-        ],
-      });
-    }
+        },
+      },
+      {
+        type: 'text',
+        text: `名次`,
+        css: {
+          top: `450rpx`,
+          width:'230rpx',
+          height:'80rpx',
+          color: '#666666',
+          left: `550rpx`,
+          fontSize: '32rpx',
+          lineHeight: '80rpx',
+          textAlign:'center'
+
+        },
+      },
+
+    ]
+    views = views.concat(temp)
+    console.log(views, 5555)
+    return ({
+      width: '750rpx',
+      height: '1334rpx',
+      top: '0rpx',
+      left: '2000rpx',
+      background: '#EFF2F5',
+      views: views
+
+    });
+
   }
 }
 

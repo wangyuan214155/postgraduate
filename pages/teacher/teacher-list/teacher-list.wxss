@@ -151,6 +151,127 @@ button{
   border-bottom:none !important;
 
 }
+.teacher_box_copy{
+  width: 654rpx;
+  margin: 10rpx auto;
+  font-size: 24rpx;
+  color: #666666;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 32px 0px rgba(186, 201, 222, 0.45);
+  border-radius: 8px;
+  padding: 10rpx 0rpx;
+  font-weight: bold;
+  
+}
+.small_box{
+  width: 690rpx;
+  background: #EFF2F5;
+  margin: 20rpx auto;
+  padding: 20rpx 0rpx;
+  box-sizing: border-box;
+  padding-bottom:150rpx;
+  position: relative;
+}
+
+.teacher_item_copy{
+  display: flex;
+  align-items: center;
+  height:60rpx;
+  padding:0rpx 15rpx;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+.teacher_item_copy image{
+  height:30rpx;
+  width:30rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
+
+}
+.warn_font_copy{
+  color:#4871E2;
+  font-size:24rpx;
+  font-weight: bold;
+}
+.studentList_copy{
+  width: 654rpx;
+  margin: 15rpx auto;
+  max-height: 300rpx;
+  overflow: hidden;
+
+}
+.rank_title_copy{
+  font-size:24rpx;
+  color:#333333;
+  text-align: center;
+  height:60rpx;
+  width:654rpx;
+}
+.rank_content_copy{
+  width:654rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 32px 0px rgba(186, 201, 222, 0.45);
+  border-radius: 8rpx 8rpx 0rpx 0rpx;
+
+}
+.rank_table_copy{
+  min-height:60rpx;
+  width:654rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:24rpx;
+  color:#666666;
+}
+.rank_table_copy view,.rank_item_copy view{
+  width:33%;
+  text-align: center;
+}
+.rank_item_copy{
+  min-height:60rpx;
+  width:654rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:24rpx;
+  color:#666666; 
+  background: #FFFFFF;
+  box-shadow: 0px 0px 32px 0px rgba(186, 201, 222, 0.45);
+  margin:5rpx 0rpx;
+  word-break:break-all;
+
+}
+.qrcode_box{
+  box-shadow: 0px 0px 16px 5px rgba(186, 201, 222, 0.45);
+  height: 125rpx;
+  width: 720rpx;
+  background: #ffffff;
+  position: absolute;
+  left: -15rpx;
+  bottom: 10rpx;
+  border: 1px solid #eeeeee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rpx 30rpx;
+  box-sizing: border-box;
+}
+.qrcode_box image{
+  height:120rpx;
+  width:120rpx;
+
+}
+.qrcode_box .big_font{
+  font-size:32rpx;
+  color:#333333;
+  font-weight: bold;
+  text-align: center;
+}
+.small_font{
+  font-size:22rpx;
+  color:#666666;
+  text-align: center;
+}
 /* 海报样式 */
 .poster-wrap {
   padding: 30rpx 0;
