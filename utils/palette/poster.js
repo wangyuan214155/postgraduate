@@ -1,66 +1,81 @@
-function mutiFont(arr) {
+let app =  getApp();
+
+function mutiFont(arr, rank) {
   let temp = []
-  arr.forEach((item, index) => {
+  for (var i = 0; i < arr.length; i++) {
+    let top1 = 510 + (80 * i);
+    let top2 = 540 + (80 * i);
+    let fontColor = '';
+    let shadow = '0 -3 20 rgba(186, 201, 222, 0.45)';
+    if (rank == (arr[i].rank)) {
+      fontColor = '#4871E2';
+    } else {
+      fontColor = '#666666';
+    }
     let outline = {
       type: 'rect',
       css: {
         width: '690rpx',
         right: '30rpx',
-        top: '540rpx',
+        top: top1 + 'rpx',
         height: '80rpx',
         color: '#ffffff',
-        shadow:' 0px 16rpx 3px #888888' 
+        shadow: shadow,
       }
     }
     let des1 = {
       type: 'text',
-      text: `${item.openid}`,
+      text: `${arr[i].openid}`,
       css: {
-        color: '#666666',
+        color: fontColor,
         fontSize: '32rpx',
-        top: '310rpx',
+        top: top2 + 'rpx',
         left: '70rpx',
-        top: `540rpx`,
-        lineHeight: '80rpx'
+        lineHeight: '80rpx',
+
       },
     }
     let des2 = {
       type: 'text',
-      text:`${item.score}`,
+      text: `${arr[i].score}`,
       css: {
-        color: '#666666',
+        color: fontColor,
         fontSize: '32rpx',
-        top: '540rpx',
+        top: top2 + 'rpx',
         left: '320rpx',
-        lineHeight: '80rpx'
-
+        lineHeight: '80rpx',
       },
     }
     let des3 = {
       type: 'text',
-      text: `${item.rank}`,
+      text: `${arr[i].rank}`,
       css: {
-        color: '#666666',
+        color: fontColor,
         fontSize: '32rpx',
-        top: '540rpx',
-        left: '550rpx',
-        lineHeight: '80rpx'
+        top: top2 + 'rpx',
+        left: '570rpx',
+        lineHeight: '80rpx',
       },
     }
-    temp.push(outline,des1, des2, des3)
-
-  });
-  console.log(temp, 22222)
+    temp.push(outline, des1, des2, des3)
+  }
   return temp
 }
 export default class LastMayday {
   palette(posterParams) {
-    // console.log(posterParams, '绘图开始')
-    posterParams.applyStudentList = [
-      { userId: "3", openid: "***D-R8", score: "375", rank: 1 }
-    ]
     console.log(posterParams, '绘图开始')
-    let temp = mutiFont(posterParams.applyStudentList)
+    posterParams.applyStudentList = [
+      {userId: "3", openid: "***D-R8", score: "375", rank: 1},
+      {userId: "3", openid: "***D-R8", score: "375", rank: 2},
+      {userId: "3", openid: "***D-R8", score: "375", rank: 3},
+      {userId: "3", openid: "***D-R8", score: "375", rank: 4},
+      {userId: "3", openid: "***D-R8", score: "375", rank: 5},
+      {userId: "3", openid: "***D-R8", score: "375", rank: 6},
+      {userId: "3", openid: "***D-R8", score: "375", rank: 7},
+      {userId: "3", openid: "***D-R8", score: "375", rank: 8},
+      {userId: "3", openid: "***D-R8", score: "375", rank: 9}
+    ]
+    let temp = mutiFont(posterParams.applyStudentList, 1)
 
     let views = [
       {
@@ -247,6 +262,7 @@ export default class LastMayday {
           top: '420rpx',
           background: '#ffffff',
           borderRadius: '16rpx',
+          padding: '100rpx 0rpx'
         }
       },
       {
@@ -254,14 +270,14 @@ export default class LastMayday {
         text: `考生ID `,
         css: {
           top: `450rpx`,
-          width:'230rpx',
-          height:'80rpx',
+          width: '230rpx',
+          height: '80rpx',
           color: '#666666',
-          left:'110rpx',
+          left: '110rpx',
           // right: `90rpx`,
           fontSize: '32rpx',
           lineHeight: '80rpx',
-          textAlign:'center'
+          textAlign: 'center'
         },
       },
       {
@@ -269,13 +285,13 @@ export default class LastMayday {
         text: `成绩`,
         css: {
           top: `450rpx`,
-          width:'230rpx',
-          height:'80rpx',
+          width: '230rpx',
+          height: '80rpx',
           color: '#666666',
-          left:'320rpx',
+          left: '320rpx',
           fontSize: '32rpx',
           lineHeight: '80rpx',
-          textAlign:'center'
+          textAlign: 'center'
 
         },
       },
@@ -284,19 +300,69 @@ export default class LastMayday {
         text: `名次`,
         css: {
           top: `450rpx`,
-          width:'230rpx',
-          height:'80rpx',
+          width: '230rpx',
+          height: '80rpx',
           color: '#666666',
           left: `550rpx`,
           fontSize: '32rpx',
           lineHeight: '80rpx',
-          textAlign:'center'
+          textAlign: 'center'
 
         },
       },
 
     ]
-    views = views.concat(temp)
+    let obj = [
+      {
+        type: 'rect',
+        css: {
+          width: '750rpx',
+          height: '180rpx',
+          top: app.globalData.screenHeight - 250 + 'rpx',
+          color: '#ffffff',
+          shadow :'0 -10 20 rgba(186, 201, 222, 0.45)'
+        }
+      },
+      {
+        type: 'image',
+        url: `/asset/images/minipagram.jpg`,
+        css: {
+          top:  app.globalData.screenHeight -240 + 'rpx',
+          left: 40+ 'rpx',
+          width: '160rpx',
+          height: '160rpx',
+        },
+      },
+      {
+        type: 'text',
+        text: `导师名额小程序 `,
+        css: {
+          top: app.globalData.screenHeight -210 + 'rpx',
+          width: '230rpx',
+          height: '80rpx',
+          color: '#333333',
+          right: '30rpx',
+          fontSize: '30rpx',
+          lineHeight: '80rpx',
+          textAlign: 'center'
+        },
+      },
+      {
+        type: 'text',
+        text: `长按识别.去看看`,
+        css: {
+          top: app.globalData.screenHeight -150 + 'rpx',
+          width: '230rpx',
+          height: '80rpx',
+          color: '#666666',
+          right: '10rpx',
+          fontSize: '22rpx',
+          lineHeight: '80rpx',
+          textAlign: 'center'
+        },
+      }
+    ]
+    views = views.concat(temp,obj)
     console.log(views, 5555)
     return ({
       width: '750rpx',
@@ -307,60 +373,5 @@ export default class LastMayday {
       views: views
 
     });
-
   }
-}
-
-const startTop = 48;
-const startLeft = 36;
-const gapSize = 10;
-
-const common = {
-  left: `${startLeft}rpx`,
-  fontSize: '40rpx',
-};
-
-function _textDecoration(decoration, index, color) {
-  return ({
-    type: 'text',
-    text: decoration,
-    css: [{
-      top: `${startTop + index * gapSize}rpx`,
-      color: color,
-      textDecoration: decoration,
-    }, common],
-  });
-}
-
-function _image(index, rotate, borderRadius) {
-  return ({
-    type: 'image',
-    url: '/palette/avatar.jpg',
-    css: {
-      top: `${startTop + 8.5 * gapSize}rpx`,
-      left: `${startLeft + 160 * index}rpx`,
-      width: '120rpx',
-      height: '120rpx',
-      shadow: '10rpx 10rpx 5rpx #888888',
-      rotate: rotate,
-      borderRadius: borderRadius,
-    },
-  });
-}
-
-function _des(index, content) {
-  const des = {
-    type: 'text',
-    text: content,
-    css: {
-      fontSize: '22rpx',
-      top: `${startTop + 8.5 * gapSize + 140}rpx`,
-    },
-  };
-  if (index === 3) {
-    des.css.right = '60rpx';
-  } else {
-    des.css.left = `${startLeft + 120 * index + 30}rpx`;
-  }
-  return des;
 }

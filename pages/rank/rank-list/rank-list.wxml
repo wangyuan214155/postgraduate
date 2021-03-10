@@ -1,27 +1,89 @@
-<view class="rank" >
-    <view class="">当前排名</view>
-    <view class="">第<text class="font-color" >{{rankNum}}</text>名</view>
+<view class="rank">
+  <view class="">当前排名</view>
+  <view class="">
+    第
+    <text class="font-color">{{rankNum}}</text>
+    名
+  </view>
 </view>
 <view class="rank_box">
-   <view class="rank_title" >
-     <view class="rank-rank" >名次</view>
-     <view class="rank-name" >考生ID</view>
-     <view class="rank-special">专业</view>
-     <view class="rank-score" >成绩</view>
-   </view>
-   <view class="rank_content {{rankNum == item.rank ? 'isSelf' :''}}" wx:for="{{rankList}}">
-     <view class="rank-rank" >
-     <image class="" src="/asset/images/first.png" wx:if="{{item.rank == 1}}"/>
-     <image class="" src="/asset/images/second.png" wx:if="{{item.rank == 2}}"/>
-     <image class="" src="/asset/images/third.png" wx:if="{{item.rank == 3}}"/>
-     <image class="" src="/asset/images/normal.png" wx:if="{{item.rank > 3}}"/>
-     <view class="rank-font">{{item.rank}}</view>
-     </view>
-     <view class="rank-name" >{{item.openid}}</view>
-     <view class="rank-special" >{{item.specialName}}</view>
-     <view class="rank-score">{{item.score}}</view>
-   </view>
-    <view class="bottom_box" wx:if="{{no_more}}">
-      你看到人家的底线啦～
+  <view class="rank_title">
+    <view class="rank-rank">名次</view>
+    <view class="rank-name">考生ID</view>
+    <view class="rank-special">专业</view>
+    <view class="rank-score">成绩</view>
+  </view>
+  <view class="rank_content {{rankNum == item.rank ? 'isSelf' :''}}" wx:for="{{rankList}}">
+    <view class="rank-rank">
+      <image class="" src="/asset/images/first.png" wx:if="{{item.rank == 1}}" />
+      <image class="" src="/asset/images/second.png" wx:if="{{item.rank == 2}}" />
+      <image class="" src="/asset/images/third.png" wx:if="{{item.rank == 3}}" />
+      <image class="" src="/asset/images/normal.png" wx:if="{{item.rank > 3}}" />
+      <view class="rank-font">{{item.rank}}</view>
     </view>
+    <view class="rank-name">{{item.openid}}</view>
+    <view class="rank-special">{{item.specialName}}</view>
+    <view class="rank-score">{{item.score}}</view>
+  </view>
+  <view class="bottom_box_copy" wx:if="{{no_more}}">你看到人家的底线啦～</view>
+</view>
+<view class="button_box">
+  <view class="img_box" bindtap="openSelectBox">
+    <image class="" src="/asset/images/share1.png" />
+    <view class="">分享</view>
+  </view>
+</view>
+<view class="bottom_box" wx:if="{{shareStatus}}">
+  <button class='bottom_item' open-type="share">分享给好友</button>
+  <view class="bottom_item" bindtap="saveImg">保存到相册</view>
+  <view class="bottom_item" bindtap="cancel">取消</view>
+</view>
+<view style="position: fixed;left:0rpx;bottom:-700rpx">
+  <component-painter canvas-id="rankList" palette="{{rankTemplete}}" bind:imgOK="onImgOK"></component-painter>
+</view>
+<view class="poster-wrap-bg" wx:if="{{ showPosterWrap }}">
+  <view class="poster-wrap">
+    <image class="poster-wrap-close" src="https://assets.aleqipei.com/wxapp/images/ale-mall/detail/selection__close.png" lazy-load="true" bindtap='saveImg'></image>
+    <view class="poster-wrap-title">
+      <view>保存到相册</view>
+      <view>保存到手机相册后，可将图片分享到您的圈子</view>
+    </view>
+    <view class="small_box">
+      <view class="rank">
+        <view class="">当前排名</view>
+        <view class="">
+          第
+          <text class="font-color_copy">{{rankNum}}</text>
+          名
+        </view>
+      </view>
+      <view class="rank_title_copy">
+        <view class="rank-rank">名次</view>
+        <view class="rank-name">考生ID</view>
+        <view class="rank-special">专业</view>
+        <view class="rank-score">成绩</view>
+      </view>
+      <view class="rank_content_copy {{rankNum == item.rank ? 'isSelf' :''}}" wx:for="{{rankList}}">
+        <view class="rank-rank">
+          <image class="" src="/asset/images/first.png" wx:if="{{item.rank == 1}}" />
+          <image class="" src="/asset/images/second.png" wx:if="{{item.rank == 2}}" />
+          <image class="" src="/asset/images/third.png" wx:if="{{item.rank == 3}}" />
+          <image class="" src="/asset/images/normal.png" wx:if="{{item.rank > 3}}" />
+          <view class="rank-font">{{item.rank}}</view>
+        </view>
+        <view class="rank-name">{{item.openid}}</view>
+        <view class="rank-special">{{item.specialName}}</view>
+        <view class="rank-score">{{item.score}}</view>
+      </view>
+      <view class="qrcode_box" >
+          <image class="" src="/asset/images/minipagram.jpg" />
+          <view class="">
+            <view class="big_font">导师名额小程序</view>
+            <view class="small_font">长按识别.去看看</view>
+          </view>
+        </view>
+    </view>
+    <view class="poster-footer" bindtap='savePoster' wx:if="{{ saveImgScope }}">保存图片</view>
+    <view class="poster-footer" bindtap='openSettingModel' wx:if="{{ !saveImgScope }}">保存图片</view>
+  </view>
 </view>

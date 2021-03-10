@@ -73,7 +73,8 @@ App({
     })
     wx.getSystemInfo({
       success: res => {
-        const { system} = res;
+        const { system,windowHeight} = res;
+        this.globalData.screenHeight = windowHeight*2
         if (system.indexOf('Android') >= 0) {
           this.globalData.system = 'android'
 
@@ -90,6 +91,7 @@ App({
     openId:'',
     userId:'',//用户id
     isLogin:false,
-    system:'ios'
+    system:'ios',
+    screenHeight:0
   }
 })

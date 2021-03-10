@@ -73,10 +73,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "排名列表",
 					"pathName": "pages/rank/rank-list/rank-list",
-					"query": "",
+					"query": "postData={\"schoolId\":\"66\",\"collageId\":\"92\",\"specialId\":\"115\",\"userId\":\"3\"}",
 					"scene": null
 				},
 				{

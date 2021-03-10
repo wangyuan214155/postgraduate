@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "我的排名",
   "usingComponents": {
-
+    "component-painter": "/pages/component/painter/painter"
   }
 }

@@ -1,14 +1,22 @@
 const request = require("../../../utils/url");
 const { rankApi,personApi } = require("../../../utils/api");
+import Poster from '../../../utils/palette/rank.js';
+
 Page({
   data: {
-    rankNum:10,//当前的排名
+    rankNum:'',//当前的排名
     rankList:[],//排名列表
     no_more:false,
     currentPage: 1,//当前页数
     totalNum: 0,
     totalPage: 1,
     postData:null,
+    shareStatus:false,
+    rankTemplete:{},//生成图片所需要的参数
+    saveImgScope: true,// 用户是否授权保存图片至相册的权限
+    showPosterWrap: false, // 海报弹窗
+    showBg: false,
+    rankTemplete:null,
   },
 
   onLoad: function (options) {
@@ -20,11 +28,105 @@ Page({
       
     }
     this.getRankList();
-    
+    this.saveImg();
 
   },
   onShow: function () {
+    this.setData({
+      showBg: false,
+    })
+    this.openSettingFn();
+  },
+  openSelectBox(){
+    this.setData({
+      shareStatus:true
+    })
 
+  },
+  cancel(){
+    this.setData({
+      shareStatus:false
+    })
+  },
+  getPosterParams() {
+    return new Promise((resolve, reject) => {
+      let posterParams = { // 生成海报所需要的参数
+        rankNum: this.data.rankNum,
+        rankList: this.data.rankList,//报考人数
+       
+      }
+      resolve(posterParams);
+    })
+  },
+  saveImg(){
+      // this.setData({ showPosterWrap: !this.data.showPosterWrap });
+      // wx.showToast({
+      //   title: '图片生成中...',
+      //   icon: 'loading',
+      //   duration: 1000,
+      //   mask: true
+      // })
+      // if (this.data.showPosterWrap && !this.data.posterImgPath){
+      //   this.getPosterParams().then((posterParams) => {
+      //     this.setData({
+      //       rankTemplete: new Poster().palette(posterParams)
+      //     })
+      //   })
+      // }
+      this.getPosterParams().then((posterParams) => {
+        this.setData({
+          rankTemplete: new Poster().palette(posterParams)
+        })
+      })
+  },
+  openSettingModel() {
+    this.setData({ 
+      showBg: true,
+      showPosterWrap: false,
+    });
+  },
+  onImgOK(e) {// 海报生成成功
+    // util.hideToast();
+    console.log(e,'图片生成中')
+    this.setData({
+      posterImgPath: e.detail.path
+    })
+  },
+  openSettingFn() {
+    wx.getSetting({
+      success: (res) => {
+        if (typeof res.authSetting['scope.writePhotosAlbum'] == 'boolean' && !res.authSetting['scope.writePhotosAlbum']) { // 用户未授权拍照
+          this.setData({ saveImgScope: false })
+        } else if (typeof res.authSetting['scope.writePhotosAlbum'] == 'boolean' && res.authSetting['scope.writePhotosAlbum']) {
+          this.setData({ saveImgScope: true })
+        }
+      },
+      fail: (err) => {
+        console.log('openSettingFn',err);
+      }
+    })
+  },
+  savePoster() {
+    this.openSettingFn();
+    wx.saveImageToPhotosAlbum({
+      filePath: this.data.posterImgPath,
+      success: (res) => {
+        console.log(1111, res);
+        if (app.globalData.system != 'android'){
+          wx.showToast({
+            title: '保存成功',
+            icon: 'success',
+            duration: 3000,
+            mask: true
+          })
+        }
+        this.setData({ showPosterWrap: false , shareStatus:false});
+      }, 
+      fail: (err) => {
+        // 用户拒绝授权保存到相册 将按钮改为 button
+        this.setData({ saveImgScope: false })
+      }
+    });
   },
   async getRankList(){
     let postData = this.data.postData;

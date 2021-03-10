@@ -84,7 +84,7 @@ page{
 
 }
 .button_box{
-  height:100rpx;
+  height:120rpx;
   width:750rpx;
   background: #FFFFFF;
   box-shadow: 0px 0px 32px 0px rgba(186, 201, 222, 0.45);
@@ -108,15 +108,15 @@ page{
   text-align: center;
   font-size: 30rpx
 }
-.bottom_box{
+.bottom_box_copy{
   height:50rpx;
   text-align: center;
   color:#666666;
   font-size:28rpx;
 }
 .img_box image{
-  height:45rpx;
-  width:45rpx;
+  height:65rpx;
+  width:65rpx;
 }
 .img_box{
   font-size:24rpx;
@@ -262,10 +262,11 @@ button{
 
 }
 .qrcode_box .big_font{
-  font-size:32rpx;
+  font-size:30rpx;
   color:#333333;
   font-weight: bold;
   text-align: center;
+  margin-bottom:10rpx;
 }
 .small_font{
   font-size:22rpx;
@@ -319,80 +320,6 @@ button{
   text-align: center;
   font-weight: bold;
 }
-
-.color-bg {
-  margin: 48rpx auto;
-  padding: 16rpx;
-  width: 374rpx;
-  box-sizing: border-box;
-  background: linear-gradient(0deg, #ff3333 0%, #F9AE1C 100%);
-  box-shadow: 0 2rpx 16rpx 0rpx rgba(0, 0, 0, 0.2);
-}
-
-.white-bg {
-  position: relative;
-  padding: 20rpx;
-  width: 342rpx;
-  box-sizing: border-box;
-  background-color: #ffffff;
-}
-
-.color-bg .title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  color: #333333;
-  font-size: 22rpx;
-  font-weight: bold;
-}
-
-.color-bg .price {
-  font-family: 'DIN  Alternate';
-}
-
-.color-bg .price text:first-child {
-  color: #ff3333;
-  font-size: 30rpx;
-  margin-right: 10rpx;
-}
-
-.color-bg .price .mkt_price {
-  color: #999999;
-  font-size: 20rpx;
-  text-decoration: line-through;
-}
-
-.color-bg .quantity {
-  color: #999999;
-  font-size: 20rpx;
-}
-
-.color-bg .good-image {
-  margin: 16rpx 0 150rpx;
-  width: 300rpx;
-  height: 300rpx;
-}
-
-.color-bg .qrcode-bg {
-  position: absolute;
-  bottom: 0;
-  left: -16rpx;
-}
-
-.color-bg .qrcode-bg image {
-  width: 375rpx;
-  height: 178rpx;
-}
-
-.color-bg .qrcode-bg .share-qrcode {
-  position: absolute;
-  top: 35rpx;
-  left: 50rpx;
-  width: 110rpx;
-  height: 110rpx;
-}
 .poster-wrap {
   width: 100%;
   position: absolute;
@@ -420,4 +347,73 @@ button{
   right: 32rpx;
   top: 0;
   transform: translateY(-100%);
+}
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 99;
+}
+
+
+.modal {
+  position: absolute;
+  top: 400rpx;
+  left: 105rpx;
+  width: 540rpx;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+}
+
+.modal .title {
+  margin: 32rpx 0;
+  width: 100%;
+  text-align: center;
+  color: #333333;
+  font-size: 34rpx;
+}
+
+.modal .phone-num {
+  width: 100%;
+  margin-bottom: 60rpx;
+  font-size: 32rpx;
+  box-sizing: border-box;
+  color: #666666;
+  padding: 0 46rpx;
+  text-align: left;
+}
+
+.btn-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-top: 1rpx solid #cccccc;
+  border-bottom-right-radius: 16rpx;
+  border-bottom-left-radius: 16rpx;
+}
+
+.btn-area view {
+  border-bottom-left-radius: 16rpx;
+}
+
+.button-hover {
+  background-color: #ffffff;
+}
+
+.btn-area view,
+.btn-area button {
+  width: 50% !important;
+  height: 96rpx;
+  line-height: 96rpx;
+  color: #333333;
+  font-size: 36rpx;
+  text-align: center;
+  background-color: #ffffff;
+  border: none;
+  border-bottom-right-radius: 16rpx;
 }
