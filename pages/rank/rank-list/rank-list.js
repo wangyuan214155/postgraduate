@@ -1,6 +1,8 @@
 const request = require("../../../utils/url");
 const { rankApi,personApi } = require("../../../utils/api");
 import Poster from '../../../utils/palette/rank.js';
+var  app =  getApp();
+
 
 Page({
   data: {
@@ -28,7 +30,7 @@ Page({
       
     }
     this.getRankList();
-    this.saveImg();
+    // this.saveImg();
 
   },
   onShow: function () {
@@ -38,10 +40,14 @@ Page({
     this.openSettingFn();
   },
   openSelectBox(){
+    console.log(1111,2222)
     this.setData({
       shareStatus:true
     })
 
+  },
+  closeTip() {
+    this.setData({ showBg: false })
   },
   cancel(){
     this.setData({
@@ -59,25 +65,25 @@ Page({
     })
   },
   saveImg(){
-      // this.setData({ showPosterWrap: !this.data.showPosterWrap });
-      // wx.showToast({
-      //   title: '图片生成中...',
-      //   icon: 'loading',
-      //   duration: 1000,
-      //   mask: true
-      // })
-      // if (this.data.showPosterWrap && !this.data.posterImgPath){
-      //   this.getPosterParams().then((posterParams) => {
-      //     this.setData({
-      //       rankTemplete: new Poster().palette(posterParams)
-      //     })
-      //   })
-      // }
-      this.getPosterParams().then((posterParams) => {
-        this.setData({
-          rankTemplete: new Poster().palette(posterParams)
-        })
+      this.setData({ showPosterWrap: !this.data.showPosterWrap });
+      wx.showToast({
+        title: '图片生成中...',
+        icon: 'loading',
+        duration: 1000,
+        mask: true
       })
+      if (this.data.showPosterWrap && !this.data.posterImgPath){
+        this.getPosterParams().then((posterParams) => {
+          this.setData({
+            rankTemplete: new Poster().palette(posterParams)
+          })
+        })
+      }
+      // this.getPosterParams().then((posterParams) => {
+      //   this.setData({
+      //     rankTemplete: new Poster().palette(posterParams)
+      //   })
+      // })
   },
   openSettingModel() {
     this.setData({ 
@@ -100,6 +106,7 @@ Page({
         } else if (typeof res.authSetting['scope.writePhotosAlbum'] == 'boolean' && res.authSetting['scope.writePhotosAlbum']) {
           this.setData({ saveImgScope: true })
         }
+        console.log(this.data.saveImgScope,'按钮状态')
       },
       fail: (err) => {
         console.log('openSettingFn',err);
@@ -108,6 +115,7 @@ Page({
   },
   savePoster() {
     this.openSettingFn();
+    console.log(this.data.posterImgPath,4444)
     wx.saveImageToPhotosAlbum({
       filePath: this.data.posterImgPath,
       success: (res) => {

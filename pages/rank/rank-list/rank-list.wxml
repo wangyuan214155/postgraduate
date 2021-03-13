@@ -28,7 +28,7 @@
   <view class="bottom_box_copy" wx:if="{{no_more}}">你看到人家的底线啦～</view>
 </view>
 <view class="button_box">
-  <view class="img_box" bindtap="openSelectBox">
+  <view class="img_box" bindtap ="openSelectBox">
     <image class="" src="/asset/images/share1.png" />
     <view class="">分享</view>
   </view>
@@ -38,7 +38,9 @@
   <view class="bottom_item" bindtap="saveImg">保存到相册</view>
   <view class="bottom_item" bindtap="cancel">取消</view>
 </view>
-<view style="position: fixed;left:0rpx;bottom:-700rpx">
+<!-- <view style="position: fixed;left:0rpx;bottom:-100rpx"> -->
+<view style="position: fixed;left:800rpx">
+
   <component-painter canvas-id="rankList" palette="{{rankTemplete}}" bind:imgOK="onImgOK"></component-painter>
 </view>
 <view class="poster-wrap-bg" wx:if="{{ showPosterWrap }}">
@@ -85,5 +87,17 @@
     </view>
     <view class="poster-footer" bindtap='savePoster' wx:if="{{ saveImgScope }}">保存图片</view>
     <view class="poster-footer" bindtap='openSettingModel' wx:if="{{ !saveImgScope }}">保存图片</view>
+  </view>
+</view>
+<view class="bg" wx:if="{{showBg}}">
+  <view class="modal">
+    <view class="title">提示</view>
+    <view class="phone-num" style="color: #666666;padding: 0 46rpx;text-align: left;">
+      保存图片需要您授权导师名额获取您的存储位置权限
+    </view>
+    <view class="btn-area">
+      <view bindtap='closeTip' style="border-right: 1rpx solid #cccccc;">取消</view>
+      <button open-type="openSetting" style="color: #ff3333;border: none;" plain="true">设置</button>
+    </view>
   </view>
 </view>

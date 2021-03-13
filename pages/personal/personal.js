@@ -38,6 +38,7 @@ Page({
     openId: '',
     isEdit: false,
     hideBoxStatus: false,
+    score:0,
   },
 
   onLoad: function (options) {
@@ -95,6 +96,7 @@ Page({
 
         specialName: result.special_name ? result.special_name : '',
         oldSpecialName: result.special_name ? result.special_name : '',
+        score:result.score ?result.score :0
 
       })
 
@@ -449,7 +451,9 @@ Page({
         'collage_name': this.data.departmentName,
         'special_id': this.data.specialId,
         'special_name': this.data.specialName,
-        'score': 0
+        'score': this.data.score,
+        // 'score': 375,
+
       }
 
     }

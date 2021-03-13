@@ -113,7 +113,7 @@
             <view class="">{{item.rank}}</view>
           </view>
         </view>
-        <view class="qrcode_box" >
+        <view class="qrcode_box">
           <image class="" src="/asset/images/minipagram.jpg" />
           <view class="">
             <view class="big_font">导师名额小程序</view>
@@ -129,8 +129,9 @@
 <view class="bg" wx:if="{{showBg}}">
   <view class="modal">
     <view class="title">提示</view>
-    <view class="phone-num" style="color: #666666;padding: 0 46rpx;text-align: left;">保存图片需要您授权导师名额获取您的存储位置权限
-</view>
+    <view class="phone-num" style="color: #666666;padding: 0 46rpx;text-align: left;">
+      保存图片需要您授权导师名额获取您的存储位置权限
+    </view>
     <view class="btn-area">
       <view bindtap='closeTip' style="border-right: 1rpx solid #cccccc;">取消</view>
       <button open-type="openSetting" style="color: #ff3333;border: none;" plain="true">设置</button>

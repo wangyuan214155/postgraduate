@@ -6,7 +6,7 @@ function mutiFont(arr, rank) {
     let top1 = 510 + (80 * i);
     let top2 = 540 + (80 * i);
     let fontColor = '';
-    let shadow = '0 -3 20 rgba(186, 201, 222, 0.45)';
+    let shadow = '5 -10 30 rgba(207, 211, 230, 1)';
     if (rank == (arr[i].rank)) {
       fontColor = '#4871E2';
     } else {
