@@ -64,18 +64,18 @@ function mutiFont(arr, rank) {
 export default class LastMayday {
   palette(posterParams) {
     console.log(posterParams, '绘图开始')
-    posterParams.applyStudentList = [
-      {userId: "3", openid: "***D-R8", score: "375", rank: 1},
-      {userId: "3", openid: "***D-R8", score: "375", rank: 2},
-      {userId: "3", openid: "***D-R8", score: "375", rank: 3},
-      {userId: "3", openid: "***D-R8", score: "375", rank: 4},
-      {userId: "3", openid: "***D-R8", score: "375", rank: 5},
-      {userId: "3", openid: "***D-R8", score: "375", rank: 6},
-      {userId: "3", openid: "***D-R8", score: "375", rank: 7},
-      {userId: "3", openid: "***D-R8", score: "375", rank: 8},
-      {userId: "3", openid: "***D-R8", score: "375", rank: 9}
-    ]
-    let temp = mutiFont(posterParams.applyStudentList, 1)
+    // posterParams.applyStudentList = [
+    //   {userId: "3", openid: "***D-R8", score: "375", rank: 1},
+    //   {userId: "3", openid: "***D-R8", score: "375", rank: 2},
+    //   {userId: "3", openid: "***D-R8", score: "375", rank: 3},
+    //   {userId: "3", openid: "***D-R8", score: "375", rank: 4},
+    //   {userId: "3", openid: "***D-R8", score: "375", rank: 5},
+    //   {userId: "3", openid: "***D-R8", score: "375", rank: 6},
+    //   {userId: "3", openid: "***D-R8", score: "375", rank: 7},
+    //   {userId: "3", openid: "***D-R8", score: "375", rank: 8},
+    //   {userId: "3", openid: "***D-R8", score: "375", rank: 9}
+    // ]
+    let temp = mutiFont(posterParams.applyStudentList, posterParams.rank)
 
     let views = [
       {
@@ -318,7 +318,7 @@ export default class LastMayday {
         css: {
           width: '750rpx',
           height: '180rpx',
-          top: app.globalData.screenHeight - 250 + 'rpx',
+          top: app.globalData.screenHeight - 110 + 'rpx',
           color: '#ffffff',
           shadow :'0 -10 20 rgba(186, 201, 222, 0.45)'
         }
@@ -327,7 +327,7 @@ export default class LastMayday {
         type: 'image',
         url: `/asset/images/minipagram.jpg`,
         css: {
-          top:  app.globalData.screenHeight -240 + 'rpx',
+          top:  app.globalData.screenHeight -100 + 'rpx',
           left: 40+ 'rpx',
           width: '160rpx',
           height: '160rpx',
@@ -337,7 +337,7 @@ export default class LastMayday {
         type: 'text',
         text: `导师名额小程序 `,
         css: {
-          top: app.globalData.screenHeight -210 + 'rpx',
+          top: app.globalData.screenHeight -70 + 'rpx',
           width: '230rpx',
           height: '80rpx',
           color: '#333333',
@@ -351,7 +351,7 @@ export default class LastMayday {
         type: 'text',
         text: `长按识别.去看看`,
         css: {
-          top: app.globalData.screenHeight -150 + 'rpx',
+          top: app.globalData.screenHeight -10 + 'rpx',
           width: '230rpx',
           height: '80rpx',
           color: '#666666',

@@ -62,7 +62,7 @@
 </view>
 <view class="poster-wrap-bg" wx:if="{{ showPosterWrap }}">
   <view class="poster-wrap">
-    <image class="poster-wrap-close" src="https://assets.aleqipei.com/wxapp/images/ale-mall/detail/selection__close.png" lazy-load="true" bindtap='saveImg'></image>
+    <image class="poster-wrap-close" src="https://assets.aleqipei.com/wxapp/images/ale-mall/detail/selection__close.png" lazy-load="true" bindtap='closeModel'></image>
     <view class="poster-wrap-title">
       <view>保存到相册</view>
       <view>保存到手机相册后，可将图片分享到您的圈子</view>

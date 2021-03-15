@@ -207,6 +207,7 @@ Page({
   schoolInput(e) {
     let tempList = [];
     let value = e.detail.value;
+
     // console.log(value, '学校')
     //此处要发请求
     // if (value != this.data.schoolName) {
@@ -295,6 +296,7 @@ Page({
       specialStatus: false,
       isSave: true,
       hideBoxStatus: true,
+     
 
     })
 
@@ -306,6 +308,9 @@ Page({
       specialStatus: false,
       isSave: true,
       hideBoxStatus: true,
+      
+
+
 
     })
   },
@@ -316,6 +321,8 @@ Page({
       specialStatus: true,
       isSave: true,
       hideBoxStatus: true,
+      
+
     })
   },
   selectSchool(e) {
@@ -335,6 +342,7 @@ Page({
         schoolId: item.id,
         schoolStatus: false,
         hideBoxStatus: false,
+
 
       })
       this.getDepartmentList();
@@ -356,7 +364,6 @@ Page({
         departmentId: item.collage_id,
         departmentStatus: false,
         hideBoxStatus: false,
-
       })
       this.getSpecialList();
     }

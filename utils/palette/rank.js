@@ -125,83 +125,95 @@ function mutiFont(arr, rank) {
 export default class LastMayday {
   palette(posterParams) {
     console.log(posterParams, '绘图开始')
-    posterParams.rankNum = 3
-    posterParams.rankList = [
-      {userId: "35", openid: "***xf0I", specialName: "计算机科学与技术", score: "415", rank: 1},
-      {userId: "21", openid: "***1Bw0", specialName: "计算机科学与技术", score: "376", rank: 2},
-      {userId: "3", openid: "***D-R8", specialName: "计算机科学与技术", score: "375", rank: 3} ,
-      {userId: "6", openid: "***_BUs", specialName: "计算机科学与技术", score: "366", rank: 4} ,
-      {userId: "15", openid: "***zSPU", specialName: "计算机科学与技术", score: "351", rank: 5},
-      {userId: "270", openid: "***ALTw", specialName: "计算机科学与技术", score: "308", rank: 6},
-      {userId: "34", openid: "***nu9g", specialName: "计算机科学与技术", score: "298", rank: 7},
-      {userId: "35", openid: "***xf0I", specialName: "计算机科学与技术", score: "415", rank: 1},
-      {userId: "21", openid: "***1Bw0", specialName: "计算机科学与技术", score: "376", rank: 2},
-      {userId: "3", openid: "***D-R8", specialName: "计算机科学与技术", score: "375", rank: 10} ,
-      {userId: "6", openid: "***_BUs", specialName: "计算机科学与技术", score: "366", rank: 4} ,
-      {userId: "15", openid: "***zSPU", specialName: "计算机科学与技术", score: "351", rank: 5},
-      {userId: "270", openid: "***ALTw", specialName: "计算机科学与技术", score: "308", rank: 6},
-      {userId: "34", openid: "***nu9g", specialName: "计算机科学与技术", score: "298", rank: 7}
-    ]
+    // posterParams.rankNum = 3
+    // posterParams.rankList = [
+    //   {userId: "35", openid: "***xf0I", specialName: "计算机科学与技术", score: "415", rank: 1},
+    //   {userId: "21", openid: "***1Bw0", specialName: "计算机科学与技术", score: "376", rank: 2},
+    //   {userId: "3", openid: "***D-R8", specialName: "计算机科学与技术", score: "375", rank: 3} ,
+    //   {userId: "6", openid: "***_BUs", specialName: "计算机科学与技术", score: "366", rank: 4} ,
+    //   {userId: "15", openid: "***zSPU", specialName: "计算机科学与技术", score: "351", rank: 5},
+    //   {userId: "270", openid: "***ALTw", specialName: "计算机科学与技术", score: "308", rank: 6},
+    //   {userId: "34", openid: "***nu9g", specialName: "计算机科学与技术", score: "298", rank: 7},
+    //   {userId: "35", openid: "***xf0I", specialName: "计算机科学与技术", score: "415", rank: 1},
+    //   {userId: "21", openid: "***1Bw0", specialName: "计算机科学与技术", score: "376", rank: 2},
+    //   {userId: "3", openid: "***D-R8", specialName: "计算机科学与技术", score: "375", rank: 10} ,
+    //   {userId: "6", openid: "***_BUs", specialName: "计算机科学与技术", score: "366", rank: 4} ,
+    //   {userId: "15", openid: "***zSPU", specialName: "计算机科学与技术", score: "351", rank: 5},
+    //   {userId: "270", openid: "***ALTw", specialName: "计算机科学与技术", score: "308", rank: 6},
+    //   {userId: "34", openid: "***nu9g", specialName: "计算机科学与技术", score: "298", rank: 7},
+    //   {userId: "21", openid: "***1Bw0", specialName: "计算机科学与技术", score: "376", rank: 2},
+    //   {userId: "3", openid: "***D-R8", specialName: "计算机科学与技术", score: "375", rank: 10} ,
+    //   {userId: "6", openid: "***_BUs", specialName: "计算机科学与技术", score: "366", rank: 4} ,
+    //   {userId: "15", openid: "***zSPU", specialName: "计算机科学与技术", score: "351", rank: 5},
+    //   {userId: "270", openid: "***ALTw", specialName: "计算机科学与技术", score: "308", rank: 6},
+    //   {userId: "34", openid: "***nu9g", specialName: "计算机科学与技术", score: "298", rank: 7}
+    // ]
     let temp = mutiFont(posterParams.rankList, posterParams.rankNum)
+    let views = []
+    if(posterParams.rankNum >0){
+      views = [
+        {
+          type: 'rect',
+          css: {
+            width: '750rpx',
+            top: '30rpx',
+            height: '80rpx',
+            color: '#4871E2',
+          }
+        },
+        {
+          type: 'text',
+          text: '当前排名',
+          css: {
+            top: `50rpx`,
+            color: '#ffffff',
+            left: `30rpx`,
+            fontSize: '30rpx',
+            fontWeight: 'bold',
+            lineHeight: '80rpx'
+          },
+        },
+        {
+          type: 'text',
+          text: '第',
+          css: {
+            top: `50rpx`,
+            color: '#ffffff',
+            right: `120rpx`,
+            fontSize: '30rpx',
+            fontWeight: 'bold',
+            lineHeight: '80rpx'
+          },
+        },
+        {
+          type: 'text',
+          text: `${posterParams.rankNum}`,
+          css: {
+            top: `45rpx`,
+            color: '#f4ea2a',
+            right: `75rpx`,
+            fontSize: '36rpx',
+            fontWeight: 'bold',
+            lineHeight: '80rpx'
+          },
+        },
+        {
+          type: 'text',
+          text: '名',
+          css: {
+            top: `50rpx`,
+            color: '#ffffff',
+            right: `30rpx`,
+            fontSize: '30rpx',
+            fontWeight: 'bold',
+            lineHeight: '80rpx'
+          },
+        },
+      ]
+    }
 
-    let views = [
-      {
-        type: 'rect',
-        css: {
-          width: '750rpx',
-          top: '30rpx',
-          height: '80rpx',
-          color: '#4871E2',
-        }
-      },
-      {
-        type: 'text',
-        text: '当前排名',
-        css: {
-          top: `50rpx`,
-          color: '#ffffff',
-          left: `30rpx`,
-          fontSize: '30rpx',
-          fontWeight: 'bold',
-          lineHeight: '80rpx'
-        },
-      },
-      {
-        type: 'text',
-        text: '第',
-        css: {
-          top: `50rpx`,
-          color: '#ffffff',
-          right: `120rpx`,
-          fontSize: '30rpx',
-          fontWeight: 'bold',
-          lineHeight: '80rpx'
-        },
-      },
-      {
-        type: 'text',
-        text: `${posterParams.rankNum}`,
-        css: {
-          top: `45rpx`,
-          color: '#f4ea2a',
-          right: `75rpx`,
-          fontSize: '36rpx',
-          fontWeight: 'bold',
-          lineHeight: '80rpx'
-        },
-      },
-      {
-        type: 'text',
-        text: '名',
-        css: {
-          top: `50rpx`,
-          color: '#ffffff',
-          right: `30rpx`,
-          fontSize: '30rpx',
-          fontWeight: 'bold',
-          lineHeight: '80rpx'
-        },
-      },
+    let topView = [
+    
       {
         type: 'rect',
         css: {
@@ -267,7 +279,7 @@ export default class LastMayday {
         css: {
           width: '750rpx',
           height: '180rpx',
-          top: app.globalData.screenHeight - 250 + 'rpx',
+          top: app.globalData.screenHeight - 110 + 'rpx',
           color: '#ffffff',
           shadow :'5 -10 30 rgba(207, 211, 230, 1)',
           
@@ -277,7 +289,7 @@ export default class LastMayday {
         type: 'image',
         url: `/asset/images/minipagram.jpg`,
         css: {
-          top:  app.globalData.screenHeight -240 + 'rpx',
+          top:  app.globalData.screenHeight -100 + 'rpx',
           left: 40+ 'rpx',
           width: '160rpx',
           height: '160rpx',
@@ -287,7 +299,7 @@ export default class LastMayday {
         type: 'text',
         text: `导师名额小程序 `,
         css: {
-          top: app.globalData.screenHeight -210 + 'rpx',
+          top: app.globalData.screenHeight -70 + 'rpx',
           width: '230rpx',
           height: '80rpx',
           color: '#333333',
@@ -301,7 +313,7 @@ export default class LastMayday {
         type: 'text',
         text: `长按识别.去看看`,
         css: {
-          top: app.globalData.screenHeight -150 + 'rpx',
+          top: app.globalData.screenHeight -10 + 'rpx',
           width: '230rpx',
           height: '80rpx',
           color: '#666666',
@@ -312,7 +324,7 @@ export default class LastMayday {
         },
       }
     ]
-    views = views.concat(temp,obj)
+    views = views.concat(topView,temp,obj)
     console.log(views, 5555)
     return ({
       width: '750rpx',

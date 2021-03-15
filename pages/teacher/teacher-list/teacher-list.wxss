@@ -171,6 +171,10 @@ button{
   box-sizing: border-box;
   padding-bottom:150rpx;
   position: relative;
+  max-height: 700rpx;
+  overflow: hidden;
+  min-height: 600rpx;
+
 }
 
 .teacher_item_copy{

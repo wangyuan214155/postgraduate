@@ -77,6 +77,10 @@ Page({
       resolve(posterParams);
     })
   },
+  closeModel(){
+    this.setData({ showPosterWrap: !this.data.showPosterWrap });
+
+  },
   saveImg(){
       this.setData({ showPosterWrap: !this.data.showPosterWrap });
       wx.showToast({

@@ -45,6 +45,8 @@ page{
   max-height: 700rpx;
   overflow: hidden;
   position: relative;
+  min-height: 500rpx;
+
 }
 .rank_title_copy{
   height:90rpx;

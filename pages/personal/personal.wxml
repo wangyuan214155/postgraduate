@@ -1,4 +1,4 @@
-<view class="personal_box" >
+  <view class="personal_box" >
   <image class="" src="/asset/images/back.png" ></image>
   <view class="noLogin" wx:if="{{!isLogin}}">
     <view class="avater_box" >
@@ -16,7 +16,7 @@
     <view class="nick_name">{{nickName}}</view>
   </view>
 </view>
-<view class="apply_box">
+<view class="apply_box ">
   <view class="apply_item" >
     <view class="apply_title" >报考学校：</view>
     <view class="apply_content {{isSave ? (schoolError ? 'border-error' :'normal-border') :''}}" >
@@ -60,4 +60,5 @@
   <view class="save_button" bindtap="saveMess" wx:if="{{!isEdit && isSave}}">保存</view>
 </view>
 <view class="hide_box" wx:if="{{hideBoxStatus}}" catchtap="hideStatus"></view>
+
 

@@ -113,7 +113,9 @@
 }
 .apply_box{
   margin-top:40rpx;
+  position: relative;
 }
+
 .save_button{
   height:80rpx;
   width:690rpx;
