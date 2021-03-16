@@ -564,7 +564,9 @@ Page({
         'teacherName': this.data.teacherName,
         'score': this.data.score,
         'openId': this.data.openId,
-        'isSelfMess': this.data.showScoreTip
+        'isSelfMess': this.data.showScoreTip,
+        'schoolName':this.data.schoolName,
+        'collageName':this.data.departmentName,
       })
       wx.navigateTo({
         url: `/pages/teacher/teacher-list/teacher-list?postData=${postData}`,

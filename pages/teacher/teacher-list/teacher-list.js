@@ -42,6 +42,7 @@ Page({
       })
     }
     this.getStudentList();
+    // this.saveImg();
   },
 
   onShow: function () {
@@ -72,6 +73,8 @@ Page({
         reportNum: this.data.reportNum,//报考人数
         rank: this.data.rank,
         applyStudentList: this.data.applyStudentList,
+        schoolName:this.data.postData.schoolName,
+        collageName:this.data.postData.collageName
        
       }
       resolve(posterParams);
@@ -96,6 +99,11 @@ Page({
           })
         })
       }
+      // this.getPosterParams().then((posterParams) => {
+      //   this.setData({
+      //     teacherTemplete: new Poster().palette(posterParams)
+      //   })
+      // })
   },
   openSettingModel() {
     this.setData({ 

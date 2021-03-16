@@ -490,6 +490,8 @@ Page({
         'collageId': this.data.departmentId,
         'specialId': this.data.specialId,
         'userId': this.data.userId,
+        'schoolName':this.data.schoolName,
+        'collageName':this.data.departmentName,
       })
       wx.navigateTo({
         url: `/pages/rank/rank-list/rank-list?postData=${data}`,

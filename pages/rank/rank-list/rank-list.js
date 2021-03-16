@@ -59,6 +59,8 @@ Page({
       let posterParams = { // 生成海报所需要的参数
         rankNum: this.data.rankNum,
         rankList: this.data.rankList,//报考人数
+        schoolName:this.data.postData.schoolName,
+        collageName:this.data.postData.collageName
        
       }
       resolve(posterParams);

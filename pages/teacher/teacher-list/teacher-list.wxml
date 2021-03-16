@@ -57,7 +57,9 @@
   <view class="bottom_item" bindtap="saveImg">保存到相册</view>
   <view class="bottom_item" bindtap="cancel">取消</view>
 </view>
+<!-- <view style="position: fixed;left:0rpx;bottom:-100rpx"> -->
 <view style="position: fixed;left:800rpx;">
+
   <component-painter canvas-id="teacherList" palette="{{teacherTemplete}}" bind:imgOK="onImgOK"></component-painter>
 </view>
 <view class="poster-wrap-bg" wx:if="{{ showPosterWrap }}">

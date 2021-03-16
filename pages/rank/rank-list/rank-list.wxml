@@ -1,8 +1,8 @@
-<view class="rank" wx:if="{{rankNum >0}}">
+<view class="rank">
   <view class="">当前排名</view>
   <view class="">
     第
-    <text class="font-color">{{rankNum}}</text>
+    <text class="font-color">{{rankNum == 0? '-' : rankNum}}</text>
     名
   </view>
 </view>
@@ -38,8 +38,8 @@
   <view class="bottom_item" bindtap="saveImg">保存到相册</view>
   <view class="bottom_item" bindtap="cancel">取消</view>
 </view>
-<!-- <view style="position: fixed;left:0rpx;bottom:-100rpx"> -->
-<view style="position: fixed;left:800rpx">
+<!-- <view style="position: fixed;left:0rpx;bottom:-100rpx">  -->
+<view style="position: fixed;left:800rpx;"> 
 
   <component-painter canvas-id="rankList" palette="{{rankTemplete}}" bind:imgOK="onImgOK"></component-painter>
 </view>

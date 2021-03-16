@@ -8,43 +8,43 @@ App({
       success: res => {
         // console.log(res,'登录信息')
         let data = {
-          'code':res.code
+          'code': res.code
         }
-       return  request._get(loginApi.isLogin,data)
-       .then(res=>{
-        //  console.log(res,33333)
-         if(res.success){
-           let result = res.result;
-           if(result.student_id){
-            this.globalData.userId = result.student_id;
-            this.globalData.openId = result.openid;
-            this.globalData.isLogin = true;
+        return request._get(loginApi.isLogin, data)
+          .then(res => {
+            //  console.log(res,33333)
+            if (res.success) {
+              let result = res.result;
+              if (result.student_id) {
+                this.globalData.userId = result.student_id;
+                this.globalData.openId = result.openid;
+                this.globalData.isLogin = true;
 
-           }else{
-            this.globalData.userId = '';
-            this.globalData.openId = result;
-            this.globalData.isLogin = false;
-            wx.showModal({
-              title: '提示',
-              content: '您还未登录，请先登录哦',
-              showCancel: false,
-              success(res) {
-                if (res.confirm) {
-                  // console.log('用户点击确定')
-                  wx.switchTab({
-                    url: '/pages/personal/personal',
-                  });
-                } 
+              } else {
+                this.globalData.userId = '';
+                this.globalData.openId = result;
+                this.globalData.isLogin = false;
+                wx.showModal({
+                  title: '提示',
+                  content: '您还未登录，请先登录哦',
+                  showCancel: false,
+                  success(res) {
+                    if (res.confirm) {
+                      // console.log('用户点击确定')
+                      wx.switchTab({
+                        url: '/pages/personal/personal',
+                      });
+                    }
+                  }
+                })
               }
-            })
-           }
 
-         }
-       })
-       .catch(err=>{
-        console.log(err,4444)
+            }
+          })
+          .catch(err => {
+            console.log(err, 4444)
 
-       })
+          })
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
@@ -73,12 +73,25 @@ App({
     })
     wx.getSystemInfo({
       success: res => {
-        const { system,windowHeight} = res;
-        this.globalData.screenHeight = windowHeight*2
+        console.log(res, 333)
+        const { system, windowHeight,windowWidth} = res;
+        // 获取可使用窗口宽度
+        let clientHeight = windowHeight;
+        // 获取可使用窗口高度
+        let clientWidth = windowWidth
+        // 算出比例
+        let ratio = 750 / clientWidth;
+        // 算出高度(单位rpx)
+        let height =  Math.floor(clientHeight * ratio);
+        // this.globalData.screenHeight = Math.floor(windowHeight*2);
+
+        this.globalData.screenHeight = height;
+        console.log(Math.floor(windowHeight*2),555,height)
+
         if (system.indexOf('Android') >= 0) {
           this.globalData.system = 'android'
 
-        }else{
+        } else {
           this.globalData.system = 'ios'
 
         }
@@ -88,10 +101,10 @@ App({
   },
   globalData: {
     userInfo: null,
-    openId:'',
-    userId:'',//用户id
-    isLogin:false,
-    system:'ios',
-    screenHeight:0
+    openId: '',
+    userId: '',//用户id
+    isLogin: false,
+    system: 'ios',
+    screenHeight: 0
   }
 })
